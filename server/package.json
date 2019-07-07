@@ -4,8 +4,8 @@
   "scripts": {
     "start": "ts-node index.ts",
     "dev": "ts-node-dev --no-notify --respawn --transpileOnly ./src",
-    "generate": "prisma generate --env-file=../.env",
-    "deploy": "prisma deploy --env-file=../.env",
+    "generate": "PRISMA_DOMAIN=localhost prisma generate --env-file=../.env",
+    "deploy": "PRISMA_DOMAIN=localhost prisma deploy --env-file=../.env",
     "lint": "tslint --project tsconfig.json 'src/**/*.{ts,tsx}'"
   },
   "dependencies": {

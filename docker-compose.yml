@@ -4,6 +4,8 @@ services:
     image: yarnpkg/dev
     command: ['yarn', 'dev']
     env_file: .env
+    environment:
+      - PRISMA_DOMAIN=prisma
     working_dir: /app
     volumes:
       - ./server:/app
