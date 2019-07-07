@@ -1,0 +1,17 @@
+type User {
+  id: ID! @id
+  email: String @unique
+  name: String!
+}
+
+type Domain {
+  id: ID! @id
+  name: String!
+  pages: [Page!]!
+}
+
+type Page {
+  id: ID! @id
+  name: String!
+  domain: Domain @relation(link: INLINE)
+}
