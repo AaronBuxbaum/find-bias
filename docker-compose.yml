@@ -2,7 +2,6 @@ version: '3'
 services:
   server:
     build: server
-    restart: always
     volumes:
       - ./server:/app
     ports:
@@ -12,22 +11,20 @@ services:
     restart: always
     ports:
       - 4466:4466
-    env_file:
-      - .env
     environment:
       PRISMA_CONFIG: |
-        managementApiSecret: ${PRISMA_MANAGEMENT_SECRET}
+        managementApiSecret: ${PRISMA_MANAGEMENT_API_SECRET}
         port: 4466
         databases:
           default:
             connector: mongo
-            uri: mongodb://prisma:prisma@mongo
+            uri: "mongodb://${MONGO_DB_USERNAME}:${MONGO_DB_PASSWORD}@mongo"
   mongo:
     image: mongo:3.6
     restart: always
     environment:
-      MONGO_INITDB_ROOT_USERNAME: prisma
-      MONGO_INITDB_ROOT_PASSWORD: prisma
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_DB_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_DB_PASSWORD}
     ports:
       - 27017:27017
     volumes:
