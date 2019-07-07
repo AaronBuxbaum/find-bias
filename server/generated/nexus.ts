@@ -146,7 +146,9 @@ export interface NexusGenFieldTypes {
     name: string; // String!
   }
   Query: { // field return type
+    domain: NexusGenRootTypes['Domain'] | null; // Domain
     page: NexusGenRootTypes['Page'] | null; // Page
+    pages: NexusGenRootTypes['Page'][]; // [Page!]!
   }
 }
 
@@ -168,8 +170,20 @@ export interface NexusGenArgTypes {
     }
   }
   Query: {
+    domain: { // args
+      where: NexusGenInputs['DomainWhereUniqueInput']; // DomainWhereUniqueInput!
+    }
     page: { // args
       where: NexusGenInputs['PageWhereUniqueInput']; // PageWhereUniqueInput!
+    }
+    pages: { // args
+      after?: string | null; // String
+      before?: string | null; // String
+      first?: number | null; // Int
+      last?: number | null; // Int
+      orderBy?: NexusGenEnums['PageOrderByInput'] | null; // PageOrderByInput
+      skip?: number | null; // Int
+      where?: NexusGenInputs['PageWhereInput'] | null; // PageWhereInput
     }
   }
 }

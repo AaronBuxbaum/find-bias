@@ -7,7 +7,7 @@ import { prisma } from '../generated/prisma-client'
 const Query = prismaObjectType({
   name: 'Query',
   definition(t) {
-    t.prismaFields(['page'])
+    t.prismaFields(['page', 'pages', 'domain']);
   }
 })
 

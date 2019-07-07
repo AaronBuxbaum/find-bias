@@ -1,7 +1,10 @@
 version: '3'
 services:
   server:
-    build: server
+    image: yarnpkg/dev
+    command: ['yarn', 'dev']
+    env_file: .env
+    working_dir: /app
     volumes:
       - ./server:/app
     ports:

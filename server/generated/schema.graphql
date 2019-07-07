@@ -116,5 +116,7 @@ input PageWhereUniqueInput {
 }
 
 type Query {
+  domain(where: DomainWhereUniqueInput!): Domain
   page(where: PageWhereUniqueInput!): Page
+  pages(after: String, before: String, first: Int, last: Int, orderBy: PageOrderByInput, skip: Int, where: PageWhereInput): [Page!]!
 }
