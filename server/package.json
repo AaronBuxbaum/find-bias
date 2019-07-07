@@ -6,7 +6,8 @@
     "dev": "ts-node-dev --no-notify --respawn --transpileOnly ./src",
     "generate": "PRISMA_DOMAIN=localhost prisma generate --env-file=../.env",
     "deploy": "PRISMA_DOMAIN=localhost prisma deploy --env-file=../.env",
-    "lint": "tslint --project tsconfig.json 'src/**/*.{ts,tsx}'"
+    "lint": "tslint --project tsconfig.json 'src/**/*.{ts,tsx}'",
+    "precommit": "yarn lint"
   },
   "dependencies": {
     "graphql": "^14.4.2",
