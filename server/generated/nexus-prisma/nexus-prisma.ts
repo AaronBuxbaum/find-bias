@@ -22,12 +22,24 @@ export interface NexusPrismaTypes {
       AggregateUser: AggregateUserObject
       Domain: DomainObject
       Page: PageObject
+      PageContent: PageContentObject
       DomainConnection: DomainConnectionObject
       DomainEdge: DomainEdgeObject
       AggregateDomain: AggregateDomainObject
       PageConnection: PageConnectionObject
       PageEdge: PageEdgeObject
       AggregatePage: AggregatePageObject
+      PageContentConnection: PageContentConnectionObject
+      PageContentEdge: PageContentEdgeObject
+      AggregatePageContent: AggregatePageContentObject
+      TwitterUser: TwitterUserObject
+      Tweet: TweetObject
+      TwitterUserConnection: TwitterUserConnectionObject
+      TwitterUserEdge: TwitterUserEdgeObject
+      AggregateTwitterUser: AggregateTwitterUserObject
+      TweetConnection: TweetConnectionObject
+      TweetEdge: TweetEdgeObject
+      AggregateTweet: AggregateTweetObject
       Mutation: MutationObject
       BatchPayload: BatchPayloadObject
       Subscription: SubscriptionObject
@@ -37,6 +49,12 @@ export interface NexusPrismaTypes {
       DomainPreviousValues: DomainPreviousValuesObject
       PageSubscriptionPayload: PageSubscriptionPayloadObject
       PagePreviousValues: PagePreviousValuesObject
+      PageContentSubscriptionPayload: PageContentSubscriptionPayloadObject
+      PageContentPreviousValues: PageContentPreviousValuesObject
+      TwitterUserSubscriptionPayload: TwitterUserSubscriptionPayloadObject
+      TwitterUserPreviousValues: TwitterUserPreviousValuesObject
+      TweetSubscriptionPayload: TweetSubscriptionPayloadObject
+      TweetPreviousValues: TweetPreviousValuesObject
     }
     fieldsDetails: {
       Query: QueryFieldDetails
@@ -47,12 +65,24 @@ export interface NexusPrismaTypes {
       AggregateUser: AggregateUserFieldDetails
       Domain: DomainFieldDetails
       Page: PageFieldDetails
+      PageContent: PageContentFieldDetails
       DomainConnection: DomainConnectionFieldDetails
       DomainEdge: DomainEdgeFieldDetails
       AggregateDomain: AggregateDomainFieldDetails
       PageConnection: PageConnectionFieldDetails
       PageEdge: PageEdgeFieldDetails
       AggregatePage: AggregatePageFieldDetails
+      PageContentConnection: PageContentConnectionFieldDetails
+      PageContentEdge: PageContentEdgeFieldDetails
+      AggregatePageContent: AggregatePageContentFieldDetails
+      TwitterUser: TwitterUserFieldDetails
+      Tweet: TweetFieldDetails
+      TwitterUserConnection: TwitterUserConnectionFieldDetails
+      TwitterUserEdge: TwitterUserEdgeFieldDetails
+      AggregateTwitterUser: AggregateTwitterUserFieldDetails
+      TweetConnection: TweetConnectionFieldDetails
+      TweetEdge: TweetEdgeFieldDetails
+      AggregateTweet: AggregateTweetFieldDetails
       Mutation: MutationFieldDetails
       BatchPayload: BatchPayloadFieldDetails
       Subscription: SubscriptionFieldDetails
@@ -62,6 +92,12 @@ export interface NexusPrismaTypes {
       DomainPreviousValues: DomainPreviousValuesFieldDetails
       PageSubscriptionPayload: PageSubscriptionPayloadFieldDetails
       PagePreviousValues: PagePreviousValuesFieldDetails
+      PageContentSubscriptionPayload: PageContentSubscriptionPayloadFieldDetails
+      PageContentPreviousValues: PageContentPreviousValuesFieldDetails
+      TwitterUserSubscriptionPayload: TwitterUserSubscriptionPayloadFieldDetails
+      TwitterUserPreviousValues: TwitterUserPreviousValuesFieldDetails
+      TweetSubscriptionPayload: TweetSubscriptionPayloadFieldDetails
+      TweetPreviousValues: TweetPreviousValuesFieldDetails
     }
   }
   inputTypes: {
@@ -70,18 +106,29 @@ export interface NexusPrismaTypes {
       UserWhereInput: UserWhereInputInputObject
       DomainWhereUniqueInput: DomainWhereUniqueInputInputObject
       PageWhereInput: PageWhereInputInputObject
+      PageContentWhereInput: PageContentWhereInputInputObject
       DomainWhereInput: DomainWhereInputInputObject
       PageWhereUniqueInput: PageWhereUniqueInputInputObject
+      PageContentWhereUniqueInput: PageContentWhereUniqueInputInputObject
+      TwitterUserWhereUniqueInput: TwitterUserWhereUniqueInputInputObject
+      TweetWhereInput: TweetWhereInputInputObject
+      TwitterUserWhereInput: TwitterUserWhereInputInputObject
+      TweetWhereUniqueInput: TweetWhereUniqueInputInputObject
       UserCreateInput: UserCreateInputInputObject
       UserUpdateInput: UserUpdateInputInputObject
       UserUpdateManyMutationInput: UserUpdateManyMutationInputInputObject
       DomainCreateInput: DomainCreateInputInputObject
       PageCreateManyWithoutDomainInput: PageCreateManyWithoutDomainInputInputObject
       PageCreateWithoutDomainInput: PageCreateWithoutDomainInputInputObject
+      PageContentCreateOneWithoutPageInput: PageContentCreateOneWithoutPageInputInputObject
+      PageContentCreateWithoutPageInput: PageContentCreateWithoutPageInputInputObject
       DomainUpdateInput: DomainUpdateInputInputObject
       PageUpdateManyWithoutDomainInput: PageUpdateManyWithoutDomainInputInputObject
       PageUpdateWithWhereUniqueWithoutDomainInput: PageUpdateWithWhereUniqueWithoutDomainInputInputObject
       PageUpdateWithoutDomainDataInput: PageUpdateWithoutDomainDataInputInputObject
+      PageContentUpdateOneWithoutPageInput: PageContentUpdateOneWithoutPageInputInputObject
+      PageContentUpdateWithoutPageDataInput: PageContentUpdateWithoutPageDataInputInputObject
+      PageContentUpsertWithoutPageInput: PageContentUpsertWithoutPageInputInputObject
       PageUpsertWithWhereUniqueWithoutDomainInput: PageUpsertWithWhereUniqueWithoutDomainInputInputObject
       PageScalarWhereInput: PageScalarWhereInputInputObject
       PageUpdateManyWithWhereNestedInput: PageUpdateManyWithWhereNestedInputInputObject
@@ -95,15 +142,43 @@ export interface NexusPrismaTypes {
       DomainUpdateWithoutPagesDataInput: DomainUpdateWithoutPagesDataInputInputObject
       DomainUpsertWithoutPagesInput: DomainUpsertWithoutPagesInputInputObject
       PageUpdateManyMutationInput: PageUpdateManyMutationInputInputObject
+      PageContentCreateInput: PageContentCreateInputInputObject
+      PageCreateOneWithoutContentInput: PageCreateOneWithoutContentInputInputObject
+      PageCreateWithoutContentInput: PageCreateWithoutContentInputInputObject
+      PageContentUpdateInput: PageContentUpdateInputInputObject
+      PageUpdateOneWithoutContentInput: PageUpdateOneWithoutContentInputInputObject
+      PageUpdateWithoutContentDataInput: PageUpdateWithoutContentDataInputInputObject
+      PageUpsertWithoutContentInput: PageUpsertWithoutContentInputInputObject
+      PageContentUpdateManyMutationInput: PageContentUpdateManyMutationInputInputObject
+      TwitterUserCreateInput: TwitterUserCreateInputInputObject
+      TweetCreateManyInput: TweetCreateManyInputInputObject
+      TweetCreateInput: TweetCreateInputInputObject
+      TwitterUserUpdateInput: TwitterUserUpdateInputInputObject
+      TweetUpdateManyInput: TweetUpdateManyInputInputObject
+      TweetUpdateWithWhereUniqueNestedInput: TweetUpdateWithWhereUniqueNestedInputInputObject
+      TweetUpdateDataInput: TweetUpdateDataInputInputObject
+      TweetUpsertWithWhereUniqueNestedInput: TweetUpsertWithWhereUniqueNestedInputInputObject
+      TweetScalarWhereInput: TweetScalarWhereInputInputObject
+      TweetUpdateManyWithWhereNestedInput: TweetUpdateManyWithWhereNestedInputInputObject
+      TweetUpdateManyDataInput: TweetUpdateManyDataInputInputObject
+      TwitterUserUpdateManyMutationInput: TwitterUserUpdateManyMutationInputInputObject
+      TweetUpdateInput: TweetUpdateInputInputObject
+      TweetUpdateManyMutationInput: TweetUpdateManyMutationInputInputObject
       UserSubscriptionWhereInput: UserSubscriptionWhereInputInputObject
       DomainSubscriptionWhereInput: DomainSubscriptionWhereInputInputObject
       PageSubscriptionWhereInput: PageSubscriptionWhereInputInputObject
+      PageContentSubscriptionWhereInput: PageContentSubscriptionWhereInputInputObject
+      TwitterUserSubscriptionWhereInput: TwitterUserSubscriptionWhereInputInputObject
+      TweetSubscriptionWhereInput: TweetSubscriptionWhereInputInputObject
     }
   }
   enumTypes: {
     UserOrderByInput: UserOrderByInputValues,
     PageOrderByInput: PageOrderByInputValues,
     DomainOrderByInput: DomainOrderByInputValues,
+    PageContentOrderByInput: PageContentOrderByInputValues,
+    TweetOrderByInput: TweetOrderByInputValues,
+    TwitterUserOrderByInput: TwitterUserOrderByInputValues,
     MutationType: MutationTypeValues,
   }
 }
@@ -121,6 +196,15 @@ type QueryObject =
   | { name: 'page', args?: QueryPageArgs[] | false, alias?: string  } 
   | { name: 'pages', args?: QueryPagesArgs[] | false, alias?: string  } 
   | { name: 'pagesConnection', args?: QueryPagesConnectionArgs[] | false, alias?: string  } 
+  | { name: 'pageContent', args?: QueryPageContentArgs[] | false, alias?: string  } 
+  | { name: 'pageContents', args?: QueryPageContentsArgs[] | false, alias?: string  } 
+  | { name: 'pageContentsConnection', args?: QueryPageContentsConnectionArgs[] | false, alias?: string  } 
+  | { name: 'twitterUser', args?: QueryTwitterUserArgs[] | false, alias?: string  } 
+  | { name: 'twitterUsers', args?: QueryTwitterUsersArgs[] | false, alias?: string  } 
+  | { name: 'twitterUsersConnection', args?: QueryTwitterUsersConnectionArgs[] | false, alias?: string  } 
+  | { name: 'tweet', args?: QueryTweetArgs[] | false, alias?: string  } 
+  | { name: 'tweets', args?: QueryTweetsArgs[] | false, alias?: string  } 
+  | { name: 'tweetsConnection', args?: QueryTweetsConnectionArgs[] | false, alias?: string  } 
 
 type QueryFields =
   | 'user'
@@ -132,6 +216,15 @@ type QueryFields =
   | 'page'
   | 'pages'
   | 'pagesConnection'
+  | 'pageContent'
+  | 'pageContents'
+  | 'pageContentsConnection'
+  | 'twitterUser'
+  | 'twitterUsers'
+  | 'twitterUsersConnection'
+  | 'tweet'
+  | 'tweets'
+  | 'tweetsConnection'
 
 
 type QueryUserArgs =
@@ -181,6 +274,60 @@ type QueryPagesArgs =
   | 'first'
   | 'last'
 type QueryPagesConnectionArgs =
+  | 'where'
+  | 'orderBy'
+  | 'skip'
+  | 'after'
+  | 'before'
+  | 'first'
+  | 'last'
+type QueryPageContentArgs =
+  | 'where'
+type QueryPageContentsArgs =
+  | 'where'
+  | 'orderBy'
+  | 'skip'
+  | 'after'
+  | 'before'
+  | 'first'
+  | 'last'
+type QueryPageContentsConnectionArgs =
+  | 'where'
+  | 'orderBy'
+  | 'skip'
+  | 'after'
+  | 'before'
+  | 'first'
+  | 'last'
+type QueryTwitterUserArgs =
+  | 'where'
+type QueryTwitterUsersArgs =
+  | 'where'
+  | 'orderBy'
+  | 'skip'
+  | 'after'
+  | 'before'
+  | 'first'
+  | 'last'
+type QueryTwitterUsersConnectionArgs =
+  | 'where'
+  | 'orderBy'
+  | 'skip'
+  | 'after'
+  | 'before'
+  | 'first'
+  | 'last'
+type QueryTweetArgs =
+  | 'where'
+type QueryTweetsArgs =
+  | 'where'
+  | 'orderBy'
+  | 'skip'
+  | 'after'
+  | 'before'
+  | 'first'
+  | 'last'
+type QueryTweetsConnectionArgs =
   | 'where'
   | 'orderBy'
   | 'skip'
@@ -307,6 +454,123 @@ export interface QueryFieldDetails {
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
     ) => Promise<prisma.PageConnection> | prisma.PageConnection
+  }
+  pageContent: {
+    type: 'PageContent'
+    args: Record<QueryPageContentArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: true
+    resolve: (
+      root: core.RootValue<"Query">,
+      args: { where: PageContentWhereUniqueInput }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.PageContent | null> | prisma.PageContent | null
+  }
+  pageContents: {
+    type: 'PageContent'
+    args: Record<QueryPageContentsArgs, core.NexusArgDef<string>>
+    description: string
+    list: true
+    nullable: false
+    resolve: (
+      root: core.RootValue<"Query">,
+      args: { where?: PageContentWhereInput | null, orderBy?: prisma.PageContentOrderByInput | null, skip?: number | null, after?: string | null, before?: string | null, first?: number | null, last?: number | null }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.PageContent[]> | prisma.PageContent[]
+  }
+  pageContentsConnection: {
+    type: 'PageContentConnection'
+    args: Record<QueryPageContentsConnectionArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: false
+    resolve: (
+      root: core.RootValue<"Query">,
+      args: { where?: PageContentWhereInput | null, orderBy?: prisma.PageContentOrderByInput | null, skip?: number | null, after?: string | null, before?: string | null, first?: number | null, last?: number | null }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.PageContentConnection> | prisma.PageContentConnection
+  }
+  twitterUser: {
+    type: 'TwitterUser'
+    args: Record<QueryTwitterUserArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: true
+    resolve: (
+      root: core.RootValue<"Query">,
+      args: { where: TwitterUserWhereUniqueInput }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.TwitterUser | null> | prisma.TwitterUser | null
+  }
+  twitterUsers: {
+    type: 'TwitterUser'
+    args: Record<QueryTwitterUsersArgs, core.NexusArgDef<string>>
+    description: string
+    list: true
+    nullable: false
+    resolve: (
+      root: core.RootValue<"Query">,
+      args: { where?: TwitterUserWhereInput | null, orderBy?: prisma.TwitterUserOrderByInput | null, skip?: number | null, after?: string | null, before?: string | null, first?: number | null, last?: number | null }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.TwitterUser[]> | prisma.TwitterUser[]
+  }
+  twitterUsersConnection: {
+    type: 'TwitterUserConnection'
+    args: Record<QueryTwitterUsersConnectionArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: false
+    resolve: (
+      root: core.RootValue<"Query">,
+      args: { where?: TwitterUserWhereInput | null, orderBy?: prisma.TwitterUserOrderByInput | null, skip?: number | null, after?: string | null, before?: string | null, first?: number | null, last?: number | null }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.TwitterUserConnection> | prisma.TwitterUserConnection
+  }
+  tweet: {
+    type: 'Tweet'
+    args: Record<QueryTweetArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: true
+    resolve: (
+      root: core.RootValue<"Query">,
+      args: { where: TweetWhereUniqueInput }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.Tweet | null> | prisma.Tweet | null
+  }
+  tweets: {
+    type: 'Tweet'
+    args: Record<QueryTweetsArgs, core.NexusArgDef<string>>
+    description: string
+    list: true
+    nullable: false
+    resolve: (
+      root: core.RootValue<"Query">,
+      args: { where?: TweetWhereInput | null, orderBy?: prisma.TweetOrderByInput | null, skip?: number | null, after?: string | null, before?: string | null, first?: number | null, last?: number | null }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.Tweet[]> | prisma.Tweet[]
+  }
+  tweetsConnection: {
+    type: 'TweetConnection'
+    args: Record<QueryTweetsConnectionArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: false
+    resolve: (
+      root: core.RootValue<"Query">,
+      args: { where?: TweetWhereInput | null, orderBy?: prisma.TweetOrderByInput | null, skip?: number | null, after?: string | null, before?: string | null, first?: number | null, last?: number | null }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.TweetConnection> | prisma.TweetConnection
   }
 }
   
@@ -542,11 +806,13 @@ type DomainObject =
   | DomainFields
   | { name: 'id', args?: [] | false, alias?: string  } 
   | { name: 'name', args?: [] | false, alias?: string  } 
+  | { name: 'url', args?: [] | false, alias?: string  } 
   | { name: 'pages', args?: DomainPagesArgs[] | false, alias?: string  } 
 
 type DomainFields =
   | 'id'
   | 'name'
+  | 'url'
   | 'pages'
 
 
@@ -577,6 +843,14 @@ export interface DomainFieldDetails {
     nullable: false
     resolve: undefined
   }
+  url: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
   pages: {
     type: 'Page'
     args: Record<DomainPagesArgs, core.NexusArgDef<string>>
@@ -599,11 +873,15 @@ type PageObject =
   | PageFields
   | { name: 'id', args?: [] | false, alias?: string  } 
   | { name: 'name', args?: [] | false, alias?: string  } 
+  | { name: 'url', args?: [] | false, alias?: string  } 
+  | { name: 'content', args?: [] | false, alias?: string  } 
   | { name: 'domain', args?: [] | false, alias?: string  } 
 
 type PageFields =
   | 'id'
   | 'name'
+  | 'url'
+  | 'content'
   | 'domain'
 
 
@@ -624,8 +902,29 @@ export interface PageFieldDetails {
     args: {}
     description: string
     list: undefined
-    nullable: false
+    nullable: true
     resolve: undefined
+  }
+  url: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: undefined
+  }
+  content: {
+    type: 'PageContent'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: (
+      root: core.RootValue<"Page">,
+      args: {  }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.PageContent | null> | prisma.PageContent | null
   }
   domain: {
     type: 'Domain'
@@ -639,6 +938,56 @@ export interface PageFieldDetails {
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
     ) => Promise<prisma.Domain | null> | prisma.Domain | null
+  }
+}
+  
+
+// Types for PageContent
+
+type PageContentObject =
+  | PageContentFields
+  | { name: 'id', args?: [] | false, alias?: string  } 
+  | { name: 'page', args?: [] | false, alias?: string  } 
+  | { name: 'content', args?: [] | false, alias?: string  } 
+
+type PageContentFields =
+  | 'id'
+  | 'page'
+  | 'content'
+
+
+
+  
+
+export interface PageContentFieldDetails {
+  id: {
+    type: 'ID'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  page: {
+    type: 'Page'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: (
+      root: core.RootValue<"PageContent">,
+      args: {  }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.Page | null> | prisma.Page | null
+  }
+  content: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
   }
 }
   
@@ -893,6 +1242,473 @@ export interface AggregatePageFieldDetails {
 }
   
 
+// Types for PageContentConnection
+
+type PageContentConnectionObject =
+  | PageContentConnectionFields
+  | { name: 'pageInfo', args?: [] | false, alias?: string  } 
+  | { name: 'edges', args?: [] | false, alias?: string  } 
+  | { name: 'aggregate', args?: [] | false, alias?: string  } 
+
+type PageContentConnectionFields =
+  | 'pageInfo'
+  | 'edges'
+  | 'aggregate'
+
+
+
+  
+
+export interface PageContentConnectionFieldDetails {
+  pageInfo: {
+    type: 'PageInfo'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: (
+      root: core.RootValue<"PageContentConnection">,
+      args: {  }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.PageInfo> | prisma.PageInfo
+  }
+  edges: {
+    type: 'PageContentEdge'
+    args: {}
+    description: string
+    list: true
+    nullable: false
+    resolve: (
+      root: core.RootValue<"PageContentConnection">,
+      args: {  }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.PageContentEdge[]> | prisma.PageContentEdge[]
+  }
+  aggregate: {
+    type: 'AggregatePageContent'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: (
+      root: core.RootValue<"PageContentConnection">,
+      args: {  }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.AggregatePageContent> | prisma.AggregatePageContent
+  }
+}
+  
+
+// Types for PageContentEdge
+
+type PageContentEdgeObject =
+  | PageContentEdgeFields
+  | { name: 'node', args?: [] | false, alias?: string  } 
+  | { name: 'cursor', args?: [] | false, alias?: string  } 
+
+type PageContentEdgeFields =
+  | 'node'
+  | 'cursor'
+
+
+
+  
+
+export interface PageContentEdgeFieldDetails {
+  node: {
+    type: 'PageContent'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: (
+      root: core.RootValue<"PageContentEdge">,
+      args: {  }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.PageContent> | prisma.PageContent
+  }
+  cursor: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+}
+  
+
+// Types for AggregatePageContent
+
+type AggregatePageContentObject =
+  | AggregatePageContentFields
+  | { name: 'count', args?: [] | false, alias?: string  } 
+
+type AggregatePageContentFields =
+  | 'count'
+
+
+
+  
+
+export interface AggregatePageContentFieldDetails {
+  count: {
+    type: 'Int'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+}
+  
+
+// Types for TwitterUser
+
+type TwitterUserObject =
+  | TwitterUserFields
+  | { name: 'id', args?: [] | false, alias?: string  } 
+  | { name: 'handle', args?: [] | false, alias?: string  } 
+  | { name: 'tweets', args?: TwitterUserTweetsArgs[] | false, alias?: string  } 
+
+type TwitterUserFields =
+  | 'id'
+  | 'handle'
+  | 'tweets'
+
+
+type TwitterUserTweetsArgs =
+  | 'where'
+  | 'orderBy'
+  | 'skip'
+  | 'after'
+  | 'before'
+  | 'first'
+  | 'last'
+  
+
+export interface TwitterUserFieldDetails {
+  id: {
+    type: 'ID'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  handle: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  tweets: {
+    type: 'Tweet'
+    args: Record<TwitterUserTweetsArgs, core.NexusArgDef<string>>
+    description: string
+    list: true
+    nullable: false
+    resolve: (
+      root: core.RootValue<"TwitterUser">,
+      args: { where?: TweetWhereInput | null, orderBy?: prisma.TweetOrderByInput | null, skip?: number | null, after?: string | null, before?: string | null, first?: number | null, last?: number | null }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.Tweet[]> | prisma.Tweet[]
+  }
+}
+  
+
+// Types for Tweet
+
+type TweetObject =
+  | TweetFields
+  | { name: 'id', args?: [] | false, alias?: string  } 
+  | { name: 'text', args?: [] | false, alias?: string  } 
+
+type TweetFields =
+  | 'id'
+  | 'text'
+
+
+
+  
+
+export interface TweetFieldDetails {
+  id: {
+    type: 'ID'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  text: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+}
+  
+
+// Types for TwitterUserConnection
+
+type TwitterUserConnectionObject =
+  | TwitterUserConnectionFields
+  | { name: 'pageInfo', args?: [] | false, alias?: string  } 
+  | { name: 'edges', args?: [] | false, alias?: string  } 
+  | { name: 'aggregate', args?: [] | false, alias?: string  } 
+
+type TwitterUserConnectionFields =
+  | 'pageInfo'
+  | 'edges'
+  | 'aggregate'
+
+
+
+  
+
+export interface TwitterUserConnectionFieldDetails {
+  pageInfo: {
+    type: 'PageInfo'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: (
+      root: core.RootValue<"TwitterUserConnection">,
+      args: {  }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.PageInfo> | prisma.PageInfo
+  }
+  edges: {
+    type: 'TwitterUserEdge'
+    args: {}
+    description: string
+    list: true
+    nullable: false
+    resolve: (
+      root: core.RootValue<"TwitterUserConnection">,
+      args: {  }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.TwitterUserEdge[]> | prisma.TwitterUserEdge[]
+  }
+  aggregate: {
+    type: 'AggregateTwitterUser'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: (
+      root: core.RootValue<"TwitterUserConnection">,
+      args: {  }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.AggregateTwitterUser> | prisma.AggregateTwitterUser
+  }
+}
+  
+
+// Types for TwitterUserEdge
+
+type TwitterUserEdgeObject =
+  | TwitterUserEdgeFields
+  | { name: 'node', args?: [] | false, alias?: string  } 
+  | { name: 'cursor', args?: [] | false, alias?: string  } 
+
+type TwitterUserEdgeFields =
+  | 'node'
+  | 'cursor'
+
+
+
+  
+
+export interface TwitterUserEdgeFieldDetails {
+  node: {
+    type: 'TwitterUser'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: (
+      root: core.RootValue<"TwitterUserEdge">,
+      args: {  }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.TwitterUser> | prisma.TwitterUser
+  }
+  cursor: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+}
+  
+
+// Types for AggregateTwitterUser
+
+type AggregateTwitterUserObject =
+  | AggregateTwitterUserFields
+  | { name: 'count', args?: [] | false, alias?: string  } 
+
+type AggregateTwitterUserFields =
+  | 'count'
+
+
+
+  
+
+export interface AggregateTwitterUserFieldDetails {
+  count: {
+    type: 'Int'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+}
+  
+
+// Types for TweetConnection
+
+type TweetConnectionObject =
+  | TweetConnectionFields
+  | { name: 'pageInfo', args?: [] | false, alias?: string  } 
+  | { name: 'edges', args?: [] | false, alias?: string  } 
+  | { name: 'aggregate', args?: [] | false, alias?: string  } 
+
+type TweetConnectionFields =
+  | 'pageInfo'
+  | 'edges'
+  | 'aggregate'
+
+
+
+  
+
+export interface TweetConnectionFieldDetails {
+  pageInfo: {
+    type: 'PageInfo'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: (
+      root: core.RootValue<"TweetConnection">,
+      args: {  }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.PageInfo> | prisma.PageInfo
+  }
+  edges: {
+    type: 'TweetEdge'
+    args: {}
+    description: string
+    list: true
+    nullable: false
+    resolve: (
+      root: core.RootValue<"TweetConnection">,
+      args: {  }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.TweetEdge[]> | prisma.TweetEdge[]
+  }
+  aggregate: {
+    type: 'AggregateTweet'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: (
+      root: core.RootValue<"TweetConnection">,
+      args: {  }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.AggregateTweet> | prisma.AggregateTweet
+  }
+}
+  
+
+// Types for TweetEdge
+
+type TweetEdgeObject =
+  | TweetEdgeFields
+  | { name: 'node', args?: [] | false, alias?: string  } 
+  | { name: 'cursor', args?: [] | false, alias?: string  } 
+
+type TweetEdgeFields =
+  | 'node'
+  | 'cursor'
+
+
+
+  
+
+export interface TweetEdgeFieldDetails {
+  node: {
+    type: 'Tweet'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: (
+      root: core.RootValue<"TweetEdge">,
+      args: {  }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.Tweet> | prisma.Tweet
+  }
+  cursor: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+}
+  
+
+// Types for AggregateTweet
+
+type AggregateTweetObject =
+  | AggregateTweetFields
+  | { name: 'count', args?: [] | false, alias?: string  } 
+
+type AggregateTweetFields =
+  | 'count'
+
+
+
+  
+
+export interface AggregateTweetFieldDetails {
+  count: {
+    type: 'Int'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+}
+  
+
 // Types for Mutation
 
 type MutationObject =
@@ -915,6 +1731,24 @@ type MutationObject =
   | { name: 'upsertPage', args?: MutationUpsertPageArgs[] | false, alias?: string  } 
   | { name: 'deletePage', args?: MutationDeletePageArgs[] | false, alias?: string  } 
   | { name: 'deleteManyPages', args?: MutationDeleteManyPagesArgs[] | false, alias?: string  } 
+  | { name: 'createPageContent', args?: MutationCreatePageContentArgs[] | false, alias?: string  } 
+  | { name: 'updatePageContent', args?: MutationUpdatePageContentArgs[] | false, alias?: string  } 
+  | { name: 'updateManyPageContents', args?: MutationUpdateManyPageContentsArgs[] | false, alias?: string  } 
+  | { name: 'upsertPageContent', args?: MutationUpsertPageContentArgs[] | false, alias?: string  } 
+  | { name: 'deletePageContent', args?: MutationDeletePageContentArgs[] | false, alias?: string  } 
+  | { name: 'deleteManyPageContents', args?: MutationDeleteManyPageContentsArgs[] | false, alias?: string  } 
+  | { name: 'createTwitterUser', args?: MutationCreateTwitterUserArgs[] | false, alias?: string  } 
+  | { name: 'updateTwitterUser', args?: MutationUpdateTwitterUserArgs[] | false, alias?: string  } 
+  | { name: 'updateManyTwitterUsers', args?: MutationUpdateManyTwitterUsersArgs[] | false, alias?: string  } 
+  | { name: 'upsertTwitterUser', args?: MutationUpsertTwitterUserArgs[] | false, alias?: string  } 
+  | { name: 'deleteTwitterUser', args?: MutationDeleteTwitterUserArgs[] | false, alias?: string  } 
+  | { name: 'deleteManyTwitterUsers', args?: MutationDeleteManyTwitterUsersArgs[] | false, alias?: string  } 
+  | { name: 'createTweet', args?: MutationCreateTweetArgs[] | false, alias?: string  } 
+  | { name: 'updateTweet', args?: MutationUpdateTweetArgs[] | false, alias?: string  } 
+  | { name: 'updateManyTweets', args?: MutationUpdateManyTweetsArgs[] | false, alias?: string  } 
+  | { name: 'upsertTweet', args?: MutationUpsertTweetArgs[] | false, alias?: string  } 
+  | { name: 'deleteTweet', args?: MutationDeleteTweetArgs[] | false, alias?: string  } 
+  | { name: 'deleteManyTweets', args?: MutationDeleteManyTweetsArgs[] | false, alias?: string  } 
 
 type MutationFields =
   | 'createUser'
@@ -935,6 +1769,24 @@ type MutationFields =
   | 'upsertPage'
   | 'deletePage'
   | 'deleteManyPages'
+  | 'createPageContent'
+  | 'updatePageContent'
+  | 'updateManyPageContents'
+  | 'upsertPageContent'
+  | 'deletePageContent'
+  | 'deleteManyPageContents'
+  | 'createTwitterUser'
+  | 'updateTwitterUser'
+  | 'updateManyTwitterUsers'
+  | 'upsertTwitterUser'
+  | 'deleteTwitterUser'
+  | 'deleteManyTwitterUsers'
+  | 'createTweet'
+  | 'updateTweet'
+  | 'updateManyTweets'
+  | 'upsertTweet'
+  | 'deleteTweet'
+  | 'deleteManyTweets'
 
 
 type MutationCreateUserArgs =
@@ -984,6 +1836,54 @@ type MutationUpsertPageArgs =
 type MutationDeletePageArgs =
   | 'where'
 type MutationDeleteManyPagesArgs =
+  | 'where'
+type MutationCreatePageContentArgs =
+  | 'data'
+type MutationUpdatePageContentArgs =
+  | 'data'
+  | 'where'
+type MutationUpdateManyPageContentsArgs =
+  | 'data'
+  | 'where'
+type MutationUpsertPageContentArgs =
+  | 'where'
+  | 'create'
+  | 'update'
+type MutationDeletePageContentArgs =
+  | 'where'
+type MutationDeleteManyPageContentsArgs =
+  | 'where'
+type MutationCreateTwitterUserArgs =
+  | 'data'
+type MutationUpdateTwitterUserArgs =
+  | 'data'
+  | 'where'
+type MutationUpdateManyTwitterUsersArgs =
+  | 'data'
+  | 'where'
+type MutationUpsertTwitterUserArgs =
+  | 'where'
+  | 'create'
+  | 'update'
+type MutationDeleteTwitterUserArgs =
+  | 'where'
+type MutationDeleteManyTwitterUsersArgs =
+  | 'where'
+type MutationCreateTweetArgs =
+  | 'data'
+type MutationUpdateTweetArgs =
+  | 'data'
+  | 'where'
+type MutationUpdateManyTweetsArgs =
+  | 'data'
+  | 'where'
+type MutationUpsertTweetArgs =
+  | 'where'
+  | 'create'
+  | 'update'
+type MutationDeleteTweetArgs =
+  | 'where'
+type MutationDeleteManyTweetsArgs =
   | 'where'
   
 
@@ -1222,6 +2122,240 @@ export interface MutationFieldDetails {
       info?: GraphQLResolveInfo
     ) => Promise<prisma.BatchPayload> | prisma.BatchPayload
   }
+  createPageContent: {
+    type: 'PageContent'
+    args: Record<MutationCreatePageContentArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: false
+    resolve: (
+      root: core.RootValue<"Mutation">,
+      args: { data: PageContentCreateInput }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.PageContent> | prisma.PageContent
+  }
+  updatePageContent: {
+    type: 'PageContent'
+    args: Record<MutationUpdatePageContentArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: true
+    resolve: (
+      root: core.RootValue<"Mutation">,
+      args: { data: PageContentUpdateInput, where: PageContentWhereUniqueInput }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.PageContent | null> | prisma.PageContent | null
+  }
+  updateManyPageContents: {
+    type: 'BatchPayload'
+    args: Record<MutationUpdateManyPageContentsArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: false
+    resolve: (
+      root: core.RootValue<"Mutation">,
+      args: { data: PageContentUpdateManyMutationInput, where?: PageContentWhereInput | null }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.BatchPayload> | prisma.BatchPayload
+  }
+  upsertPageContent: {
+    type: 'PageContent'
+    args: Record<MutationUpsertPageContentArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: false
+    resolve: (
+      root: core.RootValue<"Mutation">,
+      args: { where: PageContentWhereUniqueInput, create: PageContentCreateInput, update: PageContentUpdateInput }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.PageContent> | prisma.PageContent
+  }
+  deletePageContent: {
+    type: 'PageContent'
+    args: Record<MutationDeletePageContentArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: true
+    resolve: (
+      root: core.RootValue<"Mutation">,
+      args: { where: PageContentWhereUniqueInput }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.PageContent | null> | prisma.PageContent | null
+  }
+  deleteManyPageContents: {
+    type: 'BatchPayload'
+    args: Record<MutationDeleteManyPageContentsArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: false
+    resolve: (
+      root: core.RootValue<"Mutation">,
+      args: { where?: PageContentWhereInput | null }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.BatchPayload> | prisma.BatchPayload
+  }
+  createTwitterUser: {
+    type: 'TwitterUser'
+    args: Record<MutationCreateTwitterUserArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: false
+    resolve: (
+      root: core.RootValue<"Mutation">,
+      args: { data: TwitterUserCreateInput }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.TwitterUser> | prisma.TwitterUser
+  }
+  updateTwitterUser: {
+    type: 'TwitterUser'
+    args: Record<MutationUpdateTwitterUserArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: true
+    resolve: (
+      root: core.RootValue<"Mutation">,
+      args: { data: TwitterUserUpdateInput, where: TwitterUserWhereUniqueInput }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.TwitterUser | null> | prisma.TwitterUser | null
+  }
+  updateManyTwitterUsers: {
+    type: 'BatchPayload'
+    args: Record<MutationUpdateManyTwitterUsersArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: false
+    resolve: (
+      root: core.RootValue<"Mutation">,
+      args: { data: TwitterUserUpdateManyMutationInput, where?: TwitterUserWhereInput | null }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.BatchPayload> | prisma.BatchPayload
+  }
+  upsertTwitterUser: {
+    type: 'TwitterUser'
+    args: Record<MutationUpsertTwitterUserArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: false
+    resolve: (
+      root: core.RootValue<"Mutation">,
+      args: { where: TwitterUserWhereUniqueInput, create: TwitterUserCreateInput, update: TwitterUserUpdateInput }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.TwitterUser> | prisma.TwitterUser
+  }
+  deleteTwitterUser: {
+    type: 'TwitterUser'
+    args: Record<MutationDeleteTwitterUserArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: true
+    resolve: (
+      root: core.RootValue<"Mutation">,
+      args: { where: TwitterUserWhereUniqueInput }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.TwitterUser | null> | prisma.TwitterUser | null
+  }
+  deleteManyTwitterUsers: {
+    type: 'BatchPayload'
+    args: Record<MutationDeleteManyTwitterUsersArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: false
+    resolve: (
+      root: core.RootValue<"Mutation">,
+      args: { where?: TwitterUserWhereInput | null }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.BatchPayload> | prisma.BatchPayload
+  }
+  createTweet: {
+    type: 'Tweet'
+    args: Record<MutationCreateTweetArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: false
+    resolve: (
+      root: core.RootValue<"Mutation">,
+      args: { data: TweetCreateInput }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.Tweet> | prisma.Tweet
+  }
+  updateTweet: {
+    type: 'Tweet'
+    args: Record<MutationUpdateTweetArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: true
+    resolve: (
+      root: core.RootValue<"Mutation">,
+      args: { data: TweetUpdateInput, where: TweetWhereUniqueInput }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.Tweet | null> | prisma.Tweet | null
+  }
+  updateManyTweets: {
+    type: 'BatchPayload'
+    args: Record<MutationUpdateManyTweetsArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: false
+    resolve: (
+      root: core.RootValue<"Mutation">,
+      args: { data: TweetUpdateManyMutationInput, where?: TweetWhereInput | null }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.BatchPayload> | prisma.BatchPayload
+  }
+  upsertTweet: {
+    type: 'Tweet'
+    args: Record<MutationUpsertTweetArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: false
+    resolve: (
+      root: core.RootValue<"Mutation">,
+      args: { where: TweetWhereUniqueInput, create: TweetCreateInput, update: TweetUpdateInput }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.Tweet> | prisma.Tweet
+  }
+  deleteTweet: {
+    type: 'Tweet'
+    args: Record<MutationDeleteTweetArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: true
+    resolve: (
+      root: core.RootValue<"Mutation">,
+      args: { where: TweetWhereUniqueInput }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.Tweet | null> | prisma.Tweet | null
+  }
+  deleteManyTweets: {
+    type: 'BatchPayload'
+    args: Record<MutationDeleteManyTweetsArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: false
+    resolve: (
+      root: core.RootValue<"Mutation">,
+      args: { where?: TweetWhereInput | null }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.BatchPayload> | prisma.BatchPayload
+  }
 }
   
 
@@ -1257,11 +2391,17 @@ type SubscriptionObject =
   | { name: 'user', args?: SubscriptionUserArgs[] | false, alias?: string  } 
   | { name: 'domain', args?: SubscriptionDomainArgs[] | false, alias?: string  } 
   | { name: 'page', args?: SubscriptionPageArgs[] | false, alias?: string  } 
+  | { name: 'pageContent', args?: SubscriptionPageContentArgs[] | false, alias?: string  } 
+  | { name: 'twitterUser', args?: SubscriptionTwitterUserArgs[] | false, alias?: string  } 
+  | { name: 'tweet', args?: SubscriptionTweetArgs[] | false, alias?: string  } 
 
 type SubscriptionFields =
   | 'user'
   | 'domain'
   | 'page'
+  | 'pageContent'
+  | 'twitterUser'
+  | 'tweet'
 
 
 type SubscriptionUserArgs =
@@ -1269,6 +2409,12 @@ type SubscriptionUserArgs =
 type SubscriptionDomainArgs =
   | 'where'
 type SubscriptionPageArgs =
+  | 'where'
+type SubscriptionPageContentArgs =
+  | 'where'
+type SubscriptionTwitterUserArgs =
+  | 'where'
+type SubscriptionTweetArgs =
   | 'where'
   
 
@@ -1311,6 +2457,45 @@ export interface SubscriptionFieldDetails {
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
     ) => Promise<prisma.PageSubscriptionPayload | null> | prisma.PageSubscriptionPayload | null
+  }
+  pageContent: {
+    type: 'PageContentSubscriptionPayload'
+    args: Record<SubscriptionPageContentArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: true
+    resolve: (
+      root: core.RootValue<"Subscription">,
+      args: { where?: PageContentSubscriptionWhereInput | null }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.PageContentSubscriptionPayload | null> | prisma.PageContentSubscriptionPayload | null
+  }
+  twitterUser: {
+    type: 'TwitterUserSubscriptionPayload'
+    args: Record<SubscriptionTwitterUserArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: true
+    resolve: (
+      root: core.RootValue<"Subscription">,
+      args: { where?: TwitterUserSubscriptionWhereInput | null }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.TwitterUserSubscriptionPayload | null> | prisma.TwitterUserSubscriptionPayload | null
+  }
+  tweet: {
+    type: 'TweetSubscriptionPayload'
+    args: Record<SubscriptionTweetArgs, core.NexusArgDef<string>>
+    description: string
+    list: undefined
+    nullable: true
+    resolve: (
+      root: core.RootValue<"Subscription">,
+      args: { where?: TweetSubscriptionWhereInput | null }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.TweetSubscriptionPayload | null> | prisma.TweetSubscriptionPayload | null
   }
 }
   
@@ -1506,10 +2691,12 @@ type DomainPreviousValuesObject =
   | DomainPreviousValuesFields
   | { name: 'id', args?: [] | false, alias?: string  } 
   | { name: 'name', args?: [] | false, alias?: string  } 
+  | { name: 'url', args?: [] | false, alias?: string  } 
 
 type DomainPreviousValuesFields =
   | 'id'
   | 'name'
+  | 'url'
 
 
 
@@ -1525,6 +2712,14 @@ export interface DomainPreviousValuesFieldDetails {
     resolve: undefined
   }
   name: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  url: {
     type: 'String'
     args: {}
     description: string
@@ -1611,10 +2806,12 @@ type PagePreviousValuesObject =
   | PagePreviousValuesFields
   | { name: 'id', args?: [] | false, alias?: string  } 
   | { name: 'name', args?: [] | false, alias?: string  } 
+  | { name: 'url', args?: [] | false, alias?: string  } 
 
 type PagePreviousValuesFields =
   | 'id'
   | 'name'
+  | 'url'
 
 
 
@@ -1630,6 +2827,329 @@ export interface PagePreviousValuesFieldDetails {
     resolve: undefined
   }
   name: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: undefined
+  }
+  url: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: undefined
+  }
+}
+  
+
+// Types for PageContentSubscriptionPayload
+
+type PageContentSubscriptionPayloadObject =
+  | PageContentSubscriptionPayloadFields
+  | { name: 'mutation', args?: [] | false, alias?: string  } 
+  | { name: 'node', args?: [] | false, alias?: string  } 
+  | { name: 'updatedFields', args?: [] | false, alias?: string  } 
+  | { name: 'previousValues', args?: [] | false, alias?: string  } 
+
+type PageContentSubscriptionPayloadFields =
+  | 'mutation'
+  | 'node'
+  | 'updatedFields'
+  | 'previousValues'
+
+
+
+  
+
+export interface PageContentSubscriptionPayloadFieldDetails {
+  mutation: {
+    type: 'MutationType'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: (
+      root: core.RootValue<"PageContentSubscriptionPayload">,
+      args: {  }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.MutationType> | prisma.MutationType
+  }
+  node: {
+    type: 'PageContent'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: (
+      root: core.RootValue<"PageContentSubscriptionPayload">,
+      args: {  }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.PageContent | null> | prisma.PageContent | null
+  }
+  updatedFields: {
+    type: 'String'
+    args: {}
+    description: string
+    list: true
+    nullable: false
+    resolve: undefined
+  }
+  previousValues: {
+    type: 'PageContentPreviousValues'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: (
+      root: core.RootValue<"PageContentSubscriptionPayload">,
+      args: {  }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.PageContentPreviousValues | null> | prisma.PageContentPreviousValues | null
+  }
+}
+  
+
+// Types for PageContentPreviousValues
+
+type PageContentPreviousValuesObject =
+  | PageContentPreviousValuesFields
+  | { name: 'id', args?: [] | false, alias?: string  } 
+  | { name: 'content', args?: [] | false, alias?: string  } 
+
+type PageContentPreviousValuesFields =
+  | 'id'
+  | 'content'
+
+
+
+  
+
+export interface PageContentPreviousValuesFieldDetails {
+  id: {
+    type: 'ID'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  content: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+}
+  
+
+// Types for TwitterUserSubscriptionPayload
+
+type TwitterUserSubscriptionPayloadObject =
+  | TwitterUserSubscriptionPayloadFields
+  | { name: 'mutation', args?: [] | false, alias?: string  } 
+  | { name: 'node', args?: [] | false, alias?: string  } 
+  | { name: 'updatedFields', args?: [] | false, alias?: string  } 
+  | { name: 'previousValues', args?: [] | false, alias?: string  } 
+
+type TwitterUserSubscriptionPayloadFields =
+  | 'mutation'
+  | 'node'
+  | 'updatedFields'
+  | 'previousValues'
+
+
+
+  
+
+export interface TwitterUserSubscriptionPayloadFieldDetails {
+  mutation: {
+    type: 'MutationType'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: (
+      root: core.RootValue<"TwitterUserSubscriptionPayload">,
+      args: {  }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.MutationType> | prisma.MutationType
+  }
+  node: {
+    type: 'TwitterUser'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: (
+      root: core.RootValue<"TwitterUserSubscriptionPayload">,
+      args: {  }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.TwitterUser | null> | prisma.TwitterUser | null
+  }
+  updatedFields: {
+    type: 'String'
+    args: {}
+    description: string
+    list: true
+    nullable: false
+    resolve: undefined
+  }
+  previousValues: {
+    type: 'TwitterUserPreviousValues'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: (
+      root: core.RootValue<"TwitterUserSubscriptionPayload">,
+      args: {  }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.TwitterUserPreviousValues | null> | prisma.TwitterUserPreviousValues | null
+  }
+}
+  
+
+// Types for TwitterUserPreviousValues
+
+type TwitterUserPreviousValuesObject =
+  | TwitterUserPreviousValuesFields
+  | { name: 'id', args?: [] | false, alias?: string  } 
+  | { name: 'handle', args?: [] | false, alias?: string  } 
+
+type TwitterUserPreviousValuesFields =
+  | 'id'
+  | 'handle'
+
+
+
+  
+
+export interface TwitterUserPreviousValuesFieldDetails {
+  id: {
+    type: 'ID'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  handle: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+}
+  
+
+// Types for TweetSubscriptionPayload
+
+type TweetSubscriptionPayloadObject =
+  | TweetSubscriptionPayloadFields
+  | { name: 'mutation', args?: [] | false, alias?: string  } 
+  | { name: 'node', args?: [] | false, alias?: string  } 
+  | { name: 'updatedFields', args?: [] | false, alias?: string  } 
+  | { name: 'previousValues', args?: [] | false, alias?: string  } 
+
+type TweetSubscriptionPayloadFields =
+  | 'mutation'
+  | 'node'
+  | 'updatedFields'
+  | 'previousValues'
+
+
+
+  
+
+export interface TweetSubscriptionPayloadFieldDetails {
+  mutation: {
+    type: 'MutationType'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: (
+      root: core.RootValue<"TweetSubscriptionPayload">,
+      args: {  }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.MutationType> | prisma.MutationType
+  }
+  node: {
+    type: 'Tweet'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: (
+      root: core.RootValue<"TweetSubscriptionPayload">,
+      args: {  }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.Tweet | null> | prisma.Tweet | null
+  }
+  updatedFields: {
+    type: 'String'
+    args: {}
+    description: string
+    list: true
+    nullable: false
+    resolve: undefined
+  }
+  previousValues: {
+    type: 'TweetPreviousValues'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: (
+      root: core.RootValue<"TweetSubscriptionPayload">,
+      args: {  }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.TweetPreviousValues | null> | prisma.TweetPreviousValues | null
+  }
+}
+  
+
+// Types for TweetPreviousValues
+
+type TweetPreviousValuesObject =
+  | TweetPreviousValuesFields
+  | { name: 'id', args?: [] | false, alias?: string  } 
+  | { name: 'text', args?: [] | false, alias?: string  } 
+
+type TweetPreviousValuesFields =
+  | 'id'
+  | 'text'
+
+
+
+  
+
+export interface TweetPreviousValuesFieldDetails {
+  id: {
+    type: 'ID'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  text: {
     type: 'String'
     args: {}
     description: string
@@ -1777,6 +3297,21 @@ export interface PageWhereInput {
   name_not_starts_with?: string | null
   name_ends_with?: string | null
   name_not_ends_with?: string | null
+  url?: string | null
+  url_not?: string | null
+  url_in?: string[]
+  url_not_in?: string[]
+  url_lt?: string | null
+  url_lte?: string | null
+  url_gt?: string | null
+  url_gte?: string | null
+  url_contains?: string | null
+  url_not_contains?: string | null
+  url_starts_with?: string | null
+  url_not_starts_with?: string | null
+  url_ends_with?: string | null
+  url_not_ends_with?: string | null
+  content?: PageContentWhereInput | null
   domain?: DomainWhereInput | null
   AND?: PageWhereInput[]
 }
@@ -1810,7 +3345,87 @@ export type PageWhereInputInputObject =
   | { name: 'name_not_starts_with', alias?: string  } 
   | { name: 'name_ends_with', alias?: string  } 
   | { name: 'name_not_ends_with', alias?: string  } 
+  | { name: 'url', alias?: string  } 
+  | { name: 'url_not', alias?: string  } 
+  | { name: 'url_in', alias?: string  } 
+  | { name: 'url_not_in', alias?: string  } 
+  | { name: 'url_lt', alias?: string  } 
+  | { name: 'url_lte', alias?: string  } 
+  | { name: 'url_gt', alias?: string  } 
+  | { name: 'url_gte', alias?: string  } 
+  | { name: 'url_contains', alias?: string  } 
+  | { name: 'url_not_contains', alias?: string  } 
+  | { name: 'url_starts_with', alias?: string  } 
+  | { name: 'url_not_starts_with', alias?: string  } 
+  | { name: 'url_ends_with', alias?: string  } 
+  | { name: 'url_not_ends_with', alias?: string  } 
+  | { name: 'content', alias?: string  } 
   | { name: 'domain', alias?: string  } 
+  | { name: 'AND', alias?: string  } 
+  
+export interface PageContentWhereInput {
+  id?: string | null
+  id_not?: string | null
+  id_in?: string[]
+  id_not_in?: string[]
+  id_lt?: string | null
+  id_lte?: string | null
+  id_gt?: string | null
+  id_gte?: string | null
+  id_contains?: string | null
+  id_not_contains?: string | null
+  id_starts_with?: string | null
+  id_not_starts_with?: string | null
+  id_ends_with?: string | null
+  id_not_ends_with?: string | null
+  page?: PageWhereInput | null
+  content?: string | null
+  content_not?: string | null
+  content_in?: string[]
+  content_not_in?: string[]
+  content_lt?: string | null
+  content_lte?: string | null
+  content_gt?: string | null
+  content_gte?: string | null
+  content_contains?: string | null
+  content_not_contains?: string | null
+  content_starts_with?: string | null
+  content_not_starts_with?: string | null
+  content_ends_with?: string | null
+  content_not_ends_with?: string | null
+  AND?: PageContentWhereInput[]
+}
+export type PageContentWhereInputInputObject =
+  | Extract<keyof PageContentWhereInput, string>
+  | { name: 'id', alias?: string  } 
+  | { name: 'id_not', alias?: string  } 
+  | { name: 'id_in', alias?: string  } 
+  | { name: 'id_not_in', alias?: string  } 
+  | { name: 'id_lt', alias?: string  } 
+  | { name: 'id_lte', alias?: string  } 
+  | { name: 'id_gt', alias?: string  } 
+  | { name: 'id_gte', alias?: string  } 
+  | { name: 'id_contains', alias?: string  } 
+  | { name: 'id_not_contains', alias?: string  } 
+  | { name: 'id_starts_with', alias?: string  } 
+  | { name: 'id_not_starts_with', alias?: string  } 
+  | { name: 'id_ends_with', alias?: string  } 
+  | { name: 'id_not_ends_with', alias?: string  } 
+  | { name: 'page', alias?: string  } 
+  | { name: 'content', alias?: string  } 
+  | { name: 'content_not', alias?: string  } 
+  | { name: 'content_in', alias?: string  } 
+  | { name: 'content_not_in', alias?: string  } 
+  | { name: 'content_lt', alias?: string  } 
+  | { name: 'content_lte', alias?: string  } 
+  | { name: 'content_gt', alias?: string  } 
+  | { name: 'content_gte', alias?: string  } 
+  | { name: 'content_contains', alias?: string  } 
+  | { name: 'content_not_contains', alias?: string  } 
+  | { name: 'content_starts_with', alias?: string  } 
+  | { name: 'content_not_starts_with', alias?: string  } 
+  | { name: 'content_ends_with', alias?: string  } 
+  | { name: 'content_not_ends_with', alias?: string  } 
   | { name: 'AND', alias?: string  } 
   
 export interface DomainWhereInput {
@@ -1842,6 +3457,20 @@ export interface DomainWhereInput {
   name_not_starts_with?: string | null
   name_ends_with?: string | null
   name_not_ends_with?: string | null
+  url?: string | null
+  url_not?: string | null
+  url_in?: string[]
+  url_not_in?: string[]
+  url_lt?: string | null
+  url_lte?: string | null
+  url_gt?: string | null
+  url_gte?: string | null
+  url_contains?: string | null
+  url_not_contains?: string | null
+  url_starts_with?: string | null
+  url_not_starts_with?: string | null
+  url_ends_with?: string | null
+  url_not_ends_with?: string | null
   pages_some?: PageWhereInput | null
   AND?: DomainWhereInput[]
 }
@@ -1875,6 +3504,20 @@ export type DomainWhereInputInputObject =
   | { name: 'name_not_starts_with', alias?: string  } 
   | { name: 'name_ends_with', alias?: string  } 
   | { name: 'name_not_ends_with', alias?: string  } 
+  | { name: 'url', alias?: string  } 
+  | { name: 'url_not', alias?: string  } 
+  | { name: 'url_in', alias?: string  } 
+  | { name: 'url_not_in', alias?: string  } 
+  | { name: 'url_lt', alias?: string  } 
+  | { name: 'url_lte', alias?: string  } 
+  | { name: 'url_gt', alias?: string  } 
+  | { name: 'url_gte', alias?: string  } 
+  | { name: 'url_contains', alias?: string  } 
+  | { name: 'url_not_contains', alias?: string  } 
+  | { name: 'url_starts_with', alias?: string  } 
+  | { name: 'url_not_starts_with', alias?: string  } 
+  | { name: 'url_ends_with', alias?: string  } 
+  | { name: 'url_not_ends_with', alias?: string  } 
   | { name: 'pages_some', alias?: string  } 
   | { name: 'AND', alias?: string  } 
   
@@ -1883,6 +3526,157 @@ export interface PageWhereUniqueInput {
 }
 export type PageWhereUniqueInputInputObject =
   | Extract<keyof PageWhereUniqueInput, string>
+  | { name: 'id', alias?: string  } 
+  
+export interface PageContentWhereUniqueInput {
+  id?: string | null
+}
+export type PageContentWhereUniqueInputInputObject =
+  | Extract<keyof PageContentWhereUniqueInput, string>
+  | { name: 'id', alias?: string  } 
+  
+export interface TwitterUserWhereUniqueInput {
+  id?: string | null
+  handle?: string | null
+}
+export type TwitterUserWhereUniqueInputInputObject =
+  | Extract<keyof TwitterUserWhereUniqueInput, string>
+  | { name: 'id', alias?: string  } 
+  | { name: 'handle', alias?: string  } 
+  
+export interface TweetWhereInput {
+  id?: string | null
+  id_not?: string | null
+  id_in?: string[]
+  id_not_in?: string[]
+  id_lt?: string | null
+  id_lte?: string | null
+  id_gt?: string | null
+  id_gte?: string | null
+  id_contains?: string | null
+  id_not_contains?: string | null
+  id_starts_with?: string | null
+  id_not_starts_with?: string | null
+  id_ends_with?: string | null
+  id_not_ends_with?: string | null
+  text?: string | null
+  text_not?: string | null
+  text_in?: string[]
+  text_not_in?: string[]
+  text_lt?: string | null
+  text_lte?: string | null
+  text_gt?: string | null
+  text_gte?: string | null
+  text_contains?: string | null
+  text_not_contains?: string | null
+  text_starts_with?: string | null
+  text_not_starts_with?: string | null
+  text_ends_with?: string | null
+  text_not_ends_with?: string | null
+  AND?: TweetWhereInput[]
+}
+export type TweetWhereInputInputObject =
+  | Extract<keyof TweetWhereInput, string>
+  | { name: 'id', alias?: string  } 
+  | { name: 'id_not', alias?: string  } 
+  | { name: 'id_in', alias?: string  } 
+  | { name: 'id_not_in', alias?: string  } 
+  | { name: 'id_lt', alias?: string  } 
+  | { name: 'id_lte', alias?: string  } 
+  | { name: 'id_gt', alias?: string  } 
+  | { name: 'id_gte', alias?: string  } 
+  | { name: 'id_contains', alias?: string  } 
+  | { name: 'id_not_contains', alias?: string  } 
+  | { name: 'id_starts_with', alias?: string  } 
+  | { name: 'id_not_starts_with', alias?: string  } 
+  | { name: 'id_ends_with', alias?: string  } 
+  | { name: 'id_not_ends_with', alias?: string  } 
+  | { name: 'text', alias?: string  } 
+  | { name: 'text_not', alias?: string  } 
+  | { name: 'text_in', alias?: string  } 
+  | { name: 'text_not_in', alias?: string  } 
+  | { name: 'text_lt', alias?: string  } 
+  | { name: 'text_lte', alias?: string  } 
+  | { name: 'text_gt', alias?: string  } 
+  | { name: 'text_gte', alias?: string  } 
+  | { name: 'text_contains', alias?: string  } 
+  | { name: 'text_not_contains', alias?: string  } 
+  | { name: 'text_starts_with', alias?: string  } 
+  | { name: 'text_not_starts_with', alias?: string  } 
+  | { name: 'text_ends_with', alias?: string  } 
+  | { name: 'text_not_ends_with', alias?: string  } 
+  | { name: 'AND', alias?: string  } 
+  
+export interface TwitterUserWhereInput {
+  id?: string | null
+  id_not?: string | null
+  id_in?: string[]
+  id_not_in?: string[]
+  id_lt?: string | null
+  id_lte?: string | null
+  id_gt?: string | null
+  id_gte?: string | null
+  id_contains?: string | null
+  id_not_contains?: string | null
+  id_starts_with?: string | null
+  id_not_starts_with?: string | null
+  id_ends_with?: string | null
+  id_not_ends_with?: string | null
+  handle?: string | null
+  handle_not?: string | null
+  handle_in?: string[]
+  handle_not_in?: string[]
+  handle_lt?: string | null
+  handle_lte?: string | null
+  handle_gt?: string | null
+  handle_gte?: string | null
+  handle_contains?: string | null
+  handle_not_contains?: string | null
+  handle_starts_with?: string | null
+  handle_not_starts_with?: string | null
+  handle_ends_with?: string | null
+  handle_not_ends_with?: string | null
+  tweets_some?: TweetWhereInput | null
+  AND?: TwitterUserWhereInput[]
+}
+export type TwitterUserWhereInputInputObject =
+  | Extract<keyof TwitterUserWhereInput, string>
+  | { name: 'id', alias?: string  } 
+  | { name: 'id_not', alias?: string  } 
+  | { name: 'id_in', alias?: string  } 
+  | { name: 'id_not_in', alias?: string  } 
+  | { name: 'id_lt', alias?: string  } 
+  | { name: 'id_lte', alias?: string  } 
+  | { name: 'id_gt', alias?: string  } 
+  | { name: 'id_gte', alias?: string  } 
+  | { name: 'id_contains', alias?: string  } 
+  | { name: 'id_not_contains', alias?: string  } 
+  | { name: 'id_starts_with', alias?: string  } 
+  | { name: 'id_not_starts_with', alias?: string  } 
+  | { name: 'id_ends_with', alias?: string  } 
+  | { name: 'id_not_ends_with', alias?: string  } 
+  | { name: 'handle', alias?: string  } 
+  | { name: 'handle_not', alias?: string  } 
+  | { name: 'handle_in', alias?: string  } 
+  | { name: 'handle_not_in', alias?: string  } 
+  | { name: 'handle_lt', alias?: string  } 
+  | { name: 'handle_lte', alias?: string  } 
+  | { name: 'handle_gt', alias?: string  } 
+  | { name: 'handle_gte', alias?: string  } 
+  | { name: 'handle_contains', alias?: string  } 
+  | { name: 'handle_not_contains', alias?: string  } 
+  | { name: 'handle_starts_with', alias?: string  } 
+  | { name: 'handle_not_starts_with', alias?: string  } 
+  | { name: 'handle_ends_with', alias?: string  } 
+  | { name: 'handle_not_ends_with', alias?: string  } 
+  | { name: 'tweets_some', alias?: string  } 
+  | { name: 'AND', alias?: string  } 
+  
+export interface TweetWhereUniqueInput {
+  id?: string | null
+}
+export type TweetWhereUniqueInputInputObject =
+  | Extract<keyof TweetWhereUniqueInput, string>
   | { name: 'id', alias?: string  } 
   
 export interface UserCreateInput {
@@ -1917,12 +3711,14 @@ export type UserUpdateManyMutationInputInputObject =
 export interface DomainCreateInput {
   id?: string | null
   name?: string
+  url?: string
   pages?: PageCreateManyWithoutDomainInput | null
 }
 export type DomainCreateInputInputObject =
   | Extract<keyof DomainCreateInput, string>
   | { name: 'id', alias?: string  } 
   | { name: 'name', alias?: string  } 
+  | { name: 'url', alias?: string  } 
   | { name: 'pages', alias?: string  } 
   
 export interface PageCreateManyWithoutDomainInput {
@@ -1936,20 +3732,44 @@ export type PageCreateManyWithoutDomainInputInputObject =
   
 export interface PageCreateWithoutDomainInput {
   id?: string | null
-  name?: string
+  name?: string | null
+  url?: string | null
+  content?: PageContentCreateOneWithoutPageInput | null
 }
 export type PageCreateWithoutDomainInputInputObject =
   | Extract<keyof PageCreateWithoutDomainInput, string>
   | { name: 'id', alias?: string  } 
   | { name: 'name', alias?: string  } 
+  | { name: 'url', alias?: string  } 
+  | { name: 'content', alias?: string  } 
+  
+export interface PageContentCreateOneWithoutPageInput {
+  create?: PageContentCreateWithoutPageInput | null
+  connect?: PageContentWhereUniqueInput | null
+}
+export type PageContentCreateOneWithoutPageInputInputObject =
+  | Extract<keyof PageContentCreateOneWithoutPageInput, string>
+  | { name: 'create', alias?: string  } 
+  | { name: 'connect', alias?: string  } 
+  
+export interface PageContentCreateWithoutPageInput {
+  id?: string | null
+  content?: string
+}
+export type PageContentCreateWithoutPageInputInputObject =
+  | Extract<keyof PageContentCreateWithoutPageInput, string>
+  | { name: 'id', alias?: string  } 
+  | { name: 'content', alias?: string  } 
   
 export interface DomainUpdateInput {
   name?: string | null
+  url?: string | null
   pages?: PageUpdateManyWithoutDomainInput | null
 }
 export type DomainUpdateInputInputObject =
   | Extract<keyof DomainUpdateInput, string>
   | { name: 'name', alias?: string  } 
+  | { name: 'url', alias?: string  } 
   | { name: 'pages', alias?: string  } 
   
 export interface PageUpdateManyWithoutDomainInput {
@@ -1986,10 +3806,47 @@ export type PageUpdateWithWhereUniqueWithoutDomainInputInputObject =
   
 export interface PageUpdateWithoutDomainDataInput {
   name?: string | null
+  url?: string | null
+  content?: PageContentUpdateOneWithoutPageInput | null
 }
 export type PageUpdateWithoutDomainDataInputInputObject =
   | Extract<keyof PageUpdateWithoutDomainDataInput, string>
   | { name: 'name', alias?: string  } 
+  | { name: 'url', alias?: string  } 
+  | { name: 'content', alias?: string  } 
+  
+export interface PageContentUpdateOneWithoutPageInput {
+  create?: PageContentCreateWithoutPageInput | null
+  update?: PageContentUpdateWithoutPageDataInput | null
+  upsert?: PageContentUpsertWithoutPageInput | null
+  delete?: boolean | null
+  disconnect?: boolean | null
+  connect?: PageContentWhereUniqueInput | null
+}
+export type PageContentUpdateOneWithoutPageInputInputObject =
+  | Extract<keyof PageContentUpdateOneWithoutPageInput, string>
+  | { name: 'create', alias?: string  } 
+  | { name: 'update', alias?: string  } 
+  | { name: 'upsert', alias?: string  } 
+  | { name: 'delete', alias?: string  } 
+  | { name: 'disconnect', alias?: string  } 
+  | { name: 'connect', alias?: string  } 
+  
+export interface PageContentUpdateWithoutPageDataInput {
+  content?: string | null
+}
+export type PageContentUpdateWithoutPageDataInputInputObject =
+  | Extract<keyof PageContentUpdateWithoutPageDataInput, string>
+  | { name: 'content', alias?: string  } 
+  
+export interface PageContentUpsertWithoutPageInput {
+  update?: PageContentUpdateWithoutPageDataInput
+  create?: PageContentCreateWithoutPageInput
+}
+export type PageContentUpsertWithoutPageInputInputObject =
+  | Extract<keyof PageContentUpsertWithoutPageInput, string>
+  | { name: 'update', alias?: string  } 
+  | { name: 'create', alias?: string  } 
   
 export interface PageUpsertWithWhereUniqueWithoutDomainInput {
   where?: PageWhereUniqueInput
@@ -2031,6 +3888,20 @@ export interface PageScalarWhereInput {
   name_not_starts_with?: string | null
   name_ends_with?: string | null
   name_not_ends_with?: string | null
+  url?: string | null
+  url_not?: string | null
+  url_in?: string[]
+  url_not_in?: string[]
+  url_lt?: string | null
+  url_lte?: string | null
+  url_gt?: string | null
+  url_gte?: string | null
+  url_contains?: string | null
+  url_not_contains?: string | null
+  url_starts_with?: string | null
+  url_not_starts_with?: string | null
+  url_ends_with?: string | null
+  url_not_ends_with?: string | null
   AND?: PageScalarWhereInput[]
   OR?: PageScalarWhereInput[]
   NOT?: PageScalarWhereInput[]
@@ -2065,6 +3936,20 @@ export type PageScalarWhereInputInputObject =
   | { name: 'name_not_starts_with', alias?: string  } 
   | { name: 'name_ends_with', alias?: string  } 
   | { name: 'name_not_ends_with', alias?: string  } 
+  | { name: 'url', alias?: string  } 
+  | { name: 'url_not', alias?: string  } 
+  | { name: 'url_in', alias?: string  } 
+  | { name: 'url_not_in', alias?: string  } 
+  | { name: 'url_lt', alias?: string  } 
+  | { name: 'url_lte', alias?: string  } 
+  | { name: 'url_gt', alias?: string  } 
+  | { name: 'url_gte', alias?: string  } 
+  | { name: 'url_contains', alias?: string  } 
+  | { name: 'url_not_contains', alias?: string  } 
+  | { name: 'url_starts_with', alias?: string  } 
+  | { name: 'url_not_starts_with', alias?: string  } 
+  | { name: 'url_ends_with', alias?: string  } 
+  | { name: 'url_not_ends_with', alias?: string  } 
   | { name: 'AND', alias?: string  } 
   | { name: 'OR', alias?: string  } 
   | { name: 'NOT', alias?: string  } 
@@ -2080,27 +3965,35 @@ export type PageUpdateManyWithWhereNestedInputInputObject =
   
 export interface PageUpdateManyDataInput {
   name?: string | null
+  url?: string | null
 }
 export type PageUpdateManyDataInputInputObject =
   | Extract<keyof PageUpdateManyDataInput, string>
   | { name: 'name', alias?: string  } 
+  | { name: 'url', alias?: string  } 
   
 export interface DomainUpdateManyMutationInput {
   name?: string | null
+  url?: string | null
 }
 export type DomainUpdateManyMutationInputInputObject =
   | Extract<keyof DomainUpdateManyMutationInput, string>
   | { name: 'name', alias?: string  } 
+  | { name: 'url', alias?: string  } 
   
 export interface PageCreateInput {
   id?: string | null
-  name?: string
+  name?: string | null
+  url?: string | null
+  content?: PageContentCreateOneWithoutPageInput | null
   domain?: DomainCreateOneWithoutPagesInput | null
 }
 export type PageCreateInputInputObject =
   | Extract<keyof PageCreateInput, string>
   | { name: 'id', alias?: string  } 
   | { name: 'name', alias?: string  } 
+  | { name: 'url', alias?: string  } 
+  | { name: 'content', alias?: string  } 
   | { name: 'domain', alias?: string  } 
   
 export interface DomainCreateOneWithoutPagesInput {
@@ -2115,19 +4008,25 @@ export type DomainCreateOneWithoutPagesInputInputObject =
 export interface DomainCreateWithoutPagesInput {
   id?: string | null
   name?: string
+  url?: string
 }
 export type DomainCreateWithoutPagesInputInputObject =
   | Extract<keyof DomainCreateWithoutPagesInput, string>
   | { name: 'id', alias?: string  } 
   | { name: 'name', alias?: string  } 
+  | { name: 'url', alias?: string  } 
   
 export interface PageUpdateInput {
   name?: string | null
+  url?: string | null
+  content?: PageContentUpdateOneWithoutPageInput | null
   domain?: DomainUpdateOneWithoutPagesInput | null
 }
 export type PageUpdateInputInputObject =
   | Extract<keyof PageUpdateInput, string>
   | { name: 'name', alias?: string  } 
+  | { name: 'url', alias?: string  } 
+  | { name: 'content', alias?: string  } 
   | { name: 'domain', alias?: string  } 
   
 export interface DomainUpdateOneWithoutPagesInput {
@@ -2149,10 +4048,12 @@ export type DomainUpdateOneWithoutPagesInputInputObject =
   
 export interface DomainUpdateWithoutPagesDataInput {
   name?: string | null
+  url?: string | null
 }
 export type DomainUpdateWithoutPagesDataInputInputObject =
   | Extract<keyof DomainUpdateWithoutPagesDataInput, string>
   | { name: 'name', alias?: string  } 
+  | { name: 'url', alias?: string  } 
   
 export interface DomainUpsertWithoutPagesInput {
   update?: DomainUpdateWithoutPagesDataInput
@@ -2165,10 +4066,290 @@ export type DomainUpsertWithoutPagesInputInputObject =
   
 export interface PageUpdateManyMutationInput {
   name?: string | null
+  url?: string | null
 }
 export type PageUpdateManyMutationInputInputObject =
   | Extract<keyof PageUpdateManyMutationInput, string>
   | { name: 'name', alias?: string  } 
+  | { name: 'url', alias?: string  } 
+  
+export interface PageContentCreateInput {
+  id?: string | null
+  page?: PageCreateOneWithoutContentInput | null
+  content?: string
+}
+export type PageContentCreateInputInputObject =
+  | Extract<keyof PageContentCreateInput, string>
+  | { name: 'id', alias?: string  } 
+  | { name: 'page', alias?: string  } 
+  | { name: 'content', alias?: string  } 
+  
+export interface PageCreateOneWithoutContentInput {
+  create?: PageCreateWithoutContentInput | null
+  connect?: PageWhereUniqueInput | null
+}
+export type PageCreateOneWithoutContentInputInputObject =
+  | Extract<keyof PageCreateOneWithoutContentInput, string>
+  | { name: 'create', alias?: string  } 
+  | { name: 'connect', alias?: string  } 
+  
+export interface PageCreateWithoutContentInput {
+  id?: string | null
+  name?: string | null
+  url?: string | null
+  domain?: DomainCreateOneWithoutPagesInput | null
+}
+export type PageCreateWithoutContentInputInputObject =
+  | Extract<keyof PageCreateWithoutContentInput, string>
+  | { name: 'id', alias?: string  } 
+  | { name: 'name', alias?: string  } 
+  | { name: 'url', alias?: string  } 
+  | { name: 'domain', alias?: string  } 
+  
+export interface PageContentUpdateInput {
+  page?: PageUpdateOneWithoutContentInput | null
+  content?: string | null
+}
+export type PageContentUpdateInputInputObject =
+  | Extract<keyof PageContentUpdateInput, string>
+  | { name: 'page', alias?: string  } 
+  | { name: 'content', alias?: string  } 
+  
+export interface PageUpdateOneWithoutContentInput {
+  create?: PageCreateWithoutContentInput | null
+  update?: PageUpdateWithoutContentDataInput | null
+  upsert?: PageUpsertWithoutContentInput | null
+  delete?: boolean | null
+  disconnect?: boolean | null
+  connect?: PageWhereUniqueInput | null
+}
+export type PageUpdateOneWithoutContentInputInputObject =
+  | Extract<keyof PageUpdateOneWithoutContentInput, string>
+  | { name: 'create', alias?: string  } 
+  | { name: 'update', alias?: string  } 
+  | { name: 'upsert', alias?: string  } 
+  | { name: 'delete', alias?: string  } 
+  | { name: 'disconnect', alias?: string  } 
+  | { name: 'connect', alias?: string  } 
+  
+export interface PageUpdateWithoutContentDataInput {
+  name?: string | null
+  url?: string | null
+  domain?: DomainUpdateOneWithoutPagesInput | null
+}
+export type PageUpdateWithoutContentDataInputInputObject =
+  | Extract<keyof PageUpdateWithoutContentDataInput, string>
+  | { name: 'name', alias?: string  } 
+  | { name: 'url', alias?: string  } 
+  | { name: 'domain', alias?: string  } 
+  
+export interface PageUpsertWithoutContentInput {
+  update?: PageUpdateWithoutContentDataInput
+  create?: PageCreateWithoutContentInput
+}
+export type PageUpsertWithoutContentInputInputObject =
+  | Extract<keyof PageUpsertWithoutContentInput, string>
+  | { name: 'update', alias?: string  } 
+  | { name: 'create', alias?: string  } 
+  
+export interface PageContentUpdateManyMutationInput {
+  content?: string | null
+}
+export type PageContentUpdateManyMutationInputInputObject =
+  | Extract<keyof PageContentUpdateManyMutationInput, string>
+  | { name: 'content', alias?: string  } 
+  
+export interface TwitterUserCreateInput {
+  id?: string | null
+  handle?: string
+  tweets?: TweetCreateManyInput | null
+}
+export type TwitterUserCreateInputInputObject =
+  | Extract<keyof TwitterUserCreateInput, string>
+  | { name: 'id', alias?: string  } 
+  | { name: 'handle', alias?: string  } 
+  | { name: 'tweets', alias?: string  } 
+  
+export interface TweetCreateManyInput {
+  create?: TweetCreateInput[]
+  connect?: TweetWhereUniqueInput[]
+}
+export type TweetCreateManyInputInputObject =
+  | Extract<keyof TweetCreateManyInput, string>
+  | { name: 'create', alias?: string  } 
+  | { name: 'connect', alias?: string  } 
+  
+export interface TweetCreateInput {
+  id?: string | null
+  text?: string
+}
+export type TweetCreateInputInputObject =
+  | Extract<keyof TweetCreateInput, string>
+  | { name: 'id', alias?: string  } 
+  | { name: 'text', alias?: string  } 
+  
+export interface TwitterUserUpdateInput {
+  handle?: string | null
+  tweets?: TweetUpdateManyInput | null
+}
+export type TwitterUserUpdateInputInputObject =
+  | Extract<keyof TwitterUserUpdateInput, string>
+  | { name: 'handle', alias?: string  } 
+  | { name: 'tweets', alias?: string  } 
+  
+export interface TweetUpdateManyInput {
+  create?: TweetCreateInput[]
+  update?: TweetUpdateWithWhereUniqueNestedInput[]
+  upsert?: TweetUpsertWithWhereUniqueNestedInput[]
+  delete?: TweetWhereUniqueInput[]
+  connect?: TweetWhereUniqueInput[]
+  set?: TweetWhereUniqueInput[]
+  disconnect?: TweetWhereUniqueInput[]
+  deleteMany?: TweetScalarWhereInput[]
+  updateMany?: TweetUpdateManyWithWhereNestedInput[]
+}
+export type TweetUpdateManyInputInputObject =
+  | Extract<keyof TweetUpdateManyInput, string>
+  | { name: 'create', alias?: string  } 
+  | { name: 'update', alias?: string  } 
+  | { name: 'upsert', alias?: string  } 
+  | { name: 'delete', alias?: string  } 
+  | { name: 'connect', alias?: string  } 
+  | { name: 'set', alias?: string  } 
+  | { name: 'disconnect', alias?: string  } 
+  | { name: 'deleteMany', alias?: string  } 
+  | { name: 'updateMany', alias?: string  } 
+  
+export interface TweetUpdateWithWhereUniqueNestedInput {
+  where?: TweetWhereUniqueInput
+  data?: TweetUpdateDataInput
+}
+export type TweetUpdateWithWhereUniqueNestedInputInputObject =
+  | Extract<keyof TweetUpdateWithWhereUniqueNestedInput, string>
+  | { name: 'where', alias?: string  } 
+  | { name: 'data', alias?: string  } 
+  
+export interface TweetUpdateDataInput {
+  text?: string | null
+}
+export type TweetUpdateDataInputInputObject =
+  | Extract<keyof TweetUpdateDataInput, string>
+  | { name: 'text', alias?: string  } 
+  
+export interface TweetUpsertWithWhereUniqueNestedInput {
+  where?: TweetWhereUniqueInput
+  update?: TweetUpdateDataInput
+  create?: TweetCreateInput
+}
+export type TweetUpsertWithWhereUniqueNestedInputInputObject =
+  | Extract<keyof TweetUpsertWithWhereUniqueNestedInput, string>
+  | { name: 'where', alias?: string  } 
+  | { name: 'update', alias?: string  } 
+  | { name: 'create', alias?: string  } 
+  
+export interface TweetScalarWhereInput {
+  id?: string | null
+  id_not?: string | null
+  id_in?: string[]
+  id_not_in?: string[]
+  id_lt?: string | null
+  id_lte?: string | null
+  id_gt?: string | null
+  id_gte?: string | null
+  id_contains?: string | null
+  id_not_contains?: string | null
+  id_starts_with?: string | null
+  id_not_starts_with?: string | null
+  id_ends_with?: string | null
+  id_not_ends_with?: string | null
+  text?: string | null
+  text_not?: string | null
+  text_in?: string[]
+  text_not_in?: string[]
+  text_lt?: string | null
+  text_lte?: string | null
+  text_gt?: string | null
+  text_gte?: string | null
+  text_contains?: string | null
+  text_not_contains?: string | null
+  text_starts_with?: string | null
+  text_not_starts_with?: string | null
+  text_ends_with?: string | null
+  text_not_ends_with?: string | null
+  AND?: TweetScalarWhereInput[]
+  OR?: TweetScalarWhereInput[]
+  NOT?: TweetScalarWhereInput[]
+}
+export type TweetScalarWhereInputInputObject =
+  | Extract<keyof TweetScalarWhereInput, string>
+  | { name: 'id', alias?: string  } 
+  | { name: 'id_not', alias?: string  } 
+  | { name: 'id_in', alias?: string  } 
+  | { name: 'id_not_in', alias?: string  } 
+  | { name: 'id_lt', alias?: string  } 
+  | { name: 'id_lte', alias?: string  } 
+  | { name: 'id_gt', alias?: string  } 
+  | { name: 'id_gte', alias?: string  } 
+  | { name: 'id_contains', alias?: string  } 
+  | { name: 'id_not_contains', alias?: string  } 
+  | { name: 'id_starts_with', alias?: string  } 
+  | { name: 'id_not_starts_with', alias?: string  } 
+  | { name: 'id_ends_with', alias?: string  } 
+  | { name: 'id_not_ends_with', alias?: string  } 
+  | { name: 'text', alias?: string  } 
+  | { name: 'text_not', alias?: string  } 
+  | { name: 'text_in', alias?: string  } 
+  | { name: 'text_not_in', alias?: string  } 
+  | { name: 'text_lt', alias?: string  } 
+  | { name: 'text_lte', alias?: string  } 
+  | { name: 'text_gt', alias?: string  } 
+  | { name: 'text_gte', alias?: string  } 
+  | { name: 'text_contains', alias?: string  } 
+  | { name: 'text_not_contains', alias?: string  } 
+  | { name: 'text_starts_with', alias?: string  } 
+  | { name: 'text_not_starts_with', alias?: string  } 
+  | { name: 'text_ends_with', alias?: string  } 
+  | { name: 'text_not_ends_with', alias?: string  } 
+  | { name: 'AND', alias?: string  } 
+  | { name: 'OR', alias?: string  } 
+  | { name: 'NOT', alias?: string  } 
+  
+export interface TweetUpdateManyWithWhereNestedInput {
+  where?: TweetScalarWhereInput
+  data?: TweetUpdateManyDataInput
+}
+export type TweetUpdateManyWithWhereNestedInputInputObject =
+  | Extract<keyof TweetUpdateManyWithWhereNestedInput, string>
+  | { name: 'where', alias?: string  } 
+  | { name: 'data', alias?: string  } 
+  
+export interface TweetUpdateManyDataInput {
+  text?: string | null
+}
+export type TweetUpdateManyDataInputInputObject =
+  | Extract<keyof TweetUpdateManyDataInput, string>
+  | { name: 'text', alias?: string  } 
+  
+export interface TwitterUserUpdateManyMutationInput {
+  handle?: string | null
+}
+export type TwitterUserUpdateManyMutationInputInputObject =
+  | Extract<keyof TwitterUserUpdateManyMutationInput, string>
+  | { name: 'handle', alias?: string  } 
+  
+export interface TweetUpdateInput {
+  text?: string | null
+}
+export type TweetUpdateInputInputObject =
+  | Extract<keyof TweetUpdateInput, string>
+  | { name: 'text', alias?: string  } 
+  
+export interface TweetUpdateManyMutationInput {
+  text?: string | null
+}
+export type TweetUpdateManyMutationInputInputObject =
+  | Extract<keyof TweetUpdateManyMutationInput, string>
+  | { name: 'text', alias?: string  } 
   
 export interface UserSubscriptionWhereInput {
   mutation_in?: prisma.MutationType[]
@@ -2221,6 +4402,57 @@ export type PageSubscriptionWhereInputInputObject =
   | { name: 'node', alias?: string  } 
   | { name: 'AND', alias?: string  } 
   
+export interface PageContentSubscriptionWhereInput {
+  mutation_in?: prisma.MutationType[]
+  updatedFields_contains?: string | null
+  updatedFields_contains_every?: string[]
+  updatedFields_contains_some?: string[]
+  node?: PageContentWhereInput | null
+  AND?: PageContentSubscriptionWhereInput[]
+}
+export type PageContentSubscriptionWhereInputInputObject =
+  | Extract<keyof PageContentSubscriptionWhereInput, string>
+  | { name: 'mutation_in', alias?: string  } 
+  | { name: 'updatedFields_contains', alias?: string  } 
+  | { name: 'updatedFields_contains_every', alias?: string  } 
+  | { name: 'updatedFields_contains_some', alias?: string  } 
+  | { name: 'node', alias?: string  } 
+  | { name: 'AND', alias?: string  } 
+  
+export interface TwitterUserSubscriptionWhereInput {
+  mutation_in?: prisma.MutationType[]
+  updatedFields_contains?: string | null
+  updatedFields_contains_every?: string[]
+  updatedFields_contains_some?: string[]
+  node?: TwitterUserWhereInput | null
+  AND?: TwitterUserSubscriptionWhereInput[]
+}
+export type TwitterUserSubscriptionWhereInputInputObject =
+  | Extract<keyof TwitterUserSubscriptionWhereInput, string>
+  | { name: 'mutation_in', alias?: string  } 
+  | { name: 'updatedFields_contains', alias?: string  } 
+  | { name: 'updatedFields_contains_every', alias?: string  } 
+  | { name: 'updatedFields_contains_some', alias?: string  } 
+  | { name: 'node', alias?: string  } 
+  | { name: 'AND', alias?: string  } 
+  
+export interface TweetSubscriptionWhereInput {
+  mutation_in?: prisma.MutationType[]
+  updatedFields_contains?: string | null
+  updatedFields_contains_every?: string[]
+  updatedFields_contains_some?: string[]
+  node?: TweetWhereInput | null
+  AND?: TweetSubscriptionWhereInput[]
+}
+export type TweetSubscriptionWhereInputInputObject =
+  | Extract<keyof TweetSubscriptionWhereInput, string>
+  | { name: 'mutation_in', alias?: string  } 
+  | { name: 'updatedFields_contains', alias?: string  } 
+  | { name: 'updatedFields_contains_every', alias?: string  } 
+  | { name: 'updatedFields_contains_some', alias?: string  } 
+  | { name: 'node', alias?: string  } 
+  | { name: 'AND', alias?: string  } 
+  
 
 export type UserOrderByInputValues =
   | 'id_ASC'
@@ -2235,12 +4467,34 @@ export type PageOrderByInputValues =
   | 'id_DESC'
   | 'name_ASC'
   | 'name_DESC'
+  | 'url_ASC'
+  | 'url_DESC'
   
 export type DomainOrderByInputValues =
   | 'id_ASC'
   | 'id_DESC'
   | 'name_ASC'
   | 'name_DESC'
+  | 'url_ASC'
+  | 'url_DESC'
+  
+export type PageContentOrderByInputValues =
+  | 'id_ASC'
+  | 'id_DESC'
+  | 'content_ASC'
+  | 'content_DESC'
+  
+export type TweetOrderByInputValues =
+  | 'id_ASC'
+  | 'id_DESC'
+  | 'text_ASC'
+  | 'text_DESC'
+  
+export type TwitterUserOrderByInputValues =
+  | 'id_ASC'
+  | 'id_DESC'
+  | 'handle_ASC'
+  | 'handle_DESC'
   
 export type MutationTypeValues =
   | 'CREATED'

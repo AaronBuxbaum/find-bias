@@ -7,11 +7,31 @@ type User {
 type Domain {
   id: ID! @id
   name: String!
+  url: String!
   pages: [Page!]!
 }
 
 type Page {
   id: ID! @id
-  name: String!
+  name: String
+  url: String
+  content: PageContent @relation(link: INLINE)
   domain: Domain @relation(link: INLINE)
+}
+
+type PageContent {
+  id: ID! @id
+  page: Page
+  content: String!
+}
+
+type TwitterUser {
+  id: ID! @id
+  handle: String! @unique
+  tweets: [Tweet!]! @relation(link: INLINE)
+}
+
+type Tweet {
+  id: ID! @id
+  text: String!
 }

@@ -10,6 +10,18 @@ type AggregatePage {
   count: Int!
 }
 
+type AggregatePageContent {
+  count: Int!
+}
+
+type AggregateTweet {
+  count: Int!
+}
+
+type AggregateTwitterUser {
+  count: Int!
+}
+
 type AggregateUser {
   count: Int!
 }
@@ -21,6 +33,7 @@ type BatchPayload {
 type Domain {
   id: ID!
   name: String!
+  url: String!
   pages(where: PageWhereInput, orderBy: PageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Page!]
 }
 
@@ -33,6 +46,7 @@ type DomainConnection {
 input DomainCreateInput {
   id: ID
   name: String!
+  url: String!
   pages: PageCreateManyWithoutDomainInput
 }
 
@@ -44,6 +58,7 @@ input DomainCreateOneWithoutPagesInput {
 input DomainCreateWithoutPagesInput {
   id: ID
   name: String!
+  url: String!
 }
 
 type DomainEdge {
@@ -56,11 +71,14 @@ enum DomainOrderByInput {
   id_DESC
   name_ASC
   name_DESC
+  url_ASC
+  url_DESC
 }
 
 type DomainPreviousValues {
   id: ID!
   name: String!
+  url: String!
 }
 
 type DomainSubscriptionPayload {
@@ -81,11 +99,13 @@ input DomainSubscriptionWhereInput {
 
 input DomainUpdateInput {
   name: String
+  url: String
   pages: PageUpdateManyWithoutDomainInput
 }
 
 input DomainUpdateManyMutationInput {
   name: String
+  url: String
 }
 
 input DomainUpdateOneWithoutPagesInput {
@@ -99,6 +119,7 @@ input DomainUpdateOneWithoutPagesInput {
 
 input DomainUpdateWithoutPagesDataInput {
   name: String
+  url: String
 }
 
 input DomainUpsertWithoutPagesInput {
@@ -135,6 +156,20 @@ input DomainWhereInput {
   name_not_starts_with: String
   name_ends_with: String
   name_not_ends_with: String
+  url: String
+  url_not: String
+  url_in: [String!]
+  url_not_in: [String!]
+  url_lt: String
+  url_lte: String
+  url_gt: String
+  url_gte: String
+  url_contains: String
+  url_not_contains: String
+  url_starts_with: String
+  url_not_starts_with: String
+  url_ends_with: String
+  url_not_ends_with: String
   pages_some: PageWhereInput
   AND: [DomainWhereInput!]
 }
@@ -158,6 +193,24 @@ type Mutation {
   upsertPage(where: PageWhereUniqueInput!, create: PageCreateInput!, update: PageUpdateInput!): Page!
   deletePage(where: PageWhereUniqueInput!): Page
   deleteManyPages(where: PageWhereInput): BatchPayload!
+  createPageContent(data: PageContentCreateInput!): PageContent!
+  updatePageContent(data: PageContentUpdateInput!, where: PageContentWhereUniqueInput!): PageContent
+  updateManyPageContents(data: PageContentUpdateManyMutationInput!, where: PageContentWhereInput): BatchPayload!
+  upsertPageContent(where: PageContentWhereUniqueInput!, create: PageContentCreateInput!, update: PageContentUpdateInput!): PageContent!
+  deletePageContent(where: PageContentWhereUniqueInput!): PageContent
+  deleteManyPageContents(where: PageContentWhereInput): BatchPayload!
+  createTweet(data: TweetCreateInput!): Tweet!
+  updateTweet(data: TweetUpdateInput!, where: TweetWhereUniqueInput!): Tweet
+  updateManyTweets(data: TweetUpdateManyMutationInput!, where: TweetWhereInput): BatchPayload!
+  upsertTweet(where: TweetWhereUniqueInput!, create: TweetCreateInput!, update: TweetUpdateInput!): Tweet!
+  deleteTweet(where: TweetWhereUniqueInput!): Tweet
+  deleteManyTweets(where: TweetWhereInput): BatchPayload!
+  createTwitterUser(data: TwitterUserCreateInput!): TwitterUser!
+  updateTwitterUser(data: TwitterUserUpdateInput!, where: TwitterUserWhereUniqueInput!): TwitterUser
+  updateManyTwitterUsers(data: TwitterUserUpdateManyMutationInput!, where: TwitterUserWhereInput): BatchPayload!
+  upsertTwitterUser(where: TwitterUserWhereUniqueInput!, create: TwitterUserCreateInput!, update: TwitterUserUpdateInput!): TwitterUser!
+  deleteTwitterUser(where: TwitterUserWhereUniqueInput!): TwitterUser
+  deleteManyTwitterUsers(where: TwitterUserWhereInput): BatchPayload!
   createUser(data: UserCreateInput!): User!
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
@@ -178,7 +231,9 @@ interface Node {
 
 type Page {
   id: ID!
-  name: String!
+  name: String
+  url: String
+  content: PageContent
   domain: Domain
 }
 
@@ -188,9 +243,136 @@ type PageConnection {
   aggregate: AggregatePage!
 }
 
+type PageContent {
+  id: ID!
+  page: Page
+  content: String!
+}
+
+type PageContentConnection {
+  pageInfo: PageInfo!
+  edges: [PageContentEdge]!
+  aggregate: AggregatePageContent!
+}
+
+input PageContentCreateInput {
+  id: ID
+  page: PageCreateOneWithoutContentInput
+  content: String!
+}
+
+input PageContentCreateOneWithoutPageInput {
+  create: PageContentCreateWithoutPageInput
+  connect: PageContentWhereUniqueInput
+}
+
+input PageContentCreateWithoutPageInput {
+  id: ID
+  content: String!
+}
+
+type PageContentEdge {
+  node: PageContent!
+  cursor: String!
+}
+
+enum PageContentOrderByInput {
+  id_ASC
+  id_DESC
+  content_ASC
+  content_DESC
+}
+
+type PageContentPreviousValues {
+  id: ID!
+  content: String!
+}
+
+type PageContentSubscriptionPayload {
+  mutation: MutationType!
+  node: PageContent
+  updatedFields: [String!]
+  previousValues: PageContentPreviousValues
+}
+
+input PageContentSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: PageContentWhereInput
+  AND: [PageContentSubscriptionWhereInput!]
+}
+
+input PageContentUpdateInput {
+  page: PageUpdateOneWithoutContentInput
+  content: String
+}
+
+input PageContentUpdateManyMutationInput {
+  content: String
+}
+
+input PageContentUpdateOneWithoutPageInput {
+  create: PageContentCreateWithoutPageInput
+  update: PageContentUpdateWithoutPageDataInput
+  upsert: PageContentUpsertWithoutPageInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: PageContentWhereUniqueInput
+}
+
+input PageContentUpdateWithoutPageDataInput {
+  content: String
+}
+
+input PageContentUpsertWithoutPageInput {
+  update: PageContentUpdateWithoutPageDataInput!
+  create: PageContentCreateWithoutPageInput!
+}
+
+input PageContentWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  page: PageWhereInput
+  content: String
+  content_not: String
+  content_in: [String!]
+  content_not_in: [String!]
+  content_lt: String
+  content_lte: String
+  content_gt: String
+  content_gte: String
+  content_contains: String
+  content_not_contains: String
+  content_starts_with: String
+  content_not_starts_with: String
+  content_ends_with: String
+  content_not_ends_with: String
+  AND: [PageContentWhereInput!]
+}
+
+input PageContentWhereUniqueInput {
+  id: ID
+}
+
 input PageCreateInput {
   id: ID
-  name: String!
+  name: String
+  url: String
+  content: PageContentCreateOneWithoutPageInput
   domain: DomainCreateOneWithoutPagesInput
 }
 
@@ -199,9 +381,23 @@ input PageCreateManyWithoutDomainInput {
   connect: [PageWhereUniqueInput!]
 }
 
+input PageCreateOneWithoutContentInput {
+  create: PageCreateWithoutContentInput
+  connect: PageWhereUniqueInput
+}
+
+input PageCreateWithoutContentInput {
+  id: ID
+  name: String
+  url: String
+  domain: DomainCreateOneWithoutPagesInput
+}
+
 input PageCreateWithoutDomainInput {
   id: ID
-  name: String!
+  name: String
+  url: String
+  content: PageContentCreateOneWithoutPageInput
 }
 
 type PageEdge {
@@ -221,11 +417,14 @@ enum PageOrderByInput {
   id_DESC
   name_ASC
   name_DESC
+  url_ASC
+  url_DESC
 }
 
 type PagePreviousValues {
   id: ID!
-  name: String!
+  name: String
+  url: String
 }
 
 input PageScalarWhereInput {
@@ -257,6 +456,20 @@ input PageScalarWhereInput {
   name_not_starts_with: String
   name_ends_with: String
   name_not_ends_with: String
+  url: String
+  url_not: String
+  url_in: [String!]
+  url_not_in: [String!]
+  url_lt: String
+  url_lte: String
+  url_gt: String
+  url_gte: String
+  url_contains: String
+  url_not_contains: String
+  url_starts_with: String
+  url_not_starts_with: String
+  url_ends_with: String
+  url_not_ends_with: String
   AND: [PageScalarWhereInput!]
   OR: [PageScalarWhereInput!]
   NOT: [PageScalarWhereInput!]
@@ -280,15 +493,19 @@ input PageSubscriptionWhereInput {
 
 input PageUpdateInput {
   name: String
+  url: String
+  content: PageContentUpdateOneWithoutPageInput
   domain: DomainUpdateOneWithoutPagesInput
 }
 
 input PageUpdateManyDataInput {
   name: String
+  url: String
 }
 
 input PageUpdateManyMutationInput {
   name: String
+  url: String
 }
 
 input PageUpdateManyWithoutDomainInput {
@@ -308,13 +525,35 @@ input PageUpdateManyWithWhereNestedInput {
   data: PageUpdateManyDataInput!
 }
 
+input PageUpdateOneWithoutContentInput {
+  create: PageCreateWithoutContentInput
+  update: PageUpdateWithoutContentDataInput
+  upsert: PageUpsertWithoutContentInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: PageWhereUniqueInput
+}
+
+input PageUpdateWithoutContentDataInput {
+  name: String
+  url: String
+  domain: DomainUpdateOneWithoutPagesInput
+}
+
 input PageUpdateWithoutDomainDataInput {
   name: String
+  url: String
+  content: PageContentUpdateOneWithoutPageInput
 }
 
 input PageUpdateWithWhereUniqueWithoutDomainInput {
   where: PageWhereUniqueInput!
   data: PageUpdateWithoutDomainDataInput!
+}
+
+input PageUpsertWithoutContentInput {
+  update: PageUpdateWithoutContentDataInput!
+  create: PageCreateWithoutContentInput!
 }
 
 input PageUpsertWithWhereUniqueWithoutDomainInput {
@@ -352,6 +591,21 @@ input PageWhereInput {
   name_not_starts_with: String
   name_ends_with: String
   name_not_ends_with: String
+  url: String
+  url_not: String
+  url_in: [String!]
+  url_not_in: [String!]
+  url_lt: String
+  url_lte: String
+  url_gt: String
+  url_gte: String
+  url_contains: String
+  url_not_contains: String
+  url_starts_with: String
+  url_not_starts_with: String
+  url_ends_with: String
+  url_not_ends_with: String
+  content: PageContentWhereInput
   domain: DomainWhereInput
   AND: [PageWhereInput!]
 }
@@ -367,6 +621,15 @@ type Query {
   page(where: PageWhereUniqueInput!): Page
   pages(where: PageWhereInput, orderBy: PageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Page]!
   pagesConnection(where: PageWhereInput, orderBy: PageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PageConnection!
+  pageContent(where: PageContentWhereUniqueInput!): PageContent
+  pageContents(where: PageContentWhereInput, orderBy: PageContentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PageContent]!
+  pageContentsConnection(where: PageContentWhereInput, orderBy: PageContentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PageContentConnection!
+  tweet(where: TweetWhereUniqueInput!): Tweet
+  tweets(where: TweetWhereInput, orderBy: TweetOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Tweet]!
+  tweetsConnection(where: TweetWhereInput, orderBy: TweetOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): TweetConnection!
+  twitterUser(where: TwitterUserWhereUniqueInput!): TwitterUser
+  twitterUsers(where: TwitterUserWhereInput, orderBy: TwitterUserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [TwitterUser]!
+  twitterUsersConnection(where: TwitterUserWhereInput, orderBy: TwitterUserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): TwitterUserConnection!
   user(where: UserWhereUniqueInput!): User
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
@@ -376,7 +639,276 @@ type Query {
 type Subscription {
   domain(where: DomainSubscriptionWhereInput): DomainSubscriptionPayload
   page(where: PageSubscriptionWhereInput): PageSubscriptionPayload
+  pageContent(where: PageContentSubscriptionWhereInput): PageContentSubscriptionPayload
+  tweet(where: TweetSubscriptionWhereInput): TweetSubscriptionPayload
+  twitterUser(where: TwitterUserSubscriptionWhereInput): TwitterUserSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
+}
+
+type Tweet {
+  id: ID!
+  text: String!
+}
+
+type TweetConnection {
+  pageInfo: PageInfo!
+  edges: [TweetEdge]!
+  aggregate: AggregateTweet!
+}
+
+input TweetCreateInput {
+  id: ID
+  text: String!
+}
+
+input TweetCreateManyInput {
+  create: [TweetCreateInput!]
+  connect: [TweetWhereUniqueInput!]
+}
+
+type TweetEdge {
+  node: Tweet!
+  cursor: String!
+}
+
+enum TweetOrderByInput {
+  id_ASC
+  id_DESC
+  text_ASC
+  text_DESC
+}
+
+type TweetPreviousValues {
+  id: ID!
+  text: String!
+}
+
+input TweetScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  text: String
+  text_not: String
+  text_in: [String!]
+  text_not_in: [String!]
+  text_lt: String
+  text_lte: String
+  text_gt: String
+  text_gte: String
+  text_contains: String
+  text_not_contains: String
+  text_starts_with: String
+  text_not_starts_with: String
+  text_ends_with: String
+  text_not_ends_with: String
+  AND: [TweetScalarWhereInput!]
+  OR: [TweetScalarWhereInput!]
+  NOT: [TweetScalarWhereInput!]
+}
+
+type TweetSubscriptionPayload {
+  mutation: MutationType!
+  node: Tweet
+  updatedFields: [String!]
+  previousValues: TweetPreviousValues
+}
+
+input TweetSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: TweetWhereInput
+  AND: [TweetSubscriptionWhereInput!]
+}
+
+input TweetUpdateDataInput {
+  text: String
+}
+
+input TweetUpdateInput {
+  text: String
+}
+
+input TweetUpdateManyDataInput {
+  text: String
+}
+
+input TweetUpdateManyInput {
+  create: [TweetCreateInput!]
+  update: [TweetUpdateWithWhereUniqueNestedInput!]
+  upsert: [TweetUpsertWithWhereUniqueNestedInput!]
+  delete: [TweetWhereUniqueInput!]
+  connect: [TweetWhereUniqueInput!]
+  set: [TweetWhereUniqueInput!]
+  disconnect: [TweetWhereUniqueInput!]
+  deleteMany: [TweetScalarWhereInput!]
+  updateMany: [TweetUpdateManyWithWhereNestedInput!]
+}
+
+input TweetUpdateManyMutationInput {
+  text: String
+}
+
+input TweetUpdateManyWithWhereNestedInput {
+  where: TweetScalarWhereInput!
+  data: TweetUpdateManyDataInput!
+}
+
+input TweetUpdateWithWhereUniqueNestedInput {
+  where: TweetWhereUniqueInput!
+  data: TweetUpdateDataInput!
+}
+
+input TweetUpsertWithWhereUniqueNestedInput {
+  where: TweetWhereUniqueInput!
+  update: TweetUpdateDataInput!
+  create: TweetCreateInput!
+}
+
+input TweetWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  text: String
+  text_not: String
+  text_in: [String!]
+  text_not_in: [String!]
+  text_lt: String
+  text_lte: String
+  text_gt: String
+  text_gte: String
+  text_contains: String
+  text_not_contains: String
+  text_starts_with: String
+  text_not_starts_with: String
+  text_ends_with: String
+  text_not_ends_with: String
+  AND: [TweetWhereInput!]
+}
+
+input TweetWhereUniqueInput {
+  id: ID
+}
+
+type TwitterUser {
+  id: ID!
+  handle: String!
+  tweets(where: TweetWhereInput, orderBy: TweetOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Tweet!]
+}
+
+type TwitterUserConnection {
+  pageInfo: PageInfo!
+  edges: [TwitterUserEdge]!
+  aggregate: AggregateTwitterUser!
+}
+
+input TwitterUserCreateInput {
+  id: ID
+  handle: String!
+  tweets: TweetCreateManyInput
+}
+
+type TwitterUserEdge {
+  node: TwitterUser!
+  cursor: String!
+}
+
+enum TwitterUserOrderByInput {
+  id_ASC
+  id_DESC
+  handle_ASC
+  handle_DESC
+}
+
+type TwitterUserPreviousValues {
+  id: ID!
+  handle: String!
+}
+
+type TwitterUserSubscriptionPayload {
+  mutation: MutationType!
+  node: TwitterUser
+  updatedFields: [String!]
+  previousValues: TwitterUserPreviousValues
+}
+
+input TwitterUserSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: TwitterUserWhereInput
+  AND: [TwitterUserSubscriptionWhereInput!]
+}
+
+input TwitterUserUpdateInput {
+  handle: String
+  tweets: TweetUpdateManyInput
+}
+
+input TwitterUserUpdateManyMutationInput {
+  handle: String
+}
+
+input TwitterUserWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  handle: String
+  handle_not: String
+  handle_in: [String!]
+  handle_not_in: [String!]
+  handle_lt: String
+  handle_lte: String
+  handle_gt: String
+  handle_gte: String
+  handle_contains: String
+  handle_not_contains: String
+  handle_starts_with: String
+  handle_not_starts_with: String
+  handle_ends_with: String
+  handle_not_ends_with: String
+  tweets_some: TweetWhereInput
+  AND: [TwitterUserWhereInput!]
+}
+
+input TwitterUserWhereUniqueInput {
+  id: ID
+  handle: String
 }
 
 type User {

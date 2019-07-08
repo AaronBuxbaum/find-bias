@@ -13,14 +13,6 @@ declare global {
 }
 
 export interface NexusGenInputs {
-  DomainCreateOneWithoutPagesInput: { // input type
-    connect?: NexusGenInputs['DomainWhereUniqueInput'] | null; // DomainWhereUniqueInput
-    create?: NexusGenInputs['DomainCreateWithoutPagesInput'] | null; // DomainCreateWithoutPagesInput
-  }
-  DomainCreateWithoutPagesInput: { // input type
-    id?: string | null; // ID
-    name: string; // String!
-  }
   DomainWhereInput: { // input type
     AND?: NexusGenInputs['DomainWhereInput'][] | null; // [DomainWhereInput!]
     id?: string | null; // ID
@@ -52,17 +44,56 @@ export interface NexusGenInputs {
     name_not_starts_with?: string | null; // String
     name_starts_with?: string | null; // String
     pages_some?: NexusGenInputs['PageWhereInput'] | null; // PageWhereInput
+    url?: string | null; // String
+    url_contains?: string | null; // String
+    url_ends_with?: string | null; // String
+    url_gt?: string | null; // String
+    url_gte?: string | null; // String
+    url_in?: string[] | null; // [String!]
+    url_lt?: string | null; // String
+    url_lte?: string | null; // String
+    url_not?: string | null; // String
+    url_not_contains?: string | null; // String
+    url_not_ends_with?: string | null; // String
+    url_not_in?: string[] | null; // [String!]
+    url_not_starts_with?: string | null; // String
+    url_starts_with?: string | null; // String
   }
-  DomainWhereUniqueInput: { // input type
+  PageContentWhereInput: { // input type
+    AND?: NexusGenInputs['PageContentWhereInput'][] | null; // [PageContentWhereInput!]
+    content?: string | null; // String
+    content_contains?: string | null; // String
+    content_ends_with?: string | null; // String
+    content_gt?: string | null; // String
+    content_gte?: string | null; // String
+    content_in?: string[] | null; // [String!]
+    content_lt?: string | null; // String
+    content_lte?: string | null; // String
+    content_not?: string | null; // String
+    content_not_contains?: string | null; // String
+    content_not_ends_with?: string | null; // String
+    content_not_in?: string[] | null; // [String!]
+    content_not_starts_with?: string | null; // String
+    content_starts_with?: string | null; // String
     id?: string | null; // ID
-  }
-  PageCreateInput: { // input type
-    domain?: NexusGenInputs['DomainCreateOneWithoutPagesInput'] | null; // DomainCreateOneWithoutPagesInput
-    id?: string | null; // ID
-    name: string; // String!
+    id_contains?: string | null; // ID
+    id_ends_with?: string | null; // ID
+    id_gt?: string | null; // ID
+    id_gte?: string | null; // ID
+    id_in?: string[] | null; // [ID!]
+    id_lt?: string | null; // ID
+    id_lte?: string | null; // ID
+    id_not?: string | null; // ID
+    id_not_contains?: string | null; // ID
+    id_not_ends_with?: string | null; // ID
+    id_not_in?: string[] | null; // [ID!]
+    id_not_starts_with?: string | null; // ID
+    id_starts_with?: string | null; // ID
+    page?: NexusGenInputs['PageWhereInput'] | null; // PageWhereInput
   }
   PageWhereInput: { // input type
     AND?: NexusGenInputs['PageWhereInput'][] | null; // [PageWhereInput!]
+    content?: NexusGenInputs['PageContentWhereInput'] | null; // PageContentWhereInput
     domain?: NexusGenInputs['DomainWhereInput'] | null; // DomainWhereInput
     id?: string | null; // ID
     id_contains?: string | null; // ID
@@ -92,27 +123,97 @@ export interface NexusGenInputs {
     name_not_in?: string[] | null; // [String!]
     name_not_starts_with?: string | null; // String
     name_starts_with?: string | null; // String
+    url?: string | null; // String
+    url_contains?: string | null; // String
+    url_ends_with?: string | null; // String
+    url_gt?: string | null; // String
+    url_gte?: string | null; // String
+    url_in?: string[] | null; // [String!]
+    url_lt?: string | null; // String
+    url_lte?: string | null; // String
+    url_not?: string | null; // String
+    url_not_contains?: string | null; // String
+    url_not_ends_with?: string | null; // String
+    url_not_in?: string[] | null; // [String!]
+    url_not_starts_with?: string | null; // String
+    url_starts_with?: string | null; // String
   }
   PageWhereUniqueInput: { // input type
     id?: string | null; // ID
   }
+  TweetWhereInput: { // input type
+    AND?: NexusGenInputs['TweetWhereInput'][] | null; // [TweetWhereInput!]
+    id?: string | null; // ID
+    id_contains?: string | null; // ID
+    id_ends_with?: string | null; // ID
+    id_gt?: string | null; // ID
+    id_gte?: string | null; // ID
+    id_in?: string[] | null; // [ID!]
+    id_lt?: string | null; // ID
+    id_lte?: string | null; // ID
+    id_not?: string | null; // ID
+    id_not_contains?: string | null; // ID
+    id_not_ends_with?: string | null; // ID
+    id_not_in?: string[] | null; // [ID!]
+    id_not_starts_with?: string | null; // ID
+    id_starts_with?: string | null; // ID
+    text?: string | null; // String
+    text_contains?: string | null; // String
+    text_ends_with?: string | null; // String
+    text_gt?: string | null; // String
+    text_gte?: string | null; // String
+    text_in?: string[] | null; // [String!]
+    text_lt?: string | null; // String
+    text_lte?: string | null; // String
+    text_not?: string | null; // String
+    text_not_contains?: string | null; // String
+    text_not_ends_with?: string | null; // String
+    text_not_in?: string[] | null; // [String!]
+    text_not_starts_with?: string | null; // String
+    text_starts_with?: string | null; // String
+  }
+  UserCreateInput: { // input type
+    email?: string | null; // String
+    id?: string | null; // ID
+    name: string; // String!
+  }
 }
 
 export interface NexusGenEnums {
-  PageOrderByInput: "id_ASC" | "id_DESC" | "name_ASC" | "name_DESC"
+  PageOrderByInput: "id_ASC" | "id_DESC" | "name_ASC" | "name_DESC" | "url_ASC" | "url_DESC"
+  TweetOrderByInput: "id_ASC" | "id_DESC" | "text_ASC" | "text_DESC"
 }
 
 export interface NexusGenRootTypes {
   Domain: { // root type
     id: string; // ID!
     name: string; // String!
+    url: string; // String!
   }
   Mutation: {};
   Page: { // root type
     id: string; // ID!
-    name: string; // String!
+    name?: string | null; // String
+    url?: string | null; // String
+  }
+  PageContent: { // root type
+    content: string; // String!
+    id: string; // ID!
   }
   Query: {};
+  Tweet: { // root type
+    id: string; // ID!
+    text: string; // String!
+  }
+  TwitterUser: { // root type
+    handle: string; // String!
+    id: string; // ID!
+  }
+  User: { // root type
+    email?: string | null; // String
+    id: string; // ID!
+    name: string; // String!
+  }
   String: string;
   Int: number;
   Float: number;
@@ -121,14 +222,14 @@ export interface NexusGenRootTypes {
 }
 
 export interface NexusGenAllTypes extends NexusGenRootTypes {
-  DomainCreateOneWithoutPagesInput: NexusGenInputs['DomainCreateOneWithoutPagesInput'];
-  DomainCreateWithoutPagesInput: NexusGenInputs['DomainCreateWithoutPagesInput'];
   DomainWhereInput: NexusGenInputs['DomainWhereInput'];
-  DomainWhereUniqueInput: NexusGenInputs['DomainWhereUniqueInput'];
-  PageCreateInput: NexusGenInputs['PageCreateInput'];
+  PageContentWhereInput: NexusGenInputs['PageContentWhereInput'];
   PageWhereInput: NexusGenInputs['PageWhereInput'];
   PageWhereUniqueInput: NexusGenInputs['PageWhereUniqueInput'];
+  TweetWhereInput: NexusGenInputs['TweetWhereInput'];
+  UserCreateInput: NexusGenInputs['UserCreateInput'];
   PageOrderByInput: NexusGenEnums['PageOrderByInput'];
+  TweetOrderByInput: NexusGenEnums['TweetOrderByInput'];
 }
 
 export interface NexusGenFieldTypes {
@@ -136,19 +237,42 @@ export interface NexusGenFieldTypes {
     id: string; // ID!
     name: string; // String!
     pages: NexusGenRootTypes['Page'][] | null; // [Page!]
+    url: string; // String!
   }
   Mutation: { // field return type
     createPage: NexusGenRootTypes['Page']; // Page!
+    createTwitterUser: NexusGenRootTypes['TwitterUser']; // TwitterUser!
+    createUser: NexusGenRootTypes['User']; // User!
   }
   Page: { // field return type
+    content: NexusGenRootTypes['PageContent'] | null; // PageContent
     domain: NexusGenRootTypes['Domain'] | null; // Domain
     id: string; // ID!
-    name: string; // String!
+    name: string | null; // String
+    url: string | null; // String
+  }
+  PageContent: { // field return type
+    content: string; // String!
+    id: string; // ID!
+    page: NexusGenRootTypes['Page'] | null; // Page
   }
   Query: { // field return type
-    domain: NexusGenRootTypes['Domain'] | null; // Domain
     page: NexusGenRootTypes['Page'] | null; // Page
     pages: NexusGenRootTypes['Page'][]; // [Page!]!
+  }
+  Tweet: { // field return type
+    id: string; // ID!
+    text: string; // String!
+  }
+  TwitterUser: { // field return type
+    handle: string; // String!
+    id: string; // ID!
+    tweets: NexusGenRootTypes['Tweet'][] | null; // [Tweet!]
+  }
+  User: { // field return type
+    email: string | null; // String
+    id: string; // ID!
+    name: string; // String!
   }
 }
 
@@ -166,13 +290,16 @@ export interface NexusGenArgTypes {
   }
   Mutation: {
     createPage: { // args
-      data: NexusGenInputs['PageCreateInput']; // PageCreateInput!
+      url?: string | null; // String
+    }
+    createTwitterUser: { // args
+      handle?: string | null; // String
+    }
+    createUser: { // args
+      data: NexusGenInputs['UserCreateInput']; // UserCreateInput!
     }
   }
   Query: {
-    domain: { // args
-      where: NexusGenInputs['DomainWhereUniqueInput']; // DomainWhereUniqueInput!
-    }
     page: { // args
       where: NexusGenInputs['PageWhereUniqueInput']; // PageWhereUniqueInput!
     }
@@ -186,6 +313,17 @@ export interface NexusGenArgTypes {
       where?: NexusGenInputs['PageWhereInput'] | null; // PageWhereInput
     }
   }
+  TwitterUser: {
+    tweets: { // args
+      after?: string | null; // String
+      before?: string | null; // String
+      first?: number | null; // Int
+      last?: number | null; // Int
+      orderBy?: NexusGenEnums['TweetOrderByInput'] | null; // TweetOrderByInput
+      skip?: number | null; // Int
+      where?: NexusGenInputs['TweetWhereInput'] | null; // TweetWhereInput
+    }
+  }
 }
 
 export interface NexusGenAbstractResolveReturnTypes {
@@ -193,11 +331,11 @@ export interface NexusGenAbstractResolveReturnTypes {
 
 export interface NexusGenInheritedFields {}
 
-export type NexusGenObjectNames = "Domain" | "Mutation" | "Page" | "Query";
+export type NexusGenObjectNames = "Domain" | "Mutation" | "Page" | "PageContent" | "Query" | "Tweet" | "TwitterUser" | "User";
 
-export type NexusGenInputNames = "DomainCreateOneWithoutPagesInput" | "DomainCreateWithoutPagesInput" | "DomainWhereInput" | "DomainWhereUniqueInput" | "PageCreateInput" | "PageWhereInput" | "PageWhereUniqueInput";
+export type NexusGenInputNames = "DomainWhereInput" | "PageContentWhereInput" | "PageWhereInput" | "PageWhereUniqueInput" | "TweetWhereInput" | "UserCreateInput";
 
-export type NexusGenEnumNames = "PageOrderByInput";
+export type NexusGenEnumNames = "PageOrderByInput" | "TweetOrderByInput";
 
 export type NexusGenInterfaceNames = never;
 
