@@ -27,7 +27,7 @@ type PageContent {
 
 type TwitterUser {
   id: ID! @id
-  handle: String! @unique
+  handle: String!
   tweets: [Tweet!]! @relation(link: INLINE)
 }
 

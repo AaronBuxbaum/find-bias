@@ -3537,12 +3537,10 @@ export type PageContentWhereUniqueInputInputObject =
   
 export interface TwitterUserWhereUniqueInput {
   id?: string | null
-  handle?: string | null
 }
 export type TwitterUserWhereUniqueInputInputObject =
   | Extract<keyof TwitterUserWhereUniqueInput, string>
   | { name: 'id', alias?: string  } 
-  | { name: 'handle', alias?: string  } 
   
 export interface TweetWhereInput {
   id?: string | null

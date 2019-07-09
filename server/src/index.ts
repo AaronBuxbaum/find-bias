@@ -10,7 +10,7 @@ import * as twitter from './twitter';
 const Query = prismaObjectType({
   name: 'Query',
   definition(t) {
-    t.prismaFields(['page', 'pages'])
+    t.prismaFields(['page', 'pages', 'twitterUsers'])
   }
 })
 
@@ -25,11 +25,11 @@ const Mutation = prismaObjectType({
         handle: stringArg()
       },
       resolve: async (_, { handle }, ctx) => {
-        const tweets = await twitter.getTweets(handle!)
+        const tweets = await twitter.buildUserTweets(handle!);
         return ctx.prisma.createTwitterUser({
           handle,
           tweets
-        })
+        });
       }
     })
 

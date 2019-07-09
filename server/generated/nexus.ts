@@ -172,6 +172,38 @@ export interface NexusGenInputs {
     text_not_starts_with?: string | null; // String
     text_starts_with?: string | null; // String
   }
+  TwitterUserWhereInput: { // input type
+    AND?: NexusGenInputs['TwitterUserWhereInput'][] | null; // [TwitterUserWhereInput!]
+    handle?: string | null; // String
+    handle_contains?: string | null; // String
+    handle_ends_with?: string | null; // String
+    handle_gt?: string | null; // String
+    handle_gte?: string | null; // String
+    handle_in?: string[] | null; // [String!]
+    handle_lt?: string | null; // String
+    handle_lte?: string | null; // String
+    handle_not?: string | null; // String
+    handle_not_contains?: string | null; // String
+    handle_not_ends_with?: string | null; // String
+    handle_not_in?: string[] | null; // [String!]
+    handle_not_starts_with?: string | null; // String
+    handle_starts_with?: string | null; // String
+    id?: string | null; // ID
+    id_contains?: string | null; // ID
+    id_ends_with?: string | null; // ID
+    id_gt?: string | null; // ID
+    id_gte?: string | null; // ID
+    id_in?: string[] | null; // [ID!]
+    id_lt?: string | null; // ID
+    id_lte?: string | null; // ID
+    id_not?: string | null; // ID
+    id_not_contains?: string | null; // ID
+    id_not_ends_with?: string | null; // ID
+    id_not_in?: string[] | null; // [ID!]
+    id_not_starts_with?: string | null; // ID
+    id_starts_with?: string | null; // ID
+    tweets_some?: NexusGenInputs['TweetWhereInput'] | null; // TweetWhereInput
+  }
   UserCreateInput: { // input type
     email?: string | null; // String
     id?: string | null; // ID
@@ -182,6 +214,7 @@ export interface NexusGenInputs {
 export interface NexusGenEnums {
   PageOrderByInput: "id_ASC" | "id_DESC" | "name_ASC" | "name_DESC" | "url_ASC" | "url_DESC"
   TweetOrderByInput: "id_ASC" | "id_DESC" | "text_ASC" | "text_DESC"
+  TwitterUserOrderByInput: "handle_ASC" | "handle_DESC" | "id_ASC" | "id_DESC"
 }
 
 export interface NexusGenRootTypes {
@@ -227,9 +260,11 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
   PageWhereInput: NexusGenInputs['PageWhereInput'];
   PageWhereUniqueInput: NexusGenInputs['PageWhereUniqueInput'];
   TweetWhereInput: NexusGenInputs['TweetWhereInput'];
+  TwitterUserWhereInput: NexusGenInputs['TwitterUserWhereInput'];
   UserCreateInput: NexusGenInputs['UserCreateInput'];
   PageOrderByInput: NexusGenEnums['PageOrderByInput'];
   TweetOrderByInput: NexusGenEnums['TweetOrderByInput'];
+  TwitterUserOrderByInput: NexusGenEnums['TwitterUserOrderByInput'];
 }
 
 export interface NexusGenFieldTypes {
@@ -259,6 +294,7 @@ export interface NexusGenFieldTypes {
   Query: { // field return type
     page: NexusGenRootTypes['Page'] | null; // Page
     pages: NexusGenRootTypes['Page'][]; // [Page!]!
+    twitterUsers: NexusGenRootTypes['TwitterUser'][]; // [TwitterUser!]!
   }
   Tweet: { // field return type
     id: string; // ID!
@@ -312,6 +348,15 @@ export interface NexusGenArgTypes {
       skip?: number | null; // Int
       where?: NexusGenInputs['PageWhereInput'] | null; // PageWhereInput
     }
+    twitterUsers: { // args
+      after?: string | null; // String
+      before?: string | null; // String
+      first?: number | null; // Int
+      last?: number | null; // Int
+      orderBy?: NexusGenEnums['TwitterUserOrderByInput'] | null; // TwitterUserOrderByInput
+      skip?: number | null; // Int
+      where?: NexusGenInputs['TwitterUserWhereInput'] | null; // TwitterUserWhereInput
+    }
   }
   TwitterUser: {
     tweets: { // args
@@ -333,9 +378,9 @@ export interface NexusGenInheritedFields {}
 
 export type NexusGenObjectNames = "Domain" | "Mutation" | "Page" | "PageContent" | "Query" | "Tweet" | "TwitterUser" | "User";
 
-export type NexusGenInputNames = "DomainWhereInput" | "PageContentWhereInput" | "PageWhereInput" | "PageWhereUniqueInput" | "TweetWhereInput" | "UserCreateInput";
+export type NexusGenInputNames = "DomainWhereInput" | "PageContentWhereInput" | "PageWhereInput" | "PageWhereUniqueInput" | "TweetWhereInput" | "TwitterUserWhereInput" | "UserCreateInput";
 
-export type NexusGenEnumNames = "PageOrderByInput" | "TweetOrderByInput";
+export type NexusGenEnumNames = "PageOrderByInput" | "TweetOrderByInput" | "TwitterUserOrderByInput";
 
 export type NexusGenInterfaceNames = never;
 

@@ -9,7 +9,7 @@ export default {
     Domain: ['id'],
     Page: ['id'],
     PageContent: ['id'],
-    TwitterUser: ['id', 'handle'],
+    TwitterUser: ['id'],
     Tweet: ['id']
   },
   embeddedTypes: [],
@@ -4422,16 +4422,6 @@ export default {
             "type": {
               "kind": "SCALAR",
               "name": "ID",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "handle",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
               "ofType": null
             },
             "defaultValue": null
