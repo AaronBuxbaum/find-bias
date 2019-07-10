@@ -28,7 +28,9 @@ const Mutation = prismaObjectType({
         const tweets = await twitter.buildUserTweets(handle!);
         return ctx.prisma.createTwitterUser({
           handle,
-          tweets
+          tweets: {
+            create: tweets
+          },
         });
       }
     })
