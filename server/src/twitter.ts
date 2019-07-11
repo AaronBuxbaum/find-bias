@@ -1,4 +1,5 @@
 const Twit = require('twit')
+import { flatten } from 'lodash';
 
 const Twitter = new Twit({
     consumer_key: process.env.TWITTER_CONSUMER_KEY,
@@ -18,6 +19,9 @@ const Twitter = new Twit({
     If the user has already been requested before, `since_id` should be provided as the last collected tweet ID.
     This helps to avoid re-collecting already existing data.
     Fast response is considered unimportant since we will eventually collect all relevant data.
+
+    * Should the thread go back each time, or should I just have individual threads that complete one timeline at
+    a time? Finishing a timeline faster might happen, plus simplifying the code.
 */
 
 
@@ -32,7 +36,8 @@ const getUserTweets = async (handle: string) => {
         screen_name: handle,
         trim_user: true,
         tweet_mode: 'extended',
-        count: 10
+        include_rts: true,
+        count: 100
     };
 
     let { data } = await Twitter.get('statuses/user_timeline', params);
@@ -40,5 +45,23 @@ const getUserTweets = async (handle: string) => {
     data = data.map(d => ({
         text: d.full_text,
     }));
+
+    // just for testing purposes
+    const tweets = await Promise.all(data.map(processTweet));
+    console.log(flatten(tweets.map(t => t.entities)))
+
     return data;
+}
+
+const processTweet = async (tweet: any) => {
+    const rawResponse = await fetch('http://nlp:5000', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(tweet.text),
+    });
+    const response = await rawResponse.json();
+    return response;
 }
