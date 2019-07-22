@@ -2,6 +2,14 @@
 ### Do not make changes to this file directly
 
 
+type AggregateTwitterUser {
+  count: Int!
+}
+
+type BatchPayload {
+  count: Long!
+}
+
 type Domain {
   id: ID!
   name: String!
@@ -56,10 +64,17 @@ input DomainWhereInput {
   url_starts_with: String
 }
 
+scalar Long
+
 type Mutation {
   createPage(url: String): Page!
-  createTwitterUser(handle: String): TwitterUser!
+  createTwitterUser(handle: String!): TwitterUser!
   createUser(data: UserCreateInput!): User!
+  deleteManyTweets(where: TweetWhereInput): BatchPayload!
+  deleteManyTwitterUsers(where: TwitterUserWhereInput): BatchPayload!
+  updateManyTweets(data: TweetUpdateManyMutationInput!, where: TweetWhereInput): BatchPayload!
+  updateTweets(handle: String!): Tweet!
+  upsertTwitterUser(create: TwitterUserCreateInput!, update: TwitterUserUpdateInput!, where: TwitterUserWhereUniqueInput!): TwitterUser!
 }
 
 type Page {
@@ -107,6 +122,13 @@ input PageContentWhereInput {
   id_not_starts_with: ID
   id_starts_with: ID
   page: PageWhereInput
+}
+
+type PageInfo {
+  endCursor: String
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
 }
 
 enum PageOrderByInput {
@@ -173,12 +195,27 @@ input PageWhereUniqueInput {
 type Query {
   page(where: PageWhereUniqueInput!): Page
   pages(after: String, before: String, first: Int, last: Int, orderBy: PageOrderByInput, skip: Int, where: PageWhereInput): [Page!]!
+  twitterUser(where: TwitterUserWhereUniqueInput!): TwitterUser
   twitterUsers(after: String, before: String, first: Int, last: Int, orderBy: TwitterUserOrderByInput, skip: Int, where: TwitterUserWhereInput): [TwitterUser!]!
+  twitterUsersConnection(after: String, before: String, first: Int, last: Int, orderBy: TwitterUserOrderByInput, skip: Int, where: TwitterUserWhereInput): TwitterUserConnection!
 }
 
 type Tweet {
+  handle: TwitterUser!
   id: ID!
   text: String!
+  twitterId: String!
+}
+
+input TweetCreateManyWithoutHandleInput {
+  connect: [TweetWhereUniqueInput!]
+  create: [TweetCreateWithoutHandleInput!]
+}
+
+input TweetCreateWithoutHandleInput {
+  id: ID
+  text: String!
+  twitterId: String!
 }
 
 enum TweetOrderByInput {
@@ -186,10 +223,104 @@ enum TweetOrderByInput {
   id_DESC
   text_ASC
   text_DESC
+  twitterId_ASC
+  twitterId_DESC
+}
+
+input TweetScalarWhereInput {
+  AND: [TweetScalarWhereInput!]
+  id: ID
+  id_contains: ID
+  id_ends_with: ID
+  id_gt: ID
+  id_gte: ID
+  id_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_not: ID
+  id_not_contains: ID
+  id_not_ends_with: ID
+  id_not_in: [ID!]
+  id_not_starts_with: ID
+  id_starts_with: ID
+  NOT: [TweetScalarWhereInput!]
+  OR: [TweetScalarWhereInput!]
+  text: String
+  text_contains: String
+  text_ends_with: String
+  text_gt: String
+  text_gte: String
+  text_in: [String!]
+  text_lt: String
+  text_lte: String
+  text_not: String
+  text_not_contains: String
+  text_not_ends_with: String
+  text_not_in: [String!]
+  text_not_starts_with: String
+  text_starts_with: String
+  twitterId: String
+  twitterId_contains: String
+  twitterId_ends_with: String
+  twitterId_gt: String
+  twitterId_gte: String
+  twitterId_in: [String!]
+  twitterId_lt: String
+  twitterId_lte: String
+  twitterId_not: String
+  twitterId_not_contains: String
+  twitterId_not_ends_with: String
+  twitterId_not_in: [String!]
+  twitterId_not_starts_with: String
+  twitterId_starts_with: String
+}
+
+input TweetUpdateManyDataInput {
+  text: String
+  twitterId: String
+}
+
+input TweetUpdateManyMutationInput {
+  text: String
+  twitterId: String
+}
+
+input TweetUpdateManyWithoutHandleInput {
+  connect: [TweetWhereUniqueInput!]
+  create: [TweetCreateWithoutHandleInput!]
+  delete: [TweetWhereUniqueInput!]
+  deleteMany: [TweetScalarWhereInput!]
+  disconnect: [TweetWhereUniqueInput!]
+  set: [TweetWhereUniqueInput!]
+  update: [TweetUpdateWithWhereUniqueWithoutHandleInput!]
+  updateMany: [TweetUpdateManyWithWhereNestedInput!]
+  upsert: [TweetUpsertWithWhereUniqueWithoutHandleInput!]
+}
+
+input TweetUpdateManyWithWhereNestedInput {
+  data: TweetUpdateManyDataInput!
+  where: TweetScalarWhereInput!
+}
+
+input TweetUpdateWithoutHandleDataInput {
+  text: String
+  twitterId: String
+}
+
+input TweetUpdateWithWhereUniqueWithoutHandleInput {
+  data: TweetUpdateWithoutHandleDataInput!
+  where: TweetWhereUniqueInput!
+}
+
+input TweetUpsertWithWhereUniqueWithoutHandleInput {
+  create: TweetCreateWithoutHandleInput!
+  update: TweetUpdateWithoutHandleDataInput!
+  where: TweetWhereUniqueInput!
 }
 
 input TweetWhereInput {
   AND: [TweetWhereInput!]
+  handle: TwitterUserWhereInput
   id: ID
   id_contains: ID
   id_ends_with: ID
@@ -218,12 +349,51 @@ input TweetWhereInput {
   text_not_in: [String!]
   text_not_starts_with: String
   text_starts_with: String
+  twitterId: String
+  twitterId_contains: String
+  twitterId_ends_with: String
+  twitterId_gt: String
+  twitterId_gte: String
+  twitterId_in: [String!]
+  twitterId_lt: String
+  twitterId_lte: String
+  twitterId_not: String
+  twitterId_not_contains: String
+  twitterId_not_ends_with: String
+  twitterId_not_in: [String!]
+  twitterId_not_starts_with: String
+  twitterId_starts_with: String
+}
+
+input TweetWhereUniqueInput {
+  id: ID
 }
 
 type TwitterUser {
   handle: String!
   id: ID!
+  name: String
+  statuses_count: Int
   tweets(after: String, before: String, first: Int, last: Int, orderBy: TweetOrderByInput, skip: Int, where: TweetWhereInput): [Tweet!]
+}
+
+type TwitterUserConnection {
+  aggregate: AggregateTwitterUser!
+  edges: [TwitterUserEdge!]!
+  pageInfo: PageInfo!
+}
+
+input TwitterUserCreateInput {
+  handle: String!
+  id: ID
+  name: String
+  statuses_count: Int
+  tweets: TweetCreateManyWithoutHandleInput
+}
+
+type TwitterUserEdge {
+  cursor: String!
+  node: TwitterUser!
 }
 
 enum TwitterUserOrderByInput {
@@ -231,6 +401,17 @@ enum TwitterUserOrderByInput {
   handle_DESC
   id_ASC
   id_DESC
+  name_ASC
+  name_DESC
+  statuses_count_ASC
+  statuses_count_DESC
+}
+
+input TwitterUserUpdateInput {
+  handle: String
+  name: String
+  statuses_count: Int
+  tweets: TweetUpdateManyWithoutHandleInput
 }
 
 input TwitterUserWhereInput {
@@ -263,7 +444,34 @@ input TwitterUserWhereInput {
   id_not_in: [ID!]
   id_not_starts_with: ID
   id_starts_with: ID
+  name: String
+  name_contains: String
+  name_ends_with: String
+  name_gt: String
+  name_gte: String
+  name_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_not: String
+  name_not_contains: String
+  name_not_ends_with: String
+  name_not_in: [String!]
+  name_not_starts_with: String
+  name_starts_with: String
+  statuses_count: Int
+  statuses_count_gt: Int
+  statuses_count_gte: Int
+  statuses_count_in: [Int!]
+  statuses_count_lt: Int
+  statuses_count_lte: Int
+  statuses_count_not: Int
+  statuses_count_not_in: [Int!]
   tweets_some: TweetWhereInput
+}
+
+input TwitterUserWhereUniqueInput {
+  handle: String
+  id: ID
 }
 
 type User {

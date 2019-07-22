@@ -1,5 +1,6 @@
 const Twit = require('twit')
-import { flatten } from 'lodash';
+import { flatten, last } from 'lodash';
+import { prisma, Tweet } from '../generated/prisma-client';
 
 const Twitter = new Twit({
     consumer_key: process.env.TWITTER_CONSUMER_KEY,
@@ -25,32 +26,75 @@ const Twitter = new Twit({
 */
 
 
+const queue = [];
+
+
 export const buildUserTweets = async (handle: string) => {
     // TODO: schedule async getUserTweets requests until we run out of available tweets
     return getUserTweets(handle);
 }
 
-// TODO: pagination
-const getUserTweets = async (handle: string) => {
+const getSinceId = async (handle: string) => {
+    const lastTweet = await prisma.twitterUser({
+        handle,
+    }).tweets({
+        first: 1, // TODO: probably wrong
+    });
+
+    if (lastTweet && lastTweet.length > 0) {
+        const [{ twitterId }] = lastTweet;
+        return twitterId;
+    }
+}
+
+const getTweets = async (screen_name: string, ...rest) => {
     const params = {
-        screen_name: handle,
+        screen_name,
         trim_user: true,
         tweet_mode: 'extended',
         include_rts: true,
-        count: 100
+        count: 1,
+        ...rest,
     };
 
-    let { data } = await Twitter.get('statuses/user_timeline', params);
+    const { data } = await Twitter.get('statuses/user_timeline', params);
+    return data;
+}
+
+export const getUserInfo = async (screen_name: string) => {
+    const params = {
+        screen_name,
+    };
+    const user = await Twitter.get('users/show', params);
+    return user;
+}
+
+// TODO: pagination
+const getUserTweets = async (handle: string) => {
+    const since_id = await getSinceId(handle);
+    let tweets = await getTweets(handle, { since_id });
+
+    // there might be more items!
+    if (tweets.length > 0) {
+        const max_id = last(tweets).id_str;
+        queue.push({
+            handle,
+            max_id
+        });
+    }
+
     // TODO: save more data than just the text
-    data = data.map(d => ({
+    tweets = tweets.map(d => ({
+        twitterId: d.id_str,
         text: d.full_text,
+        handle,
     }));
 
     // just for testing purposes
-    const tweets = await Promise.all(data.map(processTweet));
-    console.log(flatten(tweets.map(t => t.entities)))
+    const temp = await Promise.all(tweets.map(processTweet));
+    console.log(flatten(temp.map(t => t.entities)))
 
-    return data;
+    return tweets;
 }
 
 const processTweet = async (tweet: any) => {

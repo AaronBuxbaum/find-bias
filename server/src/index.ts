@@ -10,27 +10,52 @@ import * as twitter from './twitter';
 const Query = prismaObjectType({
   name: 'Query',
   definition(t) {
-    t.prismaFields(['page', 'pages', 'twitterUsers'])
+    t.prismaFields(['page', 'pages', 'twitterUser', 'twitterUsers', 'twitterUsersConnection'])
   }
 })
 
 const Mutation = prismaObjectType({
   name: 'Mutation',
   definition(t) {
-    t.prismaFields(['createUser'])
+    t.prismaFields(['createUser', 'updateManyTweets', 'deleteManyTweets', 'deleteManyTwitterUsers', 'upsertTwitterUser'])
 
     t.field('createTwitterUser', {
       type: 'TwitterUser',
       args: {
-        handle: stringArg()
+        handle: stringArg({
+          required: true,
+        })
       },
       resolve: async (_, { handle }, ctx) => {
-        const tweets = await twitter.buildUserTweets(handle!);
-        return ctx.prisma.createTwitterUser({
+        const { data } = await twitter.getUserInfo(handle!);
+        const { name, statuses_count } = data;
+        const params = {
+          name,
+          statuses_count,
           handle,
-          tweets: {
-            create: tweets
-          },
+        };
+        ctx.prisma.updateTweets(handle);
+        return ctx.prisma.upsertTwitterUser({
+          where: { handle },
+          create: params,
+          update: params
+        });
+      }
+    })
+
+    t.field('updateTweets', {
+      type: 'Tweet',
+      args: {
+        handle: stringArg({
+          required: true
+        })
+      },
+      resolve: async (_, { handle }, ctx) => {
+        // TODO: here
+        const tweets = await twitter.buildUserTweets(handle);
+
+        return ctx.prisma.updateManyTweets({
+          create: tweets
         });
       }
     })

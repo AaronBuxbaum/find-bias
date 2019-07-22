@@ -151,18 +151,24 @@ export interface NexusPrismaTypes {
       PageUpsertWithoutContentInput: PageUpsertWithoutContentInputInputObject
       PageContentUpdateManyMutationInput: PageContentUpdateManyMutationInputInputObject
       TwitterUserCreateInput: TwitterUserCreateInputInputObject
-      TweetCreateManyInput: TweetCreateManyInputInputObject
-      TweetCreateInput: TweetCreateInputInputObject
+      TweetCreateManyWithoutHandleInput: TweetCreateManyWithoutHandleInputInputObject
+      TweetCreateWithoutHandleInput: TweetCreateWithoutHandleInputInputObject
       TwitterUserUpdateInput: TwitterUserUpdateInputInputObject
-      TweetUpdateManyInput: TweetUpdateManyInputInputObject
-      TweetUpdateWithWhereUniqueNestedInput: TweetUpdateWithWhereUniqueNestedInputInputObject
-      TweetUpdateDataInput: TweetUpdateDataInputInputObject
-      TweetUpsertWithWhereUniqueNestedInput: TweetUpsertWithWhereUniqueNestedInputInputObject
+      TweetUpdateManyWithoutHandleInput: TweetUpdateManyWithoutHandleInputInputObject
+      TweetUpdateWithWhereUniqueWithoutHandleInput: TweetUpdateWithWhereUniqueWithoutHandleInputInputObject
+      TweetUpdateWithoutHandleDataInput: TweetUpdateWithoutHandleDataInputInputObject
+      TweetUpsertWithWhereUniqueWithoutHandleInput: TweetUpsertWithWhereUniqueWithoutHandleInputInputObject
       TweetScalarWhereInput: TweetScalarWhereInputInputObject
       TweetUpdateManyWithWhereNestedInput: TweetUpdateManyWithWhereNestedInputInputObject
       TweetUpdateManyDataInput: TweetUpdateManyDataInputInputObject
       TwitterUserUpdateManyMutationInput: TwitterUserUpdateManyMutationInputInputObject
+      TweetCreateInput: TweetCreateInputInputObject
+      TwitterUserCreateOneWithoutTweetsInput: TwitterUserCreateOneWithoutTweetsInputInputObject
+      TwitterUserCreateWithoutTweetsInput: TwitterUserCreateWithoutTweetsInputInputObject
       TweetUpdateInput: TweetUpdateInputInputObject
+      TwitterUserUpdateOneRequiredWithoutTweetsInput: TwitterUserUpdateOneRequiredWithoutTweetsInputInputObject
+      TwitterUserUpdateWithoutTweetsDataInput: TwitterUserUpdateWithoutTweetsDataInputInputObject
+      TwitterUserUpsertWithoutTweetsInput: TwitterUserUpsertWithoutTweetsInputInputObject
       TweetUpdateManyMutationInput: TweetUpdateManyMutationInputInputObject
       UserSubscriptionWhereInput: UserSubscriptionWhereInputInputObject
       DomainSubscriptionWhereInput: DomainSubscriptionWhereInputInputObject
@@ -1374,11 +1380,15 @@ type TwitterUserObject =
   | { name: 'id', args?: [] | false, alias?: string  } 
   | { name: 'handle', args?: [] | false, alias?: string  } 
   | { name: 'tweets', args?: TwitterUserTweetsArgs[] | false, alias?: string  } 
+  | { name: 'statuses_count', args?: [] | false, alias?: string  } 
+  | { name: 'name', args?: [] | false, alias?: string  } 
 
 type TwitterUserFields =
   | 'id'
   | 'handle'
   | 'tweets'
+  | 'statuses_count'
+  | 'name'
 
 
 type TwitterUserTweetsArgs =
@@ -1421,6 +1431,22 @@ export interface TwitterUserFieldDetails {
       info?: GraphQLResolveInfo
     ) => Promise<prisma.Tweet[]> | prisma.Tweet[]
   }
+  statuses_count: {
+    type: 'Int'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: undefined
+  }
+  name: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: undefined
+  }
 }
   
 
@@ -1429,10 +1455,14 @@ export interface TwitterUserFieldDetails {
 type TweetObject =
   | TweetFields
   | { name: 'id', args?: [] | false, alias?: string  } 
+  | { name: 'twitterId', args?: [] | false, alias?: string  } 
+  | { name: 'handle', args?: [] | false, alias?: string  } 
   | { name: 'text', args?: [] | false, alias?: string  } 
 
 type TweetFields =
   | 'id'
+  | 'twitterId'
+  | 'handle'
   | 'text'
 
 
@@ -1447,6 +1477,27 @@ export interface TweetFieldDetails {
     list: undefined
     nullable: false
     resolve: undefined
+  }
+  twitterId: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  handle: {
+    type: 'TwitterUser'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: (
+      root: core.RootValue<"Tweet">,
+      args: {  }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.TwitterUser> | prisma.TwitterUser
   }
   text: {
     type: 'String'
@@ -3026,10 +3077,14 @@ type TwitterUserPreviousValuesObject =
   | TwitterUserPreviousValuesFields
   | { name: 'id', args?: [] | false, alias?: string  } 
   | { name: 'handle', args?: [] | false, alias?: string  } 
+  | { name: 'statuses_count', args?: [] | false, alias?: string  } 
+  | { name: 'name', args?: [] | false, alias?: string  } 
 
 type TwitterUserPreviousValuesFields =
   | 'id'
   | 'handle'
+  | 'statuses_count'
+  | 'name'
 
 
 
@@ -3050,6 +3105,22 @@ export interface TwitterUserPreviousValuesFieldDetails {
     description: string
     list: undefined
     nullable: false
+    resolve: undefined
+  }
+  statuses_count: {
+    type: 'Int'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: undefined
+  }
+  name: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
     resolve: undefined
   }
 }
@@ -3130,10 +3201,12 @@ export interface TweetSubscriptionPayloadFieldDetails {
 type TweetPreviousValuesObject =
   | TweetPreviousValuesFields
   | { name: 'id', args?: [] | false, alias?: string  } 
+  | { name: 'twitterId', args?: [] | false, alias?: string  } 
   | { name: 'text', args?: [] | false, alias?: string  } 
 
 type TweetPreviousValuesFields =
   | 'id'
+  | 'twitterId'
   | 'text'
 
 
@@ -3143,6 +3216,14 @@ type TweetPreviousValuesFields =
 export interface TweetPreviousValuesFieldDetails {
   id: {
     type: 'ID'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: undefined
+  }
+  twitterId: {
+    type: 'String'
     args: {}
     description: string
     list: undefined
@@ -3537,10 +3618,12 @@ export type PageContentWhereUniqueInputInputObject =
   
 export interface TwitterUserWhereUniqueInput {
   id?: string | null
+  handle?: string | null
 }
 export type TwitterUserWhereUniqueInputInputObject =
   | Extract<keyof TwitterUserWhereUniqueInput, string>
   | { name: 'id', alias?: string  } 
+  | { name: 'handle', alias?: string  } 
   
 export interface TweetWhereInput {
   id?: string | null
@@ -3557,6 +3640,21 @@ export interface TweetWhereInput {
   id_not_starts_with?: string | null
   id_ends_with?: string | null
   id_not_ends_with?: string | null
+  twitterId?: string | null
+  twitterId_not?: string | null
+  twitterId_in?: string[]
+  twitterId_not_in?: string[]
+  twitterId_lt?: string | null
+  twitterId_lte?: string | null
+  twitterId_gt?: string | null
+  twitterId_gte?: string | null
+  twitterId_contains?: string | null
+  twitterId_not_contains?: string | null
+  twitterId_starts_with?: string | null
+  twitterId_not_starts_with?: string | null
+  twitterId_ends_with?: string | null
+  twitterId_not_ends_with?: string | null
+  handle?: TwitterUserWhereInput | null
   text?: string | null
   text_not?: string | null
   text_in?: string[]
@@ -3589,6 +3687,21 @@ export type TweetWhereInputInputObject =
   | { name: 'id_not_starts_with', alias?: string  } 
   | { name: 'id_ends_with', alias?: string  } 
   | { name: 'id_not_ends_with', alias?: string  } 
+  | { name: 'twitterId', alias?: string  } 
+  | { name: 'twitterId_not', alias?: string  } 
+  | { name: 'twitterId_in', alias?: string  } 
+  | { name: 'twitterId_not_in', alias?: string  } 
+  | { name: 'twitterId_lt', alias?: string  } 
+  | { name: 'twitterId_lte', alias?: string  } 
+  | { name: 'twitterId_gt', alias?: string  } 
+  | { name: 'twitterId_gte', alias?: string  } 
+  | { name: 'twitterId_contains', alias?: string  } 
+  | { name: 'twitterId_not_contains', alias?: string  } 
+  | { name: 'twitterId_starts_with', alias?: string  } 
+  | { name: 'twitterId_not_starts_with', alias?: string  } 
+  | { name: 'twitterId_ends_with', alias?: string  } 
+  | { name: 'twitterId_not_ends_with', alias?: string  } 
+  | { name: 'handle', alias?: string  } 
   | { name: 'text', alias?: string  } 
   | { name: 'text_not', alias?: string  } 
   | { name: 'text_in', alias?: string  } 
@@ -3635,6 +3748,28 @@ export interface TwitterUserWhereInput {
   handle_ends_with?: string | null
   handle_not_ends_with?: string | null
   tweets_some?: TweetWhereInput | null
+  statuses_count?: number | null
+  statuses_count_not?: number | null
+  statuses_count_in?: number[]
+  statuses_count_not_in?: number[]
+  statuses_count_lt?: number | null
+  statuses_count_lte?: number | null
+  statuses_count_gt?: number | null
+  statuses_count_gte?: number | null
+  name?: string | null
+  name_not?: string | null
+  name_in?: string[]
+  name_not_in?: string[]
+  name_lt?: string | null
+  name_lte?: string | null
+  name_gt?: string | null
+  name_gte?: string | null
+  name_contains?: string | null
+  name_not_contains?: string | null
+  name_starts_with?: string | null
+  name_not_starts_with?: string | null
+  name_ends_with?: string | null
+  name_not_ends_with?: string | null
   AND?: TwitterUserWhereInput[]
 }
 export type TwitterUserWhereInputInputObject =
@@ -3668,6 +3803,28 @@ export type TwitterUserWhereInputInputObject =
   | { name: 'handle_ends_with', alias?: string  } 
   | { name: 'handle_not_ends_with', alias?: string  } 
   | { name: 'tweets_some', alias?: string  } 
+  | { name: 'statuses_count', alias?: string  } 
+  | { name: 'statuses_count_not', alias?: string  } 
+  | { name: 'statuses_count_in', alias?: string  } 
+  | { name: 'statuses_count_not_in', alias?: string  } 
+  | { name: 'statuses_count_lt', alias?: string  } 
+  | { name: 'statuses_count_lte', alias?: string  } 
+  | { name: 'statuses_count_gt', alias?: string  } 
+  | { name: 'statuses_count_gte', alias?: string  } 
+  | { name: 'name', alias?: string  } 
+  | { name: 'name_not', alias?: string  } 
+  | { name: 'name_in', alias?: string  } 
+  | { name: 'name_not_in', alias?: string  } 
+  | { name: 'name_lt', alias?: string  } 
+  | { name: 'name_lte', alias?: string  } 
+  | { name: 'name_gt', alias?: string  } 
+  | { name: 'name_gte', alias?: string  } 
+  | { name: 'name_contains', alias?: string  } 
+  | { name: 'name_not_contains', alias?: string  } 
+  | { name: 'name_starts_with', alias?: string  } 
+  | { name: 'name_not_starts_with', alias?: string  } 
+  | { name: 'name_ends_with', alias?: string  } 
+  | { name: 'name_not_ends_with', alias?: string  } 
   | { name: 'AND', alias?: string  } 
   
 export interface TweetWhereUniqueInput {
@@ -4160,87 +4317,99 @@ export type PageContentUpdateManyMutationInputInputObject =
 export interface TwitterUserCreateInput {
   id?: string | null
   handle?: string
-  tweets?: TweetCreateManyInput | null
+  tweets?: TweetCreateManyWithoutHandleInput | null
+  statuses_count?: number | null
+  name?: string | null
 }
 export type TwitterUserCreateInputInputObject =
   | Extract<keyof TwitterUserCreateInput, string>
   | { name: 'id', alias?: string  } 
   | { name: 'handle', alias?: string  } 
   | { name: 'tweets', alias?: string  } 
+  | { name: 'statuses_count', alias?: string  } 
+  | { name: 'name', alias?: string  } 
   
-export interface TweetCreateManyInput {
-  create?: TweetCreateInput[]
+export interface TweetCreateManyWithoutHandleInput {
+  create?: TweetCreateWithoutHandleInput[]
   connect?: TweetWhereUniqueInput[]
 }
-export type TweetCreateManyInputInputObject =
-  | Extract<keyof TweetCreateManyInput, string>
+export type TweetCreateManyWithoutHandleInputInputObject =
+  | Extract<keyof TweetCreateManyWithoutHandleInput, string>
   | { name: 'create', alias?: string  } 
   | { name: 'connect', alias?: string  } 
   
-export interface TweetCreateInput {
+export interface TweetCreateWithoutHandleInput {
   id?: string | null
+  twitterId?: string
   text?: string
 }
-export type TweetCreateInputInputObject =
-  | Extract<keyof TweetCreateInput, string>
+export type TweetCreateWithoutHandleInputInputObject =
+  | Extract<keyof TweetCreateWithoutHandleInput, string>
   | { name: 'id', alias?: string  } 
+  | { name: 'twitterId', alias?: string  } 
   | { name: 'text', alias?: string  } 
   
 export interface TwitterUserUpdateInput {
   handle?: string | null
-  tweets?: TweetUpdateManyInput | null
+  tweets?: TweetUpdateManyWithoutHandleInput | null
+  statuses_count?: number | null
+  name?: string | null
 }
 export type TwitterUserUpdateInputInputObject =
   | Extract<keyof TwitterUserUpdateInput, string>
   | { name: 'handle', alias?: string  } 
   | { name: 'tweets', alias?: string  } 
+  | { name: 'statuses_count', alias?: string  } 
+  | { name: 'name', alias?: string  } 
   
-export interface TweetUpdateManyInput {
-  create?: TweetCreateInput[]
-  update?: TweetUpdateWithWhereUniqueNestedInput[]
-  upsert?: TweetUpsertWithWhereUniqueNestedInput[]
+export interface TweetUpdateManyWithoutHandleInput {
+  create?: TweetCreateWithoutHandleInput[]
   delete?: TweetWhereUniqueInput[]
   connect?: TweetWhereUniqueInput[]
   set?: TweetWhereUniqueInput[]
   disconnect?: TweetWhereUniqueInput[]
+  update?: TweetUpdateWithWhereUniqueWithoutHandleInput[]
+  upsert?: TweetUpsertWithWhereUniqueWithoutHandleInput[]
   deleteMany?: TweetScalarWhereInput[]
   updateMany?: TweetUpdateManyWithWhereNestedInput[]
 }
-export type TweetUpdateManyInputInputObject =
-  | Extract<keyof TweetUpdateManyInput, string>
+export type TweetUpdateManyWithoutHandleInputInputObject =
+  | Extract<keyof TweetUpdateManyWithoutHandleInput, string>
   | { name: 'create', alias?: string  } 
-  | { name: 'update', alias?: string  } 
-  | { name: 'upsert', alias?: string  } 
   | { name: 'delete', alias?: string  } 
   | { name: 'connect', alias?: string  } 
   | { name: 'set', alias?: string  } 
   | { name: 'disconnect', alias?: string  } 
+  | { name: 'update', alias?: string  } 
+  | { name: 'upsert', alias?: string  } 
   | { name: 'deleteMany', alias?: string  } 
   | { name: 'updateMany', alias?: string  } 
   
-export interface TweetUpdateWithWhereUniqueNestedInput {
+export interface TweetUpdateWithWhereUniqueWithoutHandleInput {
   where?: TweetWhereUniqueInput
-  data?: TweetUpdateDataInput
+  data?: TweetUpdateWithoutHandleDataInput
 }
-export type TweetUpdateWithWhereUniqueNestedInputInputObject =
-  | Extract<keyof TweetUpdateWithWhereUniqueNestedInput, string>
+export type TweetUpdateWithWhereUniqueWithoutHandleInputInputObject =
+  | Extract<keyof TweetUpdateWithWhereUniqueWithoutHandleInput, string>
   | { name: 'where', alias?: string  } 
   | { name: 'data', alias?: string  } 
   
-export interface TweetUpdateDataInput {
+export interface TweetUpdateWithoutHandleDataInput {
+  twitterId?: string | null
   text?: string | null
 }
-export type TweetUpdateDataInputInputObject =
-  | Extract<keyof TweetUpdateDataInput, string>
+export type TweetUpdateWithoutHandleDataInputInputObject =
+  | Extract<keyof TweetUpdateWithoutHandleDataInput, string>
+  | { name: 'twitterId', alias?: string  } 
   | { name: 'text', alias?: string  } 
   
-export interface TweetUpsertWithWhereUniqueNestedInput {
+export interface TweetUpsertWithWhereUniqueWithoutHandleInput {
   where?: TweetWhereUniqueInput
-  update?: TweetUpdateDataInput
-  create?: TweetCreateInput
+  update?: TweetUpdateWithoutHandleDataInput
+  create?: TweetCreateWithoutHandleInput
 }
-export type TweetUpsertWithWhereUniqueNestedInputInputObject =
-  | Extract<keyof TweetUpsertWithWhereUniqueNestedInput, string>
+export type TweetUpsertWithWhereUniqueWithoutHandleInputInputObject =
+  | Extract<keyof TweetUpsertWithWhereUniqueWithoutHandleInput, string>
   | { name: 'where', alias?: string  } 
   | { name: 'update', alias?: string  } 
   | { name: 'create', alias?: string  } 
@@ -4260,6 +4429,20 @@ export interface TweetScalarWhereInput {
   id_not_starts_with?: string | null
   id_ends_with?: string | null
   id_not_ends_with?: string | null
+  twitterId?: string | null
+  twitterId_not?: string | null
+  twitterId_in?: string[]
+  twitterId_not_in?: string[]
+  twitterId_lt?: string | null
+  twitterId_lte?: string | null
+  twitterId_gt?: string | null
+  twitterId_gte?: string | null
+  twitterId_contains?: string | null
+  twitterId_not_contains?: string | null
+  twitterId_starts_with?: string | null
+  twitterId_not_starts_with?: string | null
+  twitterId_ends_with?: string | null
+  twitterId_not_ends_with?: string | null
   text?: string | null
   text_not?: string | null
   text_in?: string[]
@@ -4294,6 +4477,20 @@ export type TweetScalarWhereInputInputObject =
   | { name: 'id_not_starts_with', alias?: string  } 
   | { name: 'id_ends_with', alias?: string  } 
   | { name: 'id_not_ends_with', alias?: string  } 
+  | { name: 'twitterId', alias?: string  } 
+  | { name: 'twitterId_not', alias?: string  } 
+  | { name: 'twitterId_in', alias?: string  } 
+  | { name: 'twitterId_not_in', alias?: string  } 
+  | { name: 'twitterId_lt', alias?: string  } 
+  | { name: 'twitterId_lte', alias?: string  } 
+  | { name: 'twitterId_gt', alias?: string  } 
+  | { name: 'twitterId_gte', alias?: string  } 
+  | { name: 'twitterId_contains', alias?: string  } 
+  | { name: 'twitterId_not_contains', alias?: string  } 
+  | { name: 'twitterId_starts_with', alias?: string  } 
+  | { name: 'twitterId_not_starts_with', alias?: string  } 
+  | { name: 'twitterId_ends_with', alias?: string  } 
+  | { name: 'twitterId_not_ends_with', alias?: string  } 
   | { name: 'text', alias?: string  } 
   | { name: 'text_not', alias?: string  } 
   | { name: 'text_in', alias?: string  } 
@@ -4322,31 +4519,111 @@ export type TweetUpdateManyWithWhereNestedInputInputObject =
   | { name: 'data', alias?: string  } 
   
 export interface TweetUpdateManyDataInput {
+  twitterId?: string | null
   text?: string | null
 }
 export type TweetUpdateManyDataInputInputObject =
   | Extract<keyof TweetUpdateManyDataInput, string>
+  | { name: 'twitterId', alias?: string  } 
   | { name: 'text', alias?: string  } 
   
 export interface TwitterUserUpdateManyMutationInput {
   handle?: string | null
+  statuses_count?: number | null
+  name?: string | null
 }
 export type TwitterUserUpdateManyMutationInputInputObject =
   | Extract<keyof TwitterUserUpdateManyMutationInput, string>
   | { name: 'handle', alias?: string  } 
+  | { name: 'statuses_count', alias?: string  } 
+  | { name: 'name', alias?: string  } 
+  
+export interface TweetCreateInput {
+  id?: string | null
+  twitterId?: string
+  handle?: TwitterUserCreateOneWithoutTweetsInput
+  text?: string
+}
+export type TweetCreateInputInputObject =
+  | Extract<keyof TweetCreateInput, string>
+  | { name: 'id', alias?: string  } 
+  | { name: 'twitterId', alias?: string  } 
+  | { name: 'handle', alias?: string  } 
+  | { name: 'text', alias?: string  } 
+  
+export interface TwitterUserCreateOneWithoutTweetsInput {
+  create?: TwitterUserCreateWithoutTweetsInput | null
+  connect?: TwitterUserWhereUniqueInput | null
+}
+export type TwitterUserCreateOneWithoutTweetsInputInputObject =
+  | Extract<keyof TwitterUserCreateOneWithoutTweetsInput, string>
+  | { name: 'create', alias?: string  } 
+  | { name: 'connect', alias?: string  } 
+  
+export interface TwitterUserCreateWithoutTweetsInput {
+  id?: string | null
+  handle?: string
+  statuses_count?: number | null
+  name?: string | null
+}
+export type TwitterUserCreateWithoutTweetsInputInputObject =
+  | Extract<keyof TwitterUserCreateWithoutTweetsInput, string>
+  | { name: 'id', alias?: string  } 
+  | { name: 'handle', alias?: string  } 
+  | { name: 'statuses_count', alias?: string  } 
+  | { name: 'name', alias?: string  } 
   
 export interface TweetUpdateInput {
+  twitterId?: string | null
+  handle?: TwitterUserUpdateOneRequiredWithoutTweetsInput | null
   text?: string | null
 }
 export type TweetUpdateInputInputObject =
   | Extract<keyof TweetUpdateInput, string>
+  | { name: 'twitterId', alias?: string  } 
+  | { name: 'handle', alias?: string  } 
   | { name: 'text', alias?: string  } 
   
+export interface TwitterUserUpdateOneRequiredWithoutTweetsInput {
+  create?: TwitterUserCreateWithoutTweetsInput | null
+  update?: TwitterUserUpdateWithoutTweetsDataInput | null
+  upsert?: TwitterUserUpsertWithoutTweetsInput | null
+  connect?: TwitterUserWhereUniqueInput | null
+}
+export type TwitterUserUpdateOneRequiredWithoutTweetsInputInputObject =
+  | Extract<keyof TwitterUserUpdateOneRequiredWithoutTweetsInput, string>
+  | { name: 'create', alias?: string  } 
+  | { name: 'update', alias?: string  } 
+  | { name: 'upsert', alias?: string  } 
+  | { name: 'connect', alias?: string  } 
+  
+export interface TwitterUserUpdateWithoutTweetsDataInput {
+  handle?: string | null
+  statuses_count?: number | null
+  name?: string | null
+}
+export type TwitterUserUpdateWithoutTweetsDataInputInputObject =
+  | Extract<keyof TwitterUserUpdateWithoutTweetsDataInput, string>
+  | { name: 'handle', alias?: string  } 
+  | { name: 'statuses_count', alias?: string  } 
+  | { name: 'name', alias?: string  } 
+  
+export interface TwitterUserUpsertWithoutTweetsInput {
+  update?: TwitterUserUpdateWithoutTweetsDataInput
+  create?: TwitterUserCreateWithoutTweetsInput
+}
+export type TwitterUserUpsertWithoutTweetsInputInputObject =
+  | Extract<keyof TwitterUserUpsertWithoutTweetsInput, string>
+  | { name: 'update', alias?: string  } 
+  | { name: 'create', alias?: string  } 
+  
 export interface TweetUpdateManyMutationInput {
+  twitterId?: string | null
   text?: string | null
 }
 export type TweetUpdateManyMutationInputInputObject =
   | Extract<keyof TweetUpdateManyMutationInput, string>
+  | { name: 'twitterId', alias?: string  } 
   | { name: 'text', alias?: string  } 
   
 export interface UserSubscriptionWhereInput {
@@ -4485,6 +4762,8 @@ export type PageContentOrderByInputValues =
 export type TweetOrderByInputValues =
   | 'id_ASC'
   | 'id_DESC'
+  | 'twitterId_ASC'
+  | 'twitterId_DESC'
   | 'text_ASC'
   | 'text_DESC'
   
@@ -4493,6 +4772,10 @@ export type TwitterUserOrderByInputValues =
   | 'id_DESC'
   | 'handle_ASC'
   | 'handle_DESC'
+  | 'statuses_count_ASC'
+  | 'statuses_count_DESC'
+  | 'name_ASC'
+  | 'name_DESC'
   
 export type MutationTypeValues =
   | 'CREATED'

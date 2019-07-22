@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, make_response, request
 import nlp
+
 # from redis import Redis
 
 app = Flask(__name__)
@@ -13,7 +14,7 @@ app = Flask(__name__)
 #         "this week.")
 
 
-@app.route('/', methods=['POST'])
+@app.route("/", methods=["POST"])
 def hello():
     text = request.get_json()
     entities = nlp.find_entities(text)
