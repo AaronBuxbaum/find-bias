@@ -468,7 +468,6 @@ export interface NexusGenFieldTypes {
     url: string; // String!
   }
   Mutation: { // field return type
-    createPage: NexusGenRootTypes['Page']; // Page!
     createTwitterUser: NexusGenRootTypes['TwitterUser']; // TwitterUser!
     createUser: NexusGenRootTypes['User']; // User!
     deleteManyTweets: NexusGenRootTypes['BatchPayload']; // BatchPayload!
@@ -544,9 +543,6 @@ export interface NexusGenArgTypes {
     }
   }
   Mutation: {
-    createPage: { // args
-      url?: string | null; // String
-    }
     createTwitterUser: { // args
       handle: string; // String!
     }

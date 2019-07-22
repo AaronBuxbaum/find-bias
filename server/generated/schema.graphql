@@ -67,7 +67,6 @@ input DomainWhereInput {
 scalar Long
 
 type Mutation {
-  createPage(url: String): Page!
   createTwitterUser(handle: String!): TwitterUser!
   createUser(data: UserCreateInput!): User!
   deleteManyTweets(where: TweetWhereInput): BatchPayload!

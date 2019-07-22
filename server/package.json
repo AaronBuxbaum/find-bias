@@ -10,6 +10,7 @@
     "precommit": "yarn lint"
   },
   "dependencies": {
+    "biginteger": "^1.0.3",
     "graphql": "^14.4.2",
     "graphql-yoga": "^1.18.0",
     "lodash": "^4.17.14",

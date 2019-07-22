@@ -4,8 +4,8 @@ import { makePrismaSchema, prismaObjectType } from 'nexus-prisma'
 import { join } from 'path'
 import datamodelInfo from '../generated/nexus-prisma'
 import { prisma } from '../generated/prisma-client'
-import * as scraper from './scraper';
 import * as twitter from './twitter';
+import queue from './queue';
 
 const Query = prismaObjectType({
   name: 'Query',
@@ -19,6 +19,23 @@ const Mutation = prismaObjectType({
   definition(t) {
     t.prismaFields(['createUser', 'updateManyTweets', 'deleteManyTweets', 'deleteManyTwitterUsers', 'upsertTwitterUser'])
 
+    t.field('updateTweets', {
+      type: 'Tweet',
+      args: {
+        handle: stringArg({
+          required: true
+        })
+      },
+      resolve: async (_, { handle }, ctx) => {
+        const tweets = await twitter.buildUserTweets(handle);
+        console.log(tweets);
+
+        // return ctx.prisma.updateManyTweets({
+        //   create: tweets
+        // });
+      }
+    })
+
     t.field('createTwitterUser', {
       type: 'TwitterUser',
       args: {
@@ -29,50 +46,23 @@ const Mutation = prismaObjectType({
       resolve: async (_, { handle }, ctx) => {
         const { data } = await twitter.getUserInfo(handle!);
         const { name, statuses_count } = data;
-        const params = {
+        const user = {
           name,
           statuses_count,
           handle,
         };
-        ctx.prisma.updateTweets(handle);
+
+        if (statuses_count > 0) {
+          queue.push({
+            handle
+          });
+        }
+
         return ctx.prisma.upsertTwitterUser({
           where: { handle },
-          create: params,
-          update: params
+          create: user,
+          update: user
         });
-      }
-    })
-
-    t.field('updateTweets', {
-      type: 'Tweet',
-      args: {
-        handle: stringArg({
-          required: true
-        })
-      },
-      resolve: async (_, { handle }, ctx) => {
-        // TODO: here
-        const tweets = await twitter.buildUserTweets(handle);
-
-        return ctx.prisma.updateManyTweets({
-          create: tweets
-        });
-      }
-    })
-
-    t.field('createPage', {
-      type: 'Page',
-      args: {
-        url: stringArg()
-      },
-      resolve: async (_, { url }, ctx) => {
-        const name = await scraper.getUrlName(url)
-        const content = await scraper.getUrlContent(url)
-        return ctx.prisma.createPage({
-          content,
-          name,
-          url
-        })
       }
     })
   }
