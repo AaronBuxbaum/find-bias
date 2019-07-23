@@ -16,12 +16,8 @@ export type AtLeastOne<T, U = { [K in keyof T]: Pick<T, K> }> = Partial<T> &
 export type Maybe<T> = T | undefined | null;
 
 export interface Exists {
-  domain: (where?: DomainWhereInput) => Promise<boolean>;
-  page: (where?: PageWhereInput) => Promise<boolean>;
-  pageContent: (where?: PageContentWhereInput) => Promise<boolean>;
   tweet: (where?: TweetWhereInput) => Promise<boolean>;
   twitterUser: (where?: TwitterUserWhereInput) => Promise<boolean>;
-  user: (where?: UserWhereInput) => Promise<boolean>;
 }
 
 export interface Node {}
@@ -43,65 +39,6 @@ export interface Prisma {
    * Queries
    */
 
-  domain: (where: DomainWhereUniqueInput) => DomainNullablePromise;
-  domains: (args?: {
-    where?: DomainWhereInput;
-    orderBy?: DomainOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => FragmentableArray<Domain>;
-  domainsConnection: (args?: {
-    where?: DomainWhereInput;
-    orderBy?: DomainOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => DomainConnectionPromise;
-  page: (where: PageWhereUniqueInput) => PageNullablePromise;
-  pages: (args?: {
-    where?: PageWhereInput;
-    orderBy?: PageOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => FragmentableArray<Page>;
-  pagesConnection: (args?: {
-    where?: PageWhereInput;
-    orderBy?: PageOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => PageConnectionPromise;
-  pageContent: (
-    where: PageContentWhereUniqueInput
-  ) => PageContentNullablePromise;
-  pageContents: (args?: {
-    where?: PageContentWhereInput;
-    orderBy?: PageContentOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => FragmentableArray<PageContent>;
-  pageContentsConnection: (args?: {
-    where?: PageContentWhereInput;
-    orderBy?: PageContentOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => PageContentConnectionPromise;
   tweet: (where: TweetWhereUniqueInput) => TweetNullablePromise;
   tweets: (args?: {
     where?: TweetWhereInput;
@@ -142,81 +79,12 @@ export interface Prisma {
     first?: Int;
     last?: Int;
   }) => TwitterUserConnectionPromise;
-  user: (where: UserWhereUniqueInput) => UserNullablePromise;
-  users: (args?: {
-    where?: UserWhereInput;
-    orderBy?: UserOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => FragmentableArray<User>;
-  usersConnection: (args?: {
-    where?: UserWhereInput;
-    orderBy?: UserOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => UserConnectionPromise;
   node: (args: { id: ID_Output }) => Node;
 
   /**
    * Mutations
    */
 
-  createDomain: (data: DomainCreateInput) => DomainPromise;
-  updateDomain: (args: {
-    data: DomainUpdateInput;
-    where: DomainWhereUniqueInput;
-  }) => DomainPromise;
-  updateManyDomains: (args: {
-    data: DomainUpdateManyMutationInput;
-    where?: DomainWhereInput;
-  }) => BatchPayloadPromise;
-  upsertDomain: (args: {
-    where: DomainWhereUniqueInput;
-    create: DomainCreateInput;
-    update: DomainUpdateInput;
-  }) => DomainPromise;
-  deleteDomain: (where: DomainWhereUniqueInput) => DomainPromise;
-  deleteManyDomains: (where?: DomainWhereInput) => BatchPayloadPromise;
-  createPage: (data: PageCreateInput) => PagePromise;
-  updatePage: (args: {
-    data: PageUpdateInput;
-    where: PageWhereUniqueInput;
-  }) => PagePromise;
-  updateManyPages: (args: {
-    data: PageUpdateManyMutationInput;
-    where?: PageWhereInput;
-  }) => BatchPayloadPromise;
-  upsertPage: (args: {
-    where: PageWhereUniqueInput;
-    create: PageCreateInput;
-    update: PageUpdateInput;
-  }) => PagePromise;
-  deletePage: (where: PageWhereUniqueInput) => PagePromise;
-  deleteManyPages: (where?: PageWhereInput) => BatchPayloadPromise;
-  createPageContent: (data: PageContentCreateInput) => PageContentPromise;
-  updatePageContent: (args: {
-    data: PageContentUpdateInput;
-    where: PageContentWhereUniqueInput;
-  }) => PageContentPromise;
-  updateManyPageContents: (args: {
-    data: PageContentUpdateManyMutationInput;
-    where?: PageContentWhereInput;
-  }) => BatchPayloadPromise;
-  upsertPageContent: (args: {
-    where: PageContentWhereUniqueInput;
-    create: PageContentCreateInput;
-    update: PageContentUpdateInput;
-  }) => PageContentPromise;
-  deletePageContent: (where: PageContentWhereUniqueInput) => PageContentPromise;
-  deleteManyPageContents: (
-    where?: PageContentWhereInput
-  ) => BatchPayloadPromise;
   createTweet: (data: TweetCreateInput) => TweetPromise;
   updateTweet: (args: {
     data: TweetUpdateInput;
@@ -251,22 +119,6 @@ export interface Prisma {
   deleteManyTwitterUsers: (
     where?: TwitterUserWhereInput
   ) => BatchPayloadPromise;
-  createUser: (data: UserCreateInput) => UserPromise;
-  updateUser: (args: {
-    data: UserUpdateInput;
-    where: UserWhereUniqueInput;
-  }) => UserPromise;
-  updateManyUsers: (args: {
-    data: UserUpdateManyMutationInput;
-    where?: UserWhereInput;
-  }) => BatchPayloadPromise;
-  upsertUser: (args: {
-    where: UserWhereUniqueInput;
-    create: UserCreateInput;
-    update: UserUpdateInput;
-  }) => UserPromise;
-  deleteUser: (where: UserWhereUniqueInput) => UserPromise;
-  deleteManyUsers: (where?: UserWhereInput) => BatchPayloadPromise;
 
   /**
    * Subscriptions
@@ -276,24 +128,12 @@ export interface Prisma {
 }
 
 export interface Subscription {
-  domain: (
-    where?: DomainSubscriptionWhereInput
-  ) => DomainSubscriptionPayloadSubscription;
-  page: (
-    where?: PageSubscriptionWhereInput
-  ) => PageSubscriptionPayloadSubscription;
-  pageContent: (
-    where?: PageContentSubscriptionWhereInput
-  ) => PageContentSubscriptionPayloadSubscription;
   tweet: (
     where?: TweetSubscriptionWhereInput
   ) => TweetSubscriptionPayloadSubscription;
   twitterUser: (
     where?: TwitterUserSubscriptionWhereInput
   ) => TwitterUserSubscriptionPayloadSubscription;
-  user: (
-    where?: UserSubscriptionWhereInput
-  ) => UserSubscriptionPayloadSubscription;
 }
 
 export interface ClientConstructor<T> {
@@ -303,28 +143,6 @@ export interface ClientConstructor<T> {
 /**
  * Types
  */
-
-export type DomainOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "name_ASC"
-  | "name_DESC"
-  | "url_ASC"
-  | "url_DESC";
-
-export type PageOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "name_ASC"
-  | "name_DESC"
-  | "url_ASC"
-  | "url_DESC";
-
-export type PageContentOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "content_ASC"
-  | "content_DESC";
 
 export type TweetOrderByInput =
   | "id_ASC"
@@ -344,24 +162,7 @@ export type TwitterUserOrderByInput =
   | "name_ASC"
   | "name_DESC";
 
-export type UserOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "email_ASC"
-  | "email_DESC"
-  | "name_ASC"
-  | "name_DESC";
-
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
-
-export interface PageUpdateManyWithWhereNestedInput {
-  where: PageScalarWhereInput;
-  data: PageUpdateManyDataInput;
-}
-
-export type DomainWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
 
 export interface TwitterUserUpdateOneRequiredWithoutTweetsInput {
   create?: Maybe<TwitterUserCreateWithoutTweetsInput>;
@@ -370,90 +171,17 @@ export interface TwitterUserUpdateOneRequiredWithoutTweetsInput {
   connect?: Maybe<TwitterUserWhereUniqueInput>;
 }
 
-export interface PageContentUpdateManyMutationInput {
-  content?: Maybe<String>;
+export type TweetWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+  twitterId?: Maybe<String>;
+}>;
+
+export interface TweetUpdateManyMutationInput {
+  twitterId?: Maybe<String>;
+  text?: Maybe<String>;
 }
 
-export interface PageCreateInput {
-  id?: Maybe<ID_Input>;
-  name?: Maybe<String>;
-  url?: Maybe<String>;
-  content?: Maybe<PageContentCreateOneWithoutPageInput>;
-  domain?: Maybe<DomainCreateOneWithoutPagesInput>;
-}
-
-export interface TwitterUserSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<TwitterUserWhereInput>;
-  AND?: Maybe<
-    TwitterUserSubscriptionWhereInput[] | TwitterUserSubscriptionWhereInput
-  >;
-}
-
-export interface DomainCreateInput {
-  id?: Maybe<ID_Input>;
-  name: String;
-  url: String;
-  pages?: Maybe<PageCreateManyWithoutDomainInput>;
-}
-
-export interface PageContentSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<PageContentWhereInput>;
-  AND?: Maybe<
-    PageContentSubscriptionWhereInput[] | PageContentSubscriptionWhereInput
-  >;
-}
-
-export interface PageCreateManyWithoutDomainInput {
-  create?: Maybe<PageCreateWithoutDomainInput[] | PageCreateWithoutDomainInput>;
-  connect?: Maybe<PageWhereUniqueInput[] | PageWhereUniqueInput>;
-}
-
-export interface DomainSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<DomainWhereInput>;
-  AND?: Maybe<DomainSubscriptionWhereInput[] | DomainSubscriptionWhereInput>;
-}
-
-export interface PageCreateWithoutDomainInput {
-  id?: Maybe<ID_Input>;
-  name?: Maybe<String>;
-  url?: Maybe<String>;
-  content?: Maybe<PageContentCreateOneWithoutPageInput>;
-}
-
-export interface UserUpdateManyMutationInput {
-  email?: Maybe<String>;
-  name?: Maybe<String>;
-}
-
-export interface PageContentCreateOneWithoutPageInput {
-  create?: Maybe<PageContentCreateWithoutPageInput>;
-  connect?: Maybe<PageContentWhereUniqueInput>;
-}
-
-export interface UserCreateInput {
-  id?: Maybe<ID_Input>;
-  email?: Maybe<String>;
-  name: String;
-}
-
-export interface PageContentCreateWithoutPageInput {
-  id?: Maybe<ID_Input>;
-  content: String;
-}
-
-export interface DomainWhereInput {
+export interface TweetWhereInput {
   id?: Maybe<ID_Input>;
   id_not?: Maybe<ID_Input>;
   id_in?: Maybe<ID_Input[] | ID_Input>;
@@ -468,42 +196,71 @@ export interface DomainWhereInput {
   id_not_starts_with?: Maybe<ID_Input>;
   id_ends_with?: Maybe<ID_Input>;
   id_not_ends_with?: Maybe<ID_Input>;
-  name?: Maybe<String>;
-  name_not?: Maybe<String>;
-  name_in?: Maybe<String[] | String>;
-  name_not_in?: Maybe<String[] | String>;
-  name_lt?: Maybe<String>;
-  name_lte?: Maybe<String>;
-  name_gt?: Maybe<String>;
-  name_gte?: Maybe<String>;
-  name_contains?: Maybe<String>;
-  name_not_contains?: Maybe<String>;
-  name_starts_with?: Maybe<String>;
-  name_not_starts_with?: Maybe<String>;
-  name_ends_with?: Maybe<String>;
-  name_not_ends_with?: Maybe<String>;
-  url?: Maybe<String>;
-  url_not?: Maybe<String>;
-  url_in?: Maybe<String[] | String>;
-  url_not_in?: Maybe<String[] | String>;
-  url_lt?: Maybe<String>;
-  url_lte?: Maybe<String>;
-  url_gt?: Maybe<String>;
-  url_gte?: Maybe<String>;
-  url_contains?: Maybe<String>;
-  url_not_contains?: Maybe<String>;
-  url_starts_with?: Maybe<String>;
-  url_not_starts_with?: Maybe<String>;
-  url_ends_with?: Maybe<String>;
-  url_not_ends_with?: Maybe<String>;
-  pages_some?: Maybe<PageWhereInput>;
-  AND?: Maybe<DomainWhereInput[] | DomainWhereInput>;
+  twitterId?: Maybe<String>;
+  twitterId_not?: Maybe<String>;
+  twitterId_in?: Maybe<String[] | String>;
+  twitterId_not_in?: Maybe<String[] | String>;
+  twitterId_lt?: Maybe<String>;
+  twitterId_lte?: Maybe<String>;
+  twitterId_gt?: Maybe<String>;
+  twitterId_gte?: Maybe<String>;
+  twitterId_contains?: Maybe<String>;
+  twitterId_not_contains?: Maybe<String>;
+  twitterId_starts_with?: Maybe<String>;
+  twitterId_not_starts_with?: Maybe<String>;
+  twitterId_ends_with?: Maybe<String>;
+  twitterId_not_ends_with?: Maybe<String>;
+  handle?: Maybe<TwitterUserWhereInput>;
+  text?: Maybe<String>;
+  text_not?: Maybe<String>;
+  text_in?: Maybe<String[] | String>;
+  text_not_in?: Maybe<String[] | String>;
+  text_lt?: Maybe<String>;
+  text_lte?: Maybe<String>;
+  text_gt?: Maybe<String>;
+  text_gte?: Maybe<String>;
+  text_contains?: Maybe<String>;
+  text_not_contains?: Maybe<String>;
+  text_starts_with?: Maybe<String>;
+  text_not_starts_with?: Maybe<String>;
+  text_ends_with?: Maybe<String>;
+  text_not_ends_with?: Maybe<String>;
+  AND?: Maybe<TweetWhereInput[] | TweetWhereInput>;
 }
 
-export interface DomainUpdateInput {
+export interface TweetCreateInput {
+  id?: Maybe<ID_Input>;
+  twitterId: String;
+  handle: TwitterUserCreateOneWithoutTweetsInput;
+  text: String;
+}
+
+export interface TweetCreateManyWithoutHandleInput {
+  create?: Maybe<
+    TweetCreateWithoutHandleInput[] | TweetCreateWithoutHandleInput
+  >;
+  connect?: Maybe<TweetWhereUniqueInput[] | TweetWhereUniqueInput>;
+}
+
+export interface TwitterUserCreateOneWithoutTweetsInput {
+  create?: Maybe<TwitterUserCreateWithoutTweetsInput>;
+  connect?: Maybe<TwitterUserWhereUniqueInput>;
+}
+
+export interface TweetSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<TweetWhereInput>;
+  AND?: Maybe<TweetSubscriptionWhereInput[] | TweetSubscriptionWhereInput>;
+}
+
+export interface TwitterUserCreateWithoutTweetsInput {
+  id?: Maybe<ID_Input>;
+  handle: String;
+  statuses_count?: Maybe<Int>;
   name?: Maybe<String>;
-  url?: Maybe<String>;
-  pages?: Maybe<PageUpdateManyWithoutDomainInput>;
 }
 
 export interface TweetUpdateManyDataInput {
@@ -511,33 +268,37 @@ export interface TweetUpdateManyDataInput {
   text?: Maybe<String>;
 }
 
-export interface PageUpdateManyWithoutDomainInput {
-  create?: Maybe<PageCreateWithoutDomainInput[] | PageCreateWithoutDomainInput>;
-  delete?: Maybe<PageWhereUniqueInput[] | PageWhereUniqueInput>;
-  connect?: Maybe<PageWhereUniqueInput[] | PageWhereUniqueInput>;
-  set?: Maybe<PageWhereUniqueInput[] | PageWhereUniqueInput>;
-  disconnect?: Maybe<PageWhereUniqueInput[] | PageWhereUniqueInput>;
-  update?: Maybe<
-    | PageUpdateWithWhereUniqueWithoutDomainInput[]
-    | PageUpdateWithWhereUniqueWithoutDomainInput
-  >;
-  upsert?: Maybe<
-    | PageUpsertWithWhereUniqueWithoutDomainInput[]
-    | PageUpsertWithWhereUniqueWithoutDomainInput
-  >;
-  deleteMany?: Maybe<PageScalarWhereInput[] | PageScalarWhereInput>;
-  updateMany?: Maybe<
-    PageUpdateManyWithWhereNestedInput[] | PageUpdateManyWithWhereNestedInput
-  >;
+export interface TweetUpdateInput {
+  twitterId?: Maybe<String>;
+  handle?: Maybe<TwitterUserUpdateOneRequiredWithoutTweetsInput>;
+  text?: Maybe<String>;
 }
 
-export type TweetWhereUniqueInput = AtLeastOne<{
+export type TwitterUserWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
+  handle?: Maybe<String>;
 }>;
 
-export interface PageUpdateWithWhereUniqueWithoutDomainInput {
-  where: PageWhereUniqueInput;
-  data: PageUpdateWithoutDomainDataInput;
+export interface TweetUpdateManyWithoutHandleInput {
+  create?: Maybe<
+    TweetCreateWithoutHandleInput[] | TweetCreateWithoutHandleInput
+  >;
+  delete?: Maybe<TweetWhereUniqueInput[] | TweetWhereUniqueInput>;
+  connect?: Maybe<TweetWhereUniqueInput[] | TweetWhereUniqueInput>;
+  set?: Maybe<TweetWhereUniqueInput[] | TweetWhereUniqueInput>;
+  disconnect?: Maybe<TweetWhereUniqueInput[] | TweetWhereUniqueInput>;
+  update?: Maybe<
+    | TweetUpdateWithWhereUniqueWithoutHandleInput[]
+    | TweetUpdateWithWhereUniqueWithoutHandleInput
+  >;
+  upsert?: Maybe<
+    | TweetUpsertWithWhereUniqueWithoutHandleInput[]
+    | TweetUpsertWithWhereUniqueWithoutHandleInput
+  >;
+  deleteMany?: Maybe<TweetScalarWhereInput[] | TweetScalarWhereInput>;
+  updateMany?: Maybe<
+    TweetUpdateManyWithWhereNestedInput[] | TweetUpdateManyWithWhereNestedInput
+  >;
 }
 
 export interface TweetUpsertWithWhereUniqueWithoutHandleInput {
@@ -546,10 +307,52 @@ export interface TweetUpsertWithWhereUniqueWithoutHandleInput {
   create: TweetCreateWithoutHandleInput;
 }
 
-export interface PageUpdateWithoutDomainDataInput {
+export interface TwitterUserUpdateWithoutTweetsDataInput {
+  handle?: Maybe<String>;
+  statuses_count?: Maybe<Int>;
   name?: Maybe<String>;
-  url?: Maybe<String>;
-  content?: Maybe<PageContentUpdateOneWithoutPageInput>;
+}
+
+export interface TweetUpdateWithWhereUniqueWithoutHandleInput {
+  where: TweetWhereUniqueInput;
+  data: TweetUpdateWithoutHandleDataInput;
+}
+
+export interface TwitterUserUpsertWithoutTweetsInput {
+  update: TwitterUserUpdateWithoutTweetsDataInput;
+  create: TwitterUserCreateWithoutTweetsInput;
+}
+
+export interface TwitterUserSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<TwitterUserWhereInput>;
+  AND?: Maybe<
+    TwitterUserSubscriptionWhereInput[] | TwitterUserSubscriptionWhereInput
+  >;
+}
+
+export interface TwitterUserCreateInput {
+  id?: Maybe<ID_Input>;
+  handle: String;
+  tweets?: Maybe<TweetCreateManyWithoutHandleInput>;
+  statuses_count?: Maybe<Int>;
+  name?: Maybe<String>;
+}
+
+export interface TweetCreateWithoutHandleInput {
+  id?: Maybe<ID_Input>;
+  twitterId: String;
+  text: String;
+}
+
+export interface TwitterUserUpdateInput {
+  handle?: Maybe<String>;
+  tweets?: Maybe<TweetUpdateManyWithoutHandleInput>;
+  statuses_count?: Maybe<Int>;
+  name?: Maybe<String>;
 }
 
 export interface TwitterUserWhereInput {
@@ -607,282 +410,15 @@ export interface TwitterUserWhereInput {
   AND?: Maybe<TwitterUserWhereInput[] | TwitterUserWhereInput>;
 }
 
-export interface PageContentUpdateOneWithoutPageInput {
-  create?: Maybe<PageContentCreateWithoutPageInput>;
-  update?: Maybe<PageContentUpdateWithoutPageDataInput>;
-  upsert?: Maybe<PageContentUpsertWithoutPageInput>;
-  delete?: Maybe<Boolean>;
-  disconnect?: Maybe<Boolean>;
-  connect?: Maybe<PageContentWhereUniqueInput>;
-}
-
-export interface TweetUpdateWithoutHandleDataInput {
-  twitterId?: Maybe<String>;
-  text?: Maybe<String>;
-}
-
-export interface PageContentUpdateWithoutPageDataInput {
-  content?: Maybe<String>;
-}
-
-export interface TweetUpdateManyWithoutHandleInput {
-  create?: Maybe<
-    TweetCreateWithoutHandleInput[] | TweetCreateWithoutHandleInput
-  >;
-  delete?: Maybe<TweetWhereUniqueInput[] | TweetWhereUniqueInput>;
-  connect?: Maybe<TweetWhereUniqueInput[] | TweetWhereUniqueInput>;
-  set?: Maybe<TweetWhereUniqueInput[] | TweetWhereUniqueInput>;
-  disconnect?: Maybe<TweetWhereUniqueInput[] | TweetWhereUniqueInput>;
-  update?: Maybe<
-    | TweetUpdateWithWhereUniqueWithoutHandleInput[]
-    | TweetUpdateWithWhereUniqueWithoutHandleInput
-  >;
-  upsert?: Maybe<
-    | TweetUpsertWithWhereUniqueWithoutHandleInput[]
-    | TweetUpsertWithWhereUniqueWithoutHandleInput
-  >;
-  deleteMany?: Maybe<TweetScalarWhereInput[] | TweetScalarWhereInput>;
-  updateMany?: Maybe<
-    TweetUpdateManyWithWhereNestedInput[] | TweetUpdateManyWithWhereNestedInput
-  >;
-}
-
-export interface PageContentUpsertWithoutPageInput {
-  update: PageContentUpdateWithoutPageDataInput;
-  create: PageContentCreateWithoutPageInput;
-}
-
-export interface PageWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  name?: Maybe<String>;
-  name_not?: Maybe<String>;
-  name_in?: Maybe<String[] | String>;
-  name_not_in?: Maybe<String[] | String>;
-  name_lt?: Maybe<String>;
-  name_lte?: Maybe<String>;
-  name_gt?: Maybe<String>;
-  name_gte?: Maybe<String>;
-  name_contains?: Maybe<String>;
-  name_not_contains?: Maybe<String>;
-  name_starts_with?: Maybe<String>;
-  name_not_starts_with?: Maybe<String>;
-  name_ends_with?: Maybe<String>;
-  name_not_ends_with?: Maybe<String>;
-  url?: Maybe<String>;
-  url_not?: Maybe<String>;
-  url_in?: Maybe<String[] | String>;
-  url_not_in?: Maybe<String[] | String>;
-  url_lt?: Maybe<String>;
-  url_lte?: Maybe<String>;
-  url_gt?: Maybe<String>;
-  url_gte?: Maybe<String>;
-  url_contains?: Maybe<String>;
-  url_not_contains?: Maybe<String>;
-  url_starts_with?: Maybe<String>;
-  url_not_starts_with?: Maybe<String>;
-  url_ends_with?: Maybe<String>;
-  url_not_ends_with?: Maybe<String>;
-  content?: Maybe<PageContentWhereInput>;
-  domain?: Maybe<DomainWhereInput>;
-  AND?: Maybe<PageWhereInput[] | PageWhereInput>;
-}
-
-export interface PageUpsertWithWhereUniqueWithoutDomainInput {
-  where: PageWhereUniqueInput;
-  update: PageUpdateWithoutDomainDataInput;
-  create: PageCreateWithoutDomainInput;
-}
-
-export interface TweetCreateWithoutHandleInput {
-  id?: Maybe<ID_Input>;
-  twitterId: String;
-  text: String;
-}
-
-export interface PageScalarWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  name?: Maybe<String>;
-  name_not?: Maybe<String>;
-  name_in?: Maybe<String[] | String>;
-  name_not_in?: Maybe<String[] | String>;
-  name_lt?: Maybe<String>;
-  name_lte?: Maybe<String>;
-  name_gt?: Maybe<String>;
-  name_gte?: Maybe<String>;
-  name_contains?: Maybe<String>;
-  name_not_contains?: Maybe<String>;
-  name_starts_with?: Maybe<String>;
-  name_not_starts_with?: Maybe<String>;
-  name_ends_with?: Maybe<String>;
-  name_not_ends_with?: Maybe<String>;
-  url?: Maybe<String>;
-  url_not?: Maybe<String>;
-  url_in?: Maybe<String[] | String>;
-  url_not_in?: Maybe<String[] | String>;
-  url_lt?: Maybe<String>;
-  url_lte?: Maybe<String>;
-  url_gt?: Maybe<String>;
-  url_gte?: Maybe<String>;
-  url_contains?: Maybe<String>;
-  url_not_contains?: Maybe<String>;
-  url_starts_with?: Maybe<String>;
-  url_not_starts_with?: Maybe<String>;
-  url_ends_with?: Maybe<String>;
-  url_not_ends_with?: Maybe<String>;
-  AND?: Maybe<PageScalarWhereInput[] | PageScalarWhereInput>;
-  OR?: Maybe<PageScalarWhereInput[] | PageScalarWhereInput>;
-  NOT?: Maybe<PageScalarWhereInput[] | PageScalarWhereInput>;
-}
-
-export type UserWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-  email?: Maybe<String>;
-}>;
-
-export interface TweetUpdateInput {
-  twitterId?: Maybe<String>;
-  handle?: Maybe<TwitterUserUpdateOneRequiredWithoutTweetsInput>;
-  text?: Maybe<String>;
-}
-
-export interface UserWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  email?: Maybe<String>;
-  email_not?: Maybe<String>;
-  email_in?: Maybe<String[] | String>;
-  email_not_in?: Maybe<String[] | String>;
-  email_lt?: Maybe<String>;
-  email_lte?: Maybe<String>;
-  email_gt?: Maybe<String>;
-  email_gte?: Maybe<String>;
-  email_contains?: Maybe<String>;
-  email_not_contains?: Maybe<String>;
-  email_starts_with?: Maybe<String>;
-  email_not_starts_with?: Maybe<String>;
-  email_ends_with?: Maybe<String>;
-  email_not_ends_with?: Maybe<String>;
-  name?: Maybe<String>;
-  name_not?: Maybe<String>;
-  name_in?: Maybe<String[] | String>;
-  name_not_in?: Maybe<String[] | String>;
-  name_lt?: Maybe<String>;
-  name_lte?: Maybe<String>;
-  name_gt?: Maybe<String>;
-  name_gte?: Maybe<String>;
-  name_contains?: Maybe<String>;
-  name_not_contains?: Maybe<String>;
-  name_starts_with?: Maybe<String>;
-  name_not_starts_with?: Maybe<String>;
-  name_ends_with?: Maybe<String>;
-  name_not_ends_with?: Maybe<String>;
-  AND?: Maybe<UserWhereInput[] | UserWhereInput>;
-}
-
-export interface PageUpdateManyDataInput {
-  name?: Maybe<String>;
-  url?: Maybe<String>;
-}
-
-export interface TwitterUserUpsertWithoutTweetsInput {
-  update: TwitterUserUpdateWithoutTweetsDataInput;
-  create: TwitterUserCreateWithoutTweetsInput;
-}
-
-export interface DomainUpdateManyMutationInput {
-  name?: Maybe<String>;
-  url?: Maybe<String>;
-}
-
-export interface UserSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<UserWhereInput>;
-  AND?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
-}
-
-export interface TwitterUserCreateWithoutTweetsInput {
-  id?: Maybe<ID_Input>;
-  handle: String;
-  statuses_count?: Maybe<Int>;
-  name?: Maybe<String>;
-}
-
-export interface PageSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<PageWhereInput>;
-  AND?: Maybe<PageSubscriptionWhereInput[] | PageSubscriptionWhereInput>;
-}
-
-export interface TwitterUserCreateOneWithoutTweetsInput {
-  create?: Maybe<TwitterUserCreateWithoutTweetsInput>;
-  connect?: Maybe<TwitterUserWhereUniqueInput>;
-}
-
-export interface UserUpdateInput {
-  email?: Maybe<String>;
-  name?: Maybe<String>;
-}
-
-export interface TweetCreateInput {
-  id?: Maybe<ID_Input>;
-  twitterId: String;
-  handle: TwitterUserCreateOneWithoutTweetsInput;
-  text: String;
-}
-
 export interface TwitterUserUpdateManyMutationInput {
   handle?: Maybe<String>;
   statuses_count?: Maybe<Int>;
   name?: Maybe<String>;
 }
 
-export interface DomainCreateOneWithoutPagesInput {
-  create?: Maybe<DomainCreateWithoutPagesInput>;
-  connect?: Maybe<DomainWhereUniqueInput>;
+export interface TweetUpdateWithoutHandleDataInput {
+  twitterId?: Maybe<String>;
+  text?: Maybe<String>;
 }
 
 export interface TweetScalarWhereInput {
@@ -933,226 +469,6 @@ export interface TweetScalarWhereInput {
   NOT?: Maybe<TweetScalarWhereInput[] | TweetScalarWhereInput>;
 }
 
-export interface DomainCreateWithoutPagesInput {
-  id?: Maybe<ID_Input>;
-  name: String;
-  url: String;
-}
-
-export interface PageContentWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  page?: Maybe<PageWhereInput>;
-  content?: Maybe<String>;
-  content_not?: Maybe<String>;
-  content_in?: Maybe<String[] | String>;
-  content_not_in?: Maybe<String[] | String>;
-  content_lt?: Maybe<String>;
-  content_lte?: Maybe<String>;
-  content_gt?: Maybe<String>;
-  content_gte?: Maybe<String>;
-  content_contains?: Maybe<String>;
-  content_not_contains?: Maybe<String>;
-  content_starts_with?: Maybe<String>;
-  content_not_starts_with?: Maybe<String>;
-  content_ends_with?: Maybe<String>;
-  content_not_ends_with?: Maybe<String>;
-  AND?: Maybe<PageContentWhereInput[] | PageContentWhereInput>;
-}
-
-export interface PageUpdateInput {
-  name?: Maybe<String>;
-  url?: Maybe<String>;
-  content?: Maybe<PageContentUpdateOneWithoutPageInput>;
-  domain?: Maybe<DomainUpdateOneWithoutPagesInput>;
-}
-
-export type TwitterUserWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-  handle?: Maybe<String>;
-}>;
-
-export interface DomainUpdateOneWithoutPagesInput {
-  create?: Maybe<DomainCreateWithoutPagesInput>;
-  update?: Maybe<DomainUpdateWithoutPagesDataInput>;
-  upsert?: Maybe<DomainUpsertWithoutPagesInput>;
-  delete?: Maybe<Boolean>;
-  disconnect?: Maybe<Boolean>;
-  connect?: Maybe<DomainWhereUniqueInput>;
-}
-
-export interface TweetCreateManyWithoutHandleInput {
-  create?: Maybe<
-    TweetCreateWithoutHandleInput[] | TweetCreateWithoutHandleInput
-  >;
-  connect?: Maybe<TweetWhereUniqueInput[] | TweetWhereUniqueInput>;
-}
-
-export interface DomainUpdateWithoutPagesDataInput {
-  name?: Maybe<String>;
-  url?: Maybe<String>;
-}
-
-export interface TweetUpdateManyMutationInput {
-  twitterId?: Maybe<String>;
-  text?: Maybe<String>;
-}
-
-export interface DomainUpsertWithoutPagesInput {
-  update: DomainUpdateWithoutPagesDataInput;
-  create: DomainCreateWithoutPagesInput;
-}
-
-export interface TweetSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<TweetWhereInput>;
-  AND?: Maybe<TweetSubscriptionWhereInput[] | TweetSubscriptionWhereInput>;
-}
-
-export interface PageUpdateManyMutationInput {
-  name?: Maybe<String>;
-  url?: Maybe<String>;
-}
-
-export type PageContentWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface PageContentCreateInput {
-  id?: Maybe<ID_Input>;
-  page?: Maybe<PageCreateOneWithoutContentInput>;
-  content: String;
-}
-
-export interface TweetWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  twitterId?: Maybe<String>;
-  twitterId_not?: Maybe<String>;
-  twitterId_in?: Maybe<String[] | String>;
-  twitterId_not_in?: Maybe<String[] | String>;
-  twitterId_lt?: Maybe<String>;
-  twitterId_lte?: Maybe<String>;
-  twitterId_gt?: Maybe<String>;
-  twitterId_gte?: Maybe<String>;
-  twitterId_contains?: Maybe<String>;
-  twitterId_not_contains?: Maybe<String>;
-  twitterId_starts_with?: Maybe<String>;
-  twitterId_not_starts_with?: Maybe<String>;
-  twitterId_ends_with?: Maybe<String>;
-  twitterId_not_ends_with?: Maybe<String>;
-  handle?: Maybe<TwitterUserWhereInput>;
-  text?: Maybe<String>;
-  text_not?: Maybe<String>;
-  text_in?: Maybe<String[] | String>;
-  text_not_in?: Maybe<String[] | String>;
-  text_lt?: Maybe<String>;
-  text_lte?: Maybe<String>;
-  text_gt?: Maybe<String>;
-  text_gte?: Maybe<String>;
-  text_contains?: Maybe<String>;
-  text_not_contains?: Maybe<String>;
-  text_starts_with?: Maybe<String>;
-  text_not_starts_with?: Maybe<String>;
-  text_ends_with?: Maybe<String>;
-  text_not_ends_with?: Maybe<String>;
-  AND?: Maybe<TweetWhereInput[] | TweetWhereInput>;
-}
-
-export interface PageCreateOneWithoutContentInput {
-  create?: Maybe<PageCreateWithoutContentInput>;
-  connect?: Maybe<PageWhereUniqueInput>;
-}
-
-export interface TwitterUserUpdateInput {
-  handle?: Maybe<String>;
-  tweets?: Maybe<TweetUpdateManyWithoutHandleInput>;
-  statuses_count?: Maybe<Int>;
-  name?: Maybe<String>;
-}
-
-export interface PageCreateWithoutContentInput {
-  id?: Maybe<ID_Input>;
-  name?: Maybe<String>;
-  url?: Maybe<String>;
-  domain?: Maybe<DomainCreateOneWithoutPagesInput>;
-}
-
-export interface TwitterUserUpdateWithoutTweetsDataInput {
-  handle?: Maybe<String>;
-  statuses_count?: Maybe<Int>;
-  name?: Maybe<String>;
-}
-
-export interface PageUpsertWithoutContentInput {
-  update: PageUpdateWithoutContentDataInput;
-  create: PageCreateWithoutContentInput;
-}
-
-export interface PageUpdateWithoutContentDataInput {
-  name?: Maybe<String>;
-  url?: Maybe<String>;
-  domain?: Maybe<DomainUpdateOneWithoutPagesInput>;
-}
-
-export interface PageUpdateOneWithoutContentInput {
-  create?: Maybe<PageCreateWithoutContentInput>;
-  update?: Maybe<PageUpdateWithoutContentDataInput>;
-  upsert?: Maybe<PageUpsertWithoutContentInput>;
-  delete?: Maybe<Boolean>;
-  disconnect?: Maybe<Boolean>;
-  connect?: Maybe<PageWhereUniqueInput>;
-}
-
-export interface PageContentUpdateInput {
-  page?: Maybe<PageUpdateOneWithoutContentInput>;
-  content?: Maybe<String>;
-}
-
-export type PageWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface TwitterUserCreateInput {
-  id?: Maybe<ID_Input>;
-  handle: String;
-  tweets?: Maybe<TweetCreateManyWithoutHandleInput>;
-  statuses_count?: Maybe<Int>;
-  name?: Maybe<String>;
-}
-
-export interface TweetUpdateWithWhereUniqueWithoutHandleInput {
-  where: TweetWhereUniqueInput;
-  data: TweetUpdateWithoutHandleDataInput;
-}
-
 export interface TweetUpdateManyWithWhereNestedInput {
   where: TweetScalarWhereInput;
   data: TweetUpdateManyDataInput;
@@ -1160,143 +476,6 @@ export interface TweetUpdateManyWithWhereNestedInput {
 
 export interface NodeNode {
   id: ID_Output;
-}
-
-export interface UserPreviousValues {
-  id: ID_Output;
-  email?: String;
-  name: String;
-}
-
-export interface UserPreviousValuesPromise
-  extends Promise<UserPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  email: () => Promise<String>;
-  name: () => Promise<String>;
-}
-
-export interface UserPreviousValuesSubscription
-  extends Promise<AsyncIterator<UserPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  email: () => Promise<AsyncIterator<String>>;
-  name: () => Promise<AsyncIterator<String>>;
-}
-
-export interface PageEdge {
-  node: Page;
-  cursor: String;
-}
-
-export interface PageEdgePromise extends Promise<PageEdge>, Fragmentable {
-  node: <T = PagePromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface PageEdgeSubscription
-  extends Promise<AsyncIterator<PageEdge>>,
-    Fragmentable {
-  node: <T = PageSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface Page {
-  id: ID_Output;
-  name?: String;
-  url?: String;
-}
-
-export interface PagePromise extends Promise<Page>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
-  url: () => Promise<String>;
-  content: <T = PageContentPromise>() => T;
-  domain: <T = DomainPromise>() => T;
-}
-
-export interface PageSubscription
-  extends Promise<AsyncIterator<Page>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  name: () => Promise<AsyncIterator<String>>;
-  url: () => Promise<AsyncIterator<String>>;
-  content: <T = PageContentSubscription>() => T;
-  domain: <T = DomainSubscription>() => T;
-}
-
-export interface PageNullablePromise
-  extends Promise<Page | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
-  url: () => Promise<String>;
-  content: <T = PageContentPromise>() => T;
-  domain: <T = DomainPromise>() => T;
-}
-
-export interface PageConnection {
-  pageInfo: PageInfo;
-  edges: PageEdge[];
-}
-
-export interface PageConnectionPromise
-  extends Promise<PageConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<PageEdge>>() => T;
-  aggregate: <T = AggregatePagePromise>() => T;
-}
-
-export interface PageConnectionSubscription
-  extends Promise<AsyncIterator<PageConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<PageEdgeSubscription>>>() => T;
-  aggregate: <T = AggregatePageSubscription>() => T;
-}
-
-export interface PageContent {
-  id: ID_Output;
-  content: String;
-}
-
-export interface PageContentPromise extends Promise<PageContent>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  page: <T = PagePromise>() => T;
-  content: () => Promise<String>;
-}
-
-export interface PageContentSubscription
-  extends Promise<AsyncIterator<PageContent>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  page: <T = PageSubscription>() => T;
-  content: () => Promise<AsyncIterator<String>>;
-}
-
-export interface PageContentNullablePromise
-  extends Promise<PageContent | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  page: <T = PagePromise>() => T;
-  content: () => Promise<String>;
-}
-
-export interface AggregateDomain {
-  count: Int;
-}
-
-export interface AggregateDomainPromise
-  extends Promise<AggregateDomain>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateDomainSubscription
-  extends Promise<AsyncIterator<AggregateDomain>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
 }
 
 export interface BatchPayload {
@@ -1313,430 +492,6 @@ export interface BatchPayloadSubscription
   extends Promise<AsyncIterator<BatchPayload>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Long>>;
-}
-
-export interface Domain {
-  id: ID_Output;
-  name: String;
-  url: String;
-}
-
-export interface DomainPromise extends Promise<Domain>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
-  url: () => Promise<String>;
-  pages: <T = FragmentableArray<Page>>(args?: {
-    where?: PageWhereInput;
-    orderBy?: PageOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
-}
-
-export interface DomainSubscription
-  extends Promise<AsyncIterator<Domain>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  name: () => Promise<AsyncIterator<String>>;
-  url: () => Promise<AsyncIterator<String>>;
-  pages: <T = Promise<AsyncIterator<PageSubscription>>>(args?: {
-    where?: PageWhereInput;
-    orderBy?: PageOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
-}
-
-export interface DomainNullablePromise
-  extends Promise<Domain | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
-  url: () => Promise<String>;
-  pages: <T = FragmentableArray<Page>>(args?: {
-    where?: PageWhereInput;
-    orderBy?: PageOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
-}
-
-export interface AggregateUser {
-  count: Int;
-}
-
-export interface AggregateUserPromise
-  extends Promise<AggregateUser>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateUserSubscription
-  extends Promise<AsyncIterator<AggregateUser>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface DomainSubscriptionPayload {
-  mutation: MutationType;
-  node: Domain;
-  updatedFields: String[];
-  previousValues: DomainPreviousValues;
-}
-
-export interface DomainSubscriptionPayloadPromise
-  extends Promise<DomainSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = DomainPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = DomainPreviousValuesPromise>() => T;
-}
-
-export interface DomainSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<DomainSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = DomainSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = DomainPreviousValuesSubscription>() => T;
-}
-
-export interface UserConnection {
-  pageInfo: PageInfo;
-  edges: UserEdge[];
-}
-
-export interface UserConnectionPromise
-  extends Promise<UserConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<UserEdge>>() => T;
-  aggregate: <T = AggregateUserPromise>() => T;
-}
-
-export interface UserConnectionSubscription
-  extends Promise<AsyncIterator<UserConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<UserEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateUserSubscription>() => T;
-}
-
-export interface DomainPreviousValues {
-  id: ID_Output;
-  name: String;
-  url: String;
-}
-
-export interface DomainPreviousValuesPromise
-  extends Promise<DomainPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
-  url: () => Promise<String>;
-}
-
-export interface DomainPreviousValuesSubscription
-  extends Promise<AsyncIterator<DomainPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  name: () => Promise<AsyncIterator<String>>;
-  url: () => Promise<AsyncIterator<String>>;
-}
-
-export interface User {
-  id: ID_Output;
-  email?: String;
-  name: String;
-}
-
-export interface UserPromise extends Promise<User>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  email: () => Promise<String>;
-  name: () => Promise<String>;
-}
-
-export interface UserSubscription
-  extends Promise<AsyncIterator<User>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  email: () => Promise<AsyncIterator<String>>;
-  name: () => Promise<AsyncIterator<String>>;
-}
-
-export interface UserNullablePromise
-  extends Promise<User | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  email: () => Promise<String>;
-  name: () => Promise<String>;
-}
-
-export interface DomainEdge {
-  node: Domain;
-  cursor: String;
-}
-
-export interface DomainEdgePromise extends Promise<DomainEdge>, Fragmentable {
-  node: <T = DomainPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface DomainEdgeSubscription
-  extends Promise<AsyncIterator<DomainEdge>>,
-    Fragmentable {
-  node: <T = DomainSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface TwitterUserEdge {
-  node: TwitterUser;
-  cursor: String;
-}
-
-export interface TwitterUserEdgePromise
-  extends Promise<TwitterUserEdge>,
-    Fragmentable {
-  node: <T = TwitterUserPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface TwitterUserEdgeSubscription
-  extends Promise<AsyncIterator<TwitterUserEdge>>,
-    Fragmentable {
-  node: <T = TwitterUserSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface PageSubscriptionPayload {
-  mutation: MutationType;
-  node: Page;
-  updatedFields: String[];
-  previousValues: PagePreviousValues;
-}
-
-export interface PageSubscriptionPayloadPromise
-  extends Promise<PageSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = PagePromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = PagePreviousValuesPromise>() => T;
-}
-
-export interface PageSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<PageSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = PageSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = PagePreviousValuesSubscription>() => T;
-}
-
-export interface AggregateTweet {
-  count: Int;
-}
-
-export interface AggregateTweetPromise
-  extends Promise<AggregateTweet>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateTweetSubscription
-  extends Promise<AsyncIterator<AggregateTweet>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface PagePreviousValues {
-  id: ID_Output;
-  name?: String;
-  url?: String;
-}
-
-export interface PagePreviousValuesPromise
-  extends Promise<PagePreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
-  url: () => Promise<String>;
-}
-
-export interface PagePreviousValuesSubscription
-  extends Promise<AsyncIterator<PagePreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  name: () => Promise<AsyncIterator<String>>;
-  url: () => Promise<AsyncIterator<String>>;
-}
-
-export interface TweetConnection {
-  pageInfo: PageInfo;
-  edges: TweetEdge[];
-}
-
-export interface TweetConnectionPromise
-  extends Promise<TweetConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<TweetEdge>>() => T;
-  aggregate: <T = AggregateTweetPromise>() => T;
-}
-
-export interface TweetConnectionSubscription
-  extends Promise<AsyncIterator<TweetConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<TweetEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateTweetSubscription>() => T;
-}
-
-export interface Tweet {
-  id: ID_Output;
-  twitterId: String;
-  text: String;
-}
-
-export interface TweetPromise extends Promise<Tweet>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  twitterId: () => Promise<String>;
-  handle: <T = TwitterUserPromise>() => T;
-  text: () => Promise<String>;
-}
-
-export interface TweetSubscription
-  extends Promise<AsyncIterator<Tweet>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  twitterId: () => Promise<AsyncIterator<String>>;
-  handle: <T = TwitterUserSubscription>() => T;
-  text: () => Promise<AsyncIterator<String>>;
-}
-
-export interface TweetNullablePromise
-  extends Promise<Tweet | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  twitterId: () => Promise<String>;
-  handle: <T = TwitterUserPromise>() => T;
-  text: () => Promise<String>;
-}
-
-export interface PageContentEdge {
-  node: PageContent;
-  cursor: String;
-}
-
-export interface PageContentEdgePromise
-  extends Promise<PageContentEdge>,
-    Fragmentable {
-  node: <T = PageContentPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface PageContentEdgeSubscription
-  extends Promise<AsyncIterator<PageContentEdge>>,
-    Fragmentable {
-  node: <T = PageContentSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface PageContentSubscriptionPayload {
-  mutation: MutationType;
-  node: PageContent;
-  updatedFields: String[];
-  previousValues: PageContentPreviousValues;
-}
-
-export interface PageContentSubscriptionPayloadPromise
-  extends Promise<PageContentSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = PageContentPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = PageContentPreviousValuesPromise>() => T;
-}
-
-export interface PageContentSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<PageContentSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = PageContentSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = PageContentPreviousValuesSubscription>() => T;
-}
-
-export interface AggregatePage {
-  count: Int;
-}
-
-export interface AggregatePagePromise
-  extends Promise<AggregatePage>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregatePageSubscription
-  extends Promise<AsyncIterator<AggregatePage>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface PageContentConnection {
-  pageInfo: PageInfo;
-  edges: PageContentEdge[];
-}
-
-export interface PageContentConnectionPromise
-  extends Promise<PageContentConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<PageContentEdge>>() => T;
-  aggregate: <T = AggregatePageContentPromise>() => T;
-}
-
-export interface PageContentConnectionSubscription
-  extends Promise<AsyncIterator<PageContentConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<PageContentEdgeSubscription>>>() => T;
-  aggregate: <T = AggregatePageContentSubscription>() => T;
-}
-
-export interface TwitterUserSubscriptionPayload {
-  mutation: MutationType;
-  node: TwitterUser;
-  updatedFields: String[];
-  previousValues: TwitterUserPreviousValues;
-}
-
-export interface TwitterUserSubscriptionPayloadPromise
-  extends Promise<TwitterUserSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = TwitterUserPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = TwitterUserPreviousValuesPromise>() => T;
-}
-
-export interface TwitterUserSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<TwitterUserSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = TwitterUserSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = TwitterUserPreviousValuesSubscription>() => T;
 }
 
 export interface TwitterUserPreviousValues {
@@ -1764,116 +519,20 @@ export interface TwitterUserPreviousValuesSubscription
   name: () => Promise<AsyncIterator<String>>;
 }
 
-export interface PageContentPreviousValues {
-  id: ID_Output;
-  content: String;
-}
-
-export interface PageContentPreviousValuesPromise
-  extends Promise<PageContentPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  content: () => Promise<String>;
-}
-
-export interface PageContentPreviousValuesSubscription
-  extends Promise<AsyncIterator<PageContentPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  content: () => Promise<AsyncIterator<String>>;
-}
-
-export interface UserEdge {
-  node: User;
-  cursor: String;
-}
-
-export interface UserEdgePromise extends Promise<UserEdge>, Fragmentable {
-  node: <T = UserPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface UserEdgeSubscription
-  extends Promise<AsyncIterator<UserEdge>>,
-    Fragmentable {
-  node: <T = UserSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface AggregateTwitterUser {
+export interface AggregateTweet {
   count: Int;
 }
 
-export interface AggregateTwitterUserPromise
-  extends Promise<AggregateTwitterUser>,
+export interface AggregateTweetPromise
+  extends Promise<AggregateTweet>,
     Fragmentable {
   count: () => Promise<Int>;
 }
 
-export interface AggregateTwitterUserSubscription
-  extends Promise<AsyncIterator<AggregateTwitterUser>>,
+export interface AggregateTweetSubscription
+  extends Promise<AsyncIterator<AggregateTweet>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface TweetEdge {
-  node: Tweet;
-  cursor: String;
-}
-
-export interface TweetEdgePromise extends Promise<TweetEdge>, Fragmentable {
-  node: <T = TweetPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface TweetEdgeSubscription
-  extends Promise<AsyncIterator<TweetEdge>>,
-    Fragmentable {
-  node: <T = TweetSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface DomainConnection {
-  pageInfo: PageInfo;
-  edges: DomainEdge[];
-}
-
-export interface DomainConnectionPromise
-  extends Promise<DomainConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<DomainEdge>>() => T;
-  aggregate: <T = AggregateDomainPromise>() => T;
-}
-
-export interface DomainConnectionSubscription
-  extends Promise<AsyncIterator<DomainConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<DomainEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateDomainSubscription>() => T;
-}
-
-export interface TweetPreviousValues {
-  id: ID_Output;
-  twitterId: String;
-  text: String;
-}
-
-export interface TweetPreviousValuesPromise
-  extends Promise<TweetPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  twitterId: () => Promise<String>;
-  text: () => Promise<String>;
-}
-
-export interface TweetPreviousValuesSubscription
-  extends Promise<AsyncIterator<TweetPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  twitterId: () => Promise<AsyncIterator<String>>;
-  text: () => Promise<AsyncIterator<String>>;
 }
 
 export interface TweetSubscriptionPayload {
@@ -1901,6 +560,45 @@ export interface TweetSubscriptionPayloadSubscription
   previousValues: <T = TweetPreviousValuesSubscription>() => T;
 }
 
+export interface TweetEdge {
+  node: Tweet;
+  cursor: String;
+}
+
+export interface TweetEdgePromise extends Promise<TweetEdge>, Fragmentable {
+  node: <T = TweetPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface TweetEdgeSubscription
+  extends Promise<AsyncIterator<TweetEdge>>,
+    Fragmentable {
+  node: <T = TweetSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface TweetPreviousValues {
+  id: ID_Output;
+  twitterId: String;
+  text: String;
+}
+
+export interface TweetPreviousValuesPromise
+  extends Promise<TweetPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  twitterId: () => Promise<String>;
+  text: () => Promise<String>;
+}
+
+export interface TweetPreviousValuesSubscription
+  extends Promise<AsyncIterator<TweetPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  twitterId: () => Promise<AsyncIterator<String>>;
+  text: () => Promise<AsyncIterator<String>>;
+}
+
 export interface PageInfo {
   hasNextPage: Boolean;
   hasPreviousPage: Boolean;
@@ -1922,6 +620,27 @@ export interface PageInfoSubscription
   hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
   startCursor: () => Promise<AsyncIterator<String>>;
   endCursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface TweetConnection {
+  pageInfo: PageInfo;
+  edges: TweetEdge[];
+}
+
+export interface TweetConnectionPromise
+  extends Promise<TweetConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<TweetEdge>>() => T;
+  aggregate: <T = AggregateTweetPromise>() => T;
+}
+
+export interface TweetConnectionSubscription
+  extends Promise<AsyncIterator<TweetConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<TweetEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateTweetSubscription>() => T;
 }
 
 export interface TwitterUser {
@@ -1983,6 +702,62 @@ export interface TwitterUserNullablePromise
   name: () => Promise<String>;
 }
 
+export interface TwitterUserSubscriptionPayload {
+  mutation: MutationType;
+  node: TwitterUser;
+  updatedFields: String[];
+  previousValues: TwitterUserPreviousValues;
+}
+
+export interface TwitterUserSubscriptionPayloadPromise
+  extends Promise<TwitterUserSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = TwitterUserPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = TwitterUserPreviousValuesPromise>() => T;
+}
+
+export interface TwitterUserSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<TwitterUserSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = TwitterUserSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = TwitterUserPreviousValuesSubscription>() => T;
+}
+
+export interface Tweet {
+  id: ID_Output;
+  twitterId: String;
+  text: String;
+}
+
+export interface TweetPromise extends Promise<Tweet>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  twitterId: () => Promise<String>;
+  handle: <T = TwitterUserPromise>() => T;
+  text: () => Promise<String>;
+}
+
+export interface TweetSubscription
+  extends Promise<AsyncIterator<Tweet>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  twitterId: () => Promise<AsyncIterator<String>>;
+  handle: <T = TwitterUserSubscription>() => T;
+  text: () => Promise<AsyncIterator<String>>;
+}
+
+export interface TweetNullablePromise
+  extends Promise<Tweet | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  twitterId: () => Promise<String>;
+  handle: <T = TwitterUserPromise>() => T;
+  text: () => Promise<String>;
+}
+
 export interface TwitterUserConnection {
   pageInfo: PageInfo;
   edges: TwitterUserEdge[];
@@ -2004,62 +779,40 @@ export interface TwitterUserConnectionSubscription
   aggregate: <T = AggregateTwitterUserSubscription>() => T;
 }
 
-export interface UserSubscriptionPayload {
-  mutation: MutationType;
-  node: User;
-  updatedFields: String[];
-  previousValues: UserPreviousValues;
+export interface TwitterUserEdge {
+  node: TwitterUser;
+  cursor: String;
 }
 
-export interface UserSubscriptionPayloadPromise
-  extends Promise<UserSubscriptionPayload>,
+export interface TwitterUserEdgePromise
+  extends Promise<TwitterUserEdge>,
     Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = UserPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = UserPreviousValuesPromise>() => T;
+  node: <T = TwitterUserPromise>() => T;
+  cursor: () => Promise<String>;
 }
 
-export interface UserSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<UserSubscriptionPayload>>,
+export interface TwitterUserEdgeSubscription
+  extends Promise<AsyncIterator<TwitterUserEdge>>,
     Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = UserSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = UserPreviousValuesSubscription>() => T;
+  node: <T = TwitterUserSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface AggregatePageContent {
+export interface AggregateTwitterUser {
   count: Int;
 }
 
-export interface AggregatePageContentPromise
-  extends Promise<AggregatePageContent>,
+export interface AggregateTwitterUserPromise
+  extends Promise<AggregateTwitterUser>,
     Fragmentable {
   count: () => Promise<Int>;
 }
 
-export interface AggregatePageContentSubscription
-  extends Promise<AsyncIterator<AggregatePageContent>>,
+export interface AggregateTwitterUserSubscription
+  extends Promise<AsyncIterator<AggregateTwitterUser>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
 }
-
-/*
-The `Boolean` scalar type represents `true` or `false`.
-*/
-export type Boolean = boolean;
-
-/*
-The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
-*/
-export type ID_Input = string | number;
-export type ID_Output = string;
-
-/*
-The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
-*/
-export type String = string;
 
 /*
 The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.
@@ -2068,27 +821,27 @@ export type Int = number;
 
 export type Long = string;
 
+/*
+The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
+*/
+export type ID_Input = string | number;
+export type ID_Output = string;
+
+/*
+The `Boolean` scalar type represents `true` or `false`.
+*/
+export type Boolean = boolean;
+
+/*
+The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
+*/
+export type String = string;
+
 /**
  * Model Metadata
  */
 
 export const models: Model[] = [
-  {
-    name: "User",
-    embedded: false
-  },
-  {
-    name: "Domain",
-    embedded: false
-  },
-  {
-    name: "Page",
-    embedded: false
-  },
-  {
-    name: "PageContent",
-    embedded: false
-  },
   {
     name: "TwitterUser",
     embedded: false

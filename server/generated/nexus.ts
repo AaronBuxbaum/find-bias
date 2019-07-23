@@ -13,226 +13,6 @@ declare global {
 }
 
 export interface NexusGenInputs {
-  DomainWhereInput: { // input type
-    AND?: NexusGenInputs['DomainWhereInput'][] | null; // [DomainWhereInput!]
-    id?: string | null; // ID
-    id_contains?: string | null; // ID
-    id_ends_with?: string | null; // ID
-    id_gt?: string | null; // ID
-    id_gte?: string | null; // ID
-    id_in?: string[] | null; // [ID!]
-    id_lt?: string | null; // ID
-    id_lte?: string | null; // ID
-    id_not?: string | null; // ID
-    id_not_contains?: string | null; // ID
-    id_not_ends_with?: string | null; // ID
-    id_not_in?: string[] | null; // [ID!]
-    id_not_starts_with?: string | null; // ID
-    id_starts_with?: string | null; // ID
-    name?: string | null; // String
-    name_contains?: string | null; // String
-    name_ends_with?: string | null; // String
-    name_gt?: string | null; // String
-    name_gte?: string | null; // String
-    name_in?: string[] | null; // [String!]
-    name_lt?: string | null; // String
-    name_lte?: string | null; // String
-    name_not?: string | null; // String
-    name_not_contains?: string | null; // String
-    name_not_ends_with?: string | null; // String
-    name_not_in?: string[] | null; // [String!]
-    name_not_starts_with?: string | null; // String
-    name_starts_with?: string | null; // String
-    pages_some?: NexusGenInputs['PageWhereInput'] | null; // PageWhereInput
-    url?: string | null; // String
-    url_contains?: string | null; // String
-    url_ends_with?: string | null; // String
-    url_gt?: string | null; // String
-    url_gte?: string | null; // String
-    url_in?: string[] | null; // [String!]
-    url_lt?: string | null; // String
-    url_lte?: string | null; // String
-    url_not?: string | null; // String
-    url_not_contains?: string | null; // String
-    url_not_ends_with?: string | null; // String
-    url_not_in?: string[] | null; // [String!]
-    url_not_starts_with?: string | null; // String
-    url_starts_with?: string | null; // String
-  }
-  PageContentWhereInput: { // input type
-    AND?: NexusGenInputs['PageContentWhereInput'][] | null; // [PageContentWhereInput!]
-    content?: string | null; // String
-    content_contains?: string | null; // String
-    content_ends_with?: string | null; // String
-    content_gt?: string | null; // String
-    content_gte?: string | null; // String
-    content_in?: string[] | null; // [String!]
-    content_lt?: string | null; // String
-    content_lte?: string | null; // String
-    content_not?: string | null; // String
-    content_not_contains?: string | null; // String
-    content_not_ends_with?: string | null; // String
-    content_not_in?: string[] | null; // [String!]
-    content_not_starts_with?: string | null; // String
-    content_starts_with?: string | null; // String
-    id?: string | null; // ID
-    id_contains?: string | null; // ID
-    id_ends_with?: string | null; // ID
-    id_gt?: string | null; // ID
-    id_gte?: string | null; // ID
-    id_in?: string[] | null; // [ID!]
-    id_lt?: string | null; // ID
-    id_lte?: string | null; // ID
-    id_not?: string | null; // ID
-    id_not_contains?: string | null; // ID
-    id_not_ends_with?: string | null; // ID
-    id_not_in?: string[] | null; // [ID!]
-    id_not_starts_with?: string | null; // ID
-    id_starts_with?: string | null; // ID
-    page?: NexusGenInputs['PageWhereInput'] | null; // PageWhereInput
-  }
-  PageWhereInput: { // input type
-    AND?: NexusGenInputs['PageWhereInput'][] | null; // [PageWhereInput!]
-    content?: NexusGenInputs['PageContentWhereInput'] | null; // PageContentWhereInput
-    domain?: NexusGenInputs['DomainWhereInput'] | null; // DomainWhereInput
-    id?: string | null; // ID
-    id_contains?: string | null; // ID
-    id_ends_with?: string | null; // ID
-    id_gt?: string | null; // ID
-    id_gte?: string | null; // ID
-    id_in?: string[] | null; // [ID!]
-    id_lt?: string | null; // ID
-    id_lte?: string | null; // ID
-    id_not?: string | null; // ID
-    id_not_contains?: string | null; // ID
-    id_not_ends_with?: string | null; // ID
-    id_not_in?: string[] | null; // [ID!]
-    id_not_starts_with?: string | null; // ID
-    id_starts_with?: string | null; // ID
-    name?: string | null; // String
-    name_contains?: string | null; // String
-    name_ends_with?: string | null; // String
-    name_gt?: string | null; // String
-    name_gte?: string | null; // String
-    name_in?: string[] | null; // [String!]
-    name_lt?: string | null; // String
-    name_lte?: string | null; // String
-    name_not?: string | null; // String
-    name_not_contains?: string | null; // String
-    name_not_ends_with?: string | null; // String
-    name_not_in?: string[] | null; // [String!]
-    name_not_starts_with?: string | null; // String
-    name_starts_with?: string | null; // String
-    url?: string | null; // String
-    url_contains?: string | null; // String
-    url_ends_with?: string | null; // String
-    url_gt?: string | null; // String
-    url_gte?: string | null; // String
-    url_in?: string[] | null; // [String!]
-    url_lt?: string | null; // String
-    url_lte?: string | null; // String
-    url_not?: string | null; // String
-    url_not_contains?: string | null; // String
-    url_not_ends_with?: string | null; // String
-    url_not_in?: string[] | null; // [String!]
-    url_not_starts_with?: string | null; // String
-    url_starts_with?: string | null; // String
-  }
-  PageWhereUniqueInput: { // input type
-    id?: string | null; // ID
-  }
-  TweetCreateManyWithoutHandleInput: { // input type
-    connect?: NexusGenInputs['TweetWhereUniqueInput'][] | null; // [TweetWhereUniqueInput!]
-    create?: NexusGenInputs['TweetCreateWithoutHandleInput'][] | null; // [TweetCreateWithoutHandleInput!]
-  }
-  TweetCreateWithoutHandleInput: { // input type
-    id?: string | null; // ID
-    text: string; // String!
-    twitterId: string; // String!
-  }
-  TweetScalarWhereInput: { // input type
-    AND?: NexusGenInputs['TweetScalarWhereInput'][] | null; // [TweetScalarWhereInput!]
-    id?: string | null; // ID
-    id_contains?: string | null; // ID
-    id_ends_with?: string | null; // ID
-    id_gt?: string | null; // ID
-    id_gte?: string | null; // ID
-    id_in?: string[] | null; // [ID!]
-    id_lt?: string | null; // ID
-    id_lte?: string | null; // ID
-    id_not?: string | null; // ID
-    id_not_contains?: string | null; // ID
-    id_not_ends_with?: string | null; // ID
-    id_not_in?: string[] | null; // [ID!]
-    id_not_starts_with?: string | null; // ID
-    id_starts_with?: string | null; // ID
-    NOT?: NexusGenInputs['TweetScalarWhereInput'][] | null; // [TweetScalarWhereInput!]
-    OR?: NexusGenInputs['TweetScalarWhereInput'][] | null; // [TweetScalarWhereInput!]
-    text?: string | null; // String
-    text_contains?: string | null; // String
-    text_ends_with?: string | null; // String
-    text_gt?: string | null; // String
-    text_gte?: string | null; // String
-    text_in?: string[] | null; // [String!]
-    text_lt?: string | null; // String
-    text_lte?: string | null; // String
-    text_not?: string | null; // String
-    text_not_contains?: string | null; // String
-    text_not_ends_with?: string | null; // String
-    text_not_in?: string[] | null; // [String!]
-    text_not_starts_with?: string | null; // String
-    text_starts_with?: string | null; // String
-    twitterId?: string | null; // String
-    twitterId_contains?: string | null; // String
-    twitterId_ends_with?: string | null; // String
-    twitterId_gt?: string | null; // String
-    twitterId_gte?: string | null; // String
-    twitterId_in?: string[] | null; // [String!]
-    twitterId_lt?: string | null; // String
-    twitterId_lte?: string | null; // String
-    twitterId_not?: string | null; // String
-    twitterId_not_contains?: string | null; // String
-    twitterId_not_ends_with?: string | null; // String
-    twitterId_not_in?: string[] | null; // [String!]
-    twitterId_not_starts_with?: string | null; // String
-    twitterId_starts_with?: string | null; // String
-  }
-  TweetUpdateManyDataInput: { // input type
-    text?: string | null; // String
-    twitterId?: string | null; // String
-  }
-  TweetUpdateManyMutationInput: { // input type
-    text?: string | null; // String
-    twitterId?: string | null; // String
-  }
-  TweetUpdateManyWithWhereNestedInput: { // input type
-    data: NexusGenInputs['TweetUpdateManyDataInput']; // TweetUpdateManyDataInput!
-    where: NexusGenInputs['TweetScalarWhereInput']; // TweetScalarWhereInput!
-  }
-  TweetUpdateManyWithoutHandleInput: { // input type
-    connect?: NexusGenInputs['TweetWhereUniqueInput'][] | null; // [TweetWhereUniqueInput!]
-    create?: NexusGenInputs['TweetCreateWithoutHandleInput'][] | null; // [TweetCreateWithoutHandleInput!]
-    delete?: NexusGenInputs['TweetWhereUniqueInput'][] | null; // [TweetWhereUniqueInput!]
-    deleteMany?: NexusGenInputs['TweetScalarWhereInput'][] | null; // [TweetScalarWhereInput!]
-    disconnect?: NexusGenInputs['TweetWhereUniqueInput'][] | null; // [TweetWhereUniqueInput!]
-    set?: NexusGenInputs['TweetWhereUniqueInput'][] | null; // [TweetWhereUniqueInput!]
-    update?: NexusGenInputs['TweetUpdateWithWhereUniqueWithoutHandleInput'][] | null; // [TweetUpdateWithWhereUniqueWithoutHandleInput!]
-    updateMany?: NexusGenInputs['TweetUpdateManyWithWhereNestedInput'][] | null; // [TweetUpdateManyWithWhereNestedInput!]
-    upsert?: NexusGenInputs['TweetUpsertWithWhereUniqueWithoutHandleInput'][] | null; // [TweetUpsertWithWhereUniqueWithoutHandleInput!]
-  }
-  TweetUpdateWithWhereUniqueWithoutHandleInput: { // input type
-    data: NexusGenInputs['TweetUpdateWithoutHandleDataInput']; // TweetUpdateWithoutHandleDataInput!
-    where: NexusGenInputs['TweetWhereUniqueInput']; // TweetWhereUniqueInput!
-  }
-  TweetUpdateWithoutHandleDataInput: { // input type
-    text?: string | null; // String
-    twitterId?: string | null; // String
-  }
-  TweetUpsertWithWhereUniqueWithoutHandleInput: { // input type
-    create: NexusGenInputs['TweetCreateWithoutHandleInput']; // TweetCreateWithoutHandleInput!
-    update: NexusGenInputs['TweetUpdateWithoutHandleDataInput']; // TweetUpdateWithoutHandleDataInput!
-    where: NexusGenInputs['TweetWhereUniqueInput']; // TweetWhereUniqueInput!
-  }
   TweetWhereInput: { // input type
     AND?: NexusGenInputs['TweetWhereInput'][] | null; // [TweetWhereInput!]
     handle?: NexusGenInputs['TwitterUserWhereInput'] | null; // TwitterUserWhereInput
@@ -278,22 +58,6 @@ export interface NexusGenInputs {
     twitterId_not_in?: string[] | null; // [String!]
     twitterId_not_starts_with?: string | null; // String
     twitterId_starts_with?: string | null; // String
-  }
-  TweetWhereUniqueInput: { // input type
-    id?: string | null; // ID
-  }
-  TwitterUserCreateInput: { // input type
-    handle: string; // String!
-    id?: string | null; // ID
-    name?: string | null; // String
-    statuses_count?: number | null; // Int
-    tweets?: NexusGenInputs['TweetCreateManyWithoutHandleInput'] | null; // TweetCreateManyWithoutHandleInput
-  }
-  TwitterUserUpdateInput: { // input type
-    handle?: string | null; // String
-    name?: string | null; // String
-    statuses_count?: number | null; // Int
-    tweets?: NexusGenInputs['TweetUpdateManyWithoutHandleInput'] | null; // TweetUpdateManyWithoutHandleInput
   }
   TwitterUserWhereInput: { // input type
     AND?: NexusGenInputs['TwitterUserWhereInput'][] | null; // [TwitterUserWhereInput!]
@@ -353,47 +117,18 @@ export interface NexusGenInputs {
     handle?: string | null; // String
     id?: string | null; // ID
   }
-  UserCreateInput: { // input type
-    email?: string | null; // String
-    id?: string | null; // ID
-    name: string; // String!
-  }
 }
 
 export interface NexusGenEnums {
-  PageOrderByInput: "id_ASC" | "id_DESC" | "name_ASC" | "name_DESC" | "url_ASC" | "url_DESC"
   TweetOrderByInput: "id_ASC" | "id_DESC" | "text_ASC" | "text_DESC" | "twitterId_ASC" | "twitterId_DESC"
   TwitterUserOrderByInput: "handle_ASC" | "handle_DESC" | "id_ASC" | "id_DESC" | "name_ASC" | "name_DESC" | "statuses_count_ASC" | "statuses_count_DESC"
 }
 
 export interface NexusGenRootTypes {
-  AggregateTwitterUser: { // root type
-    count: number; // Int!
-  }
   BatchPayload: { // root type
     count: any; // Long!
   }
-  Domain: { // root type
-    id: string; // ID!
-    name: string; // String!
-    url: string; // String!
-  }
   Mutation: {};
-  Page: { // root type
-    id: string; // ID!
-    name?: string | null; // String
-    url?: string | null; // String
-  }
-  PageContent: { // root type
-    content: string; // String!
-    id: string; // ID!
-  }
-  PageInfo: { // root type
-    endCursor?: string | null; // String
-    hasNextPage: boolean; // Boolean!
-    hasPreviousPage: boolean; // Boolean!
-    startCursor?: string | null; // String
-  }
   Query: {};
   Tweet: { // root type
     id: string; // ID!
@@ -406,19 +141,6 @@ export interface NexusGenRootTypes {
     name?: string | null; // String
     statuses_count?: number | null; // Int
   }
-  TwitterUserConnection: { // root type
-    edges: NexusGenRootTypes['TwitterUserEdge'][]; // [TwitterUserEdge!]!
-    pageInfo: NexusGenRootTypes['PageInfo']; // PageInfo!
-  }
-  TwitterUserEdge: { // root type
-    cursor: string; // String!
-    node: NexusGenRootTypes['TwitterUser']; // TwitterUser!
-  }
-  User: { // root type
-    email?: string | null; // String
-    id: string; // ID!
-    name: string; // String!
-  }
   String: string;
   Int: number;
   Float: number;
@@ -428,78 +150,27 @@ export interface NexusGenRootTypes {
 }
 
 export interface NexusGenAllTypes extends NexusGenRootTypes {
-  DomainWhereInput: NexusGenInputs['DomainWhereInput'];
-  PageContentWhereInput: NexusGenInputs['PageContentWhereInput'];
-  PageWhereInput: NexusGenInputs['PageWhereInput'];
-  PageWhereUniqueInput: NexusGenInputs['PageWhereUniqueInput'];
-  TweetCreateManyWithoutHandleInput: NexusGenInputs['TweetCreateManyWithoutHandleInput'];
-  TweetCreateWithoutHandleInput: NexusGenInputs['TweetCreateWithoutHandleInput'];
-  TweetScalarWhereInput: NexusGenInputs['TweetScalarWhereInput'];
-  TweetUpdateManyDataInput: NexusGenInputs['TweetUpdateManyDataInput'];
-  TweetUpdateManyMutationInput: NexusGenInputs['TweetUpdateManyMutationInput'];
-  TweetUpdateManyWithWhereNestedInput: NexusGenInputs['TweetUpdateManyWithWhereNestedInput'];
-  TweetUpdateManyWithoutHandleInput: NexusGenInputs['TweetUpdateManyWithoutHandleInput'];
-  TweetUpdateWithWhereUniqueWithoutHandleInput: NexusGenInputs['TweetUpdateWithWhereUniqueWithoutHandleInput'];
-  TweetUpdateWithoutHandleDataInput: NexusGenInputs['TweetUpdateWithoutHandleDataInput'];
-  TweetUpsertWithWhereUniqueWithoutHandleInput: NexusGenInputs['TweetUpsertWithWhereUniqueWithoutHandleInput'];
   TweetWhereInput: NexusGenInputs['TweetWhereInput'];
-  TweetWhereUniqueInput: NexusGenInputs['TweetWhereUniqueInput'];
-  TwitterUserCreateInput: NexusGenInputs['TwitterUserCreateInput'];
-  TwitterUserUpdateInput: NexusGenInputs['TwitterUserUpdateInput'];
   TwitterUserWhereInput: NexusGenInputs['TwitterUserWhereInput'];
   TwitterUserWhereUniqueInput: NexusGenInputs['TwitterUserWhereUniqueInput'];
-  UserCreateInput: NexusGenInputs['UserCreateInput'];
-  PageOrderByInput: NexusGenEnums['PageOrderByInput'];
   TweetOrderByInput: NexusGenEnums['TweetOrderByInput'];
   TwitterUserOrderByInput: NexusGenEnums['TwitterUserOrderByInput'];
 }
 
 export interface NexusGenFieldTypes {
-  AggregateTwitterUser: { // field return type
-    count: number; // Int!
-  }
   BatchPayload: { // field return type
     count: any; // Long!
   }
-  Domain: { // field return type
-    id: string; // ID!
-    name: string; // String!
-    pages: NexusGenRootTypes['Page'][] | null; // [Page!]
-    url: string; // String!
-  }
   Mutation: { // field return type
     createTwitterUser: NexusGenRootTypes['TwitterUser']; // TwitterUser!
-    createUser: NexusGenRootTypes['User']; // User!
     deleteManyTweets: NexusGenRootTypes['BatchPayload']; // BatchPayload!
     deleteManyTwitterUsers: NexusGenRootTypes['BatchPayload']; // BatchPayload!
-    updateManyTweets: NexusGenRootTypes['BatchPayload']; // BatchPayload!
-    updateTweets: NexusGenRootTypes['Tweet']; // Tweet!
-    upsertTwitterUser: NexusGenRootTypes['TwitterUser']; // TwitterUser!
-  }
-  Page: { // field return type
-    content: NexusGenRootTypes['PageContent'] | null; // PageContent
-    domain: NexusGenRootTypes['Domain'] | null; // Domain
-    id: string; // ID!
-    name: string | null; // String
-    url: string | null; // String
-  }
-  PageContent: { // field return type
-    content: string; // String!
-    id: string; // ID!
-    page: NexusGenRootTypes['Page'] | null; // Page
-  }
-  PageInfo: { // field return type
-    endCursor: string | null; // String
-    hasNextPage: boolean; // Boolean!
-    hasPreviousPage: boolean; // Boolean!
-    startCursor: string | null; // String
+    updateTweets: number; // Int!
   }
   Query: { // field return type
-    page: NexusGenRootTypes['Page'] | null; // Page
-    pages: NexusGenRootTypes['Page'][]; // [Page!]!
+    tweets: NexusGenRootTypes['Tweet'][]; // [Tweet!]!
     twitterUser: NexusGenRootTypes['TwitterUser'] | null; // TwitterUser
     twitterUsers: NexusGenRootTypes['TwitterUser'][]; // [TwitterUser!]!
-    twitterUsersConnection: NexusGenRootTypes['TwitterUserConnection']; // TwitterUserConnection!
   }
   Tweet: { // field return type
     handle: NexusGenRootTypes['TwitterUser']; // TwitterUser!
@@ -514,40 +185,12 @@ export interface NexusGenFieldTypes {
     statuses_count: number | null; // Int
     tweets: NexusGenRootTypes['Tweet'][] | null; // [Tweet!]
   }
-  TwitterUserConnection: { // field return type
-    aggregate: NexusGenRootTypes['AggregateTwitterUser']; // AggregateTwitterUser!
-    edges: NexusGenRootTypes['TwitterUserEdge'][]; // [TwitterUserEdge!]!
-    pageInfo: NexusGenRootTypes['PageInfo']; // PageInfo!
-  }
-  TwitterUserEdge: { // field return type
-    cursor: string; // String!
-    node: NexusGenRootTypes['TwitterUser']; // TwitterUser!
-  }
-  User: { // field return type
-    email: string | null; // String
-    id: string; // ID!
-    name: string; // String!
-  }
 }
 
 export interface NexusGenArgTypes {
-  Domain: {
-    pages: { // args
-      after?: string | null; // String
-      before?: string | null; // String
-      first?: number | null; // Int
-      last?: number | null; // Int
-      orderBy?: NexusGenEnums['PageOrderByInput'] | null; // PageOrderByInput
-      skip?: number | null; // Int
-      where?: NexusGenInputs['PageWhereInput'] | null; // PageWhereInput
-    }
-  }
   Mutation: {
     createTwitterUser: { // args
       handle: string; // String!
-    }
-    createUser: { // args
-      data: NexusGenInputs['UserCreateInput']; // UserCreateInput!
     }
     deleteManyTweets: { // args
       where?: NexusGenInputs['TweetWhereInput'] | null; // TweetWhereInput
@@ -555,45 +198,24 @@ export interface NexusGenArgTypes {
     deleteManyTwitterUsers: { // args
       where?: NexusGenInputs['TwitterUserWhereInput'] | null; // TwitterUserWhereInput
     }
-    updateManyTweets: { // args
-      data: NexusGenInputs['TweetUpdateManyMutationInput']; // TweetUpdateManyMutationInput!
-      where?: NexusGenInputs['TweetWhereInput'] | null; // TweetWhereInput
-    }
     updateTweets: { // args
       handle: string; // String!
     }
-    upsertTwitterUser: { // args
-      create: NexusGenInputs['TwitterUserCreateInput']; // TwitterUserCreateInput!
-      update: NexusGenInputs['TwitterUserUpdateInput']; // TwitterUserUpdateInput!
-      where: NexusGenInputs['TwitterUserWhereUniqueInput']; // TwitterUserWhereUniqueInput!
-    }
   }
   Query: {
-    page: { // args
-      where: NexusGenInputs['PageWhereUniqueInput']; // PageWhereUniqueInput!
-    }
-    pages: { // args
+    tweets: { // args
       after?: string | null; // String
       before?: string | null; // String
       first?: number | null; // Int
       last?: number | null; // Int
-      orderBy?: NexusGenEnums['PageOrderByInput'] | null; // PageOrderByInput
+      orderBy?: NexusGenEnums['TweetOrderByInput'] | null; // TweetOrderByInput
       skip?: number | null; // Int
-      where?: NexusGenInputs['PageWhereInput'] | null; // PageWhereInput
+      where?: NexusGenInputs['TweetWhereInput'] | null; // TweetWhereInput
     }
     twitterUser: { // args
       where: NexusGenInputs['TwitterUserWhereUniqueInput']; // TwitterUserWhereUniqueInput!
     }
     twitterUsers: { // args
-      after?: string | null; // String
-      before?: string | null; // String
-      first?: number | null; // Int
-      last?: number | null; // Int
-      orderBy?: NexusGenEnums['TwitterUserOrderByInput'] | null; // TwitterUserOrderByInput
-      skip?: number | null; // Int
-      where?: NexusGenInputs['TwitterUserWhereInput'] | null; // TwitterUserWhereInput
-    }
-    twitterUsersConnection: { // args
       after?: string | null; // String
       before?: string | null; // String
       first?: number | null; // Int
@@ -621,11 +243,11 @@ export interface NexusGenAbstractResolveReturnTypes {
 
 export interface NexusGenInheritedFields {}
 
-export type NexusGenObjectNames = "AggregateTwitterUser" | "BatchPayload" | "Domain" | "Mutation" | "Page" | "PageContent" | "PageInfo" | "Query" | "Tweet" | "TwitterUser" | "TwitterUserConnection" | "TwitterUserEdge" | "User";
+export type NexusGenObjectNames = "BatchPayload" | "Mutation" | "Query" | "Tweet" | "TwitterUser";
 
-export type NexusGenInputNames = "DomainWhereInput" | "PageContentWhereInput" | "PageWhereInput" | "PageWhereUniqueInput" | "TweetCreateManyWithoutHandleInput" | "TweetCreateWithoutHandleInput" | "TweetScalarWhereInput" | "TweetUpdateManyDataInput" | "TweetUpdateManyMutationInput" | "TweetUpdateManyWithWhereNestedInput" | "TweetUpdateManyWithoutHandleInput" | "TweetUpdateWithWhereUniqueWithoutHandleInput" | "TweetUpdateWithoutHandleDataInput" | "TweetUpsertWithWhereUniqueWithoutHandleInput" | "TweetWhereInput" | "TweetWhereUniqueInput" | "TwitterUserCreateInput" | "TwitterUserUpdateInput" | "TwitterUserWhereInput" | "TwitterUserWhereUniqueInput" | "UserCreateInput";
+export type NexusGenInputNames = "TweetWhereInput" | "TwitterUserWhereInput" | "TwitterUserWhereUniqueInput";
 
-export type NexusGenEnumNames = "PageOrderByInput" | "TweetOrderByInput" | "TwitterUserOrderByInput";
+export type NexusGenEnumNames = "TweetOrderByInput" | "TwitterUserOrderByInput";
 
 export type NexusGenInterfaceNames = never;
 

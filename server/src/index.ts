@@ -5,34 +5,29 @@ import { join } from 'path'
 import datamodelInfo from '../generated/nexus-prisma'
 import { prisma } from '../generated/prisma-client'
 import * as twitter from './twitter';
-import queue from './queue';
 
 const Query = prismaObjectType({
   name: 'Query',
   definition(t) {
-    t.prismaFields(['page', 'pages', 'twitterUser', 'twitterUsers', 'twitterUsersConnection'])
+    t.prismaFields(['twitterUser', 'twitterUsers', 'tweets'])
   }
 })
 
 const Mutation = prismaObjectType({
   name: 'Mutation',
   definition(t) {
-    t.prismaFields(['createUser', 'updateManyTweets', 'deleteManyTweets', 'deleteManyTwitterUsers', 'upsertTwitterUser'])
+    t.prismaFields(['deleteManyTweets', 'deleteManyTwitterUsers'])
 
     t.field('updateTweets', {
-      type: 'Tweet',
+      type: 'Int',
       args: {
         handle: stringArg({
           required: true
         })
       },
-      resolve: async (_, { handle }, ctx) => {
-        const tweets = await twitter.buildUserTweets(handle);
-        console.log(tweets);
-
-        // return ctx.prisma.updateManyTweets({
-        //   create: tweets
-        // });
+      resolve: async (_, { handle }) => {
+        const result = await twitter.buildUserTweets(handle);
+        return result.length;
       }
     })
 
@@ -51,12 +46,6 @@ const Mutation = prismaObjectType({
           statuses_count,
           handle,
         };
-
-        if (statuses_count > 0) {
-          queue.push({
-            handle
-          });
-        }
 
         return ctx.prisma.upsertTwitterUser({
           where: { handle },
@@ -88,4 +77,6 @@ const server = new GraphQLServer({
 })
 
 // tslint:disable-next-line:no-console no-floating-promises
-server.start(() => console.log('Server is running on http://localhost:4000 🚀'))
+server.start({
+  tracing: true,
+}, () => console.log('Server is running on http://localhost:4000 🚀'))

@@ -1,7 +1,9 @@
 const Twit = require('twit')
 import { last } from 'lodash';
 import { BigInteger } from 'biginteger';
-import { prisma } from '../generated/prisma-client';
+import { prisma, TweetCreateInput } from '../generated/prisma-client';
+import queue from './queue';
+import { Status as Tweet } from 'twitter-d';
 
 const Twitter = new Twit({
     consumer_key: process.env.TWITTER_CONSUMER_KEY,
@@ -57,58 +59,64 @@ const getSinceId = async (handle: string) => {
 const getTweets = async (screen_name: string, options: object) => {
     const params = {
         screen_name,
-        trim_user: true,
+        trim_user: false,
         tweet_mode: 'extended',
         include_rts: true,
-        count: 2,
+        count: 5,
         ...options,
     };
 
     const response = await Twitter.get('statuses/user_timeline', params);
-    return response.data;
+    return response.data as [Tweet];
 }
 
-const MAX_DEPTH = 3;
-const queue = [];
-const getUserTweets = async (handle: string, options = {}, depth = 0) => {
-    let tweets = await getTweets(handle, options);
-
-    // there might be more items!
-    if (tweets.length > 0) {
-        const max_id = BigInteger.parse(last(tweets).id_str).subtract(1).toString();
-
-        if (depth < MAX_DEPTH) { // TODO: remove this; just used to limit API requests while testing
-            const response = await getUserTweets(handle, {
-                ...options,
-                max_id,
-            }, depth + 1);
-            // queue.push({
-            //     handle,
-            //     options: {
-            //         ...options,
-            //         max_id,
-            //     }
-            // });
-            tweets = tweets.concat(response);
-        }
+setInterval(async () => {
+    if (queue.length > 0) {
+        const { handle, options } = queue.pop()!;
+        console.log('popping', options);
+        await getUserTweets(handle, options);
     }
+}, 10000);
 
-    // TODO: save more data than just the text
-    // tweets = tweets.map(d => ({
-    //     twitterId: d.id_str,
-    //     text: d.full_text,
-    //     handle,
-    // }));
+// TODO: save more data
+const formatTweet = (tweet: Tweet) => ({
+    twitterId: tweet.id_str,
+    text: tweet.full_text,
+    handle: {
+        connect: {
+            handle: tweet.user.screen_name,
+        }
+    },
+});
 
-    tweets = tweets.map(d => ({
-        full_text: d.full_text,
-    }));
+const addTweets = (tweet: TweetCreateInput) => prisma.upsertTweet({
+    where: { twitterId: tweet.twitterId },
+    create: tweet,
+    update: tweet,
+});
 
-    // just for testing purposes
-    // const temp = await Promise.all(tweets.map(processTweet));
-    // console.log(flatten(temp.map(t => t.entities)))
+const getMaxId = (tweet: Tweet) => {
+    const lastSeen = tweet.id_str;
+    return BigInteger.parse(lastSeen).subtract(1).toString();
+}
 
-    return tweets;
+const pushToQueue = (tweet: Tweet, options: object) => {
+    if (tweet) {
+        const handle = tweet.user.screen_name;
+        queue.push({
+            handle,
+            options: {
+                ...options,
+                max_id: getMaxId(tweet),
+            }
+        });
+    }
+}
+
+const getUserTweets = async (handle: string, options = {}) => {
+    const tweets = await getTweets(handle, options);
+    pushToQueue(last(tweets)!, options);
+    return Promise.all(tweets.map(formatTweet).map(addTweets));
 }
 
 const processTweet = async (tweet: any) => {

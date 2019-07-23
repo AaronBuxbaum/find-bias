@@ -1,30 +1,3 @@
-type User {
-  id: ID! @id
-  email: String @unique
-  name: String!
-}
-
-type Domain {
-  id: ID! @id
-  name: String!
-  url: String!
-  pages: [Page!]!
-}
-
-type Page {
-  id: ID! @id
-  name: String
-  url: String
-  content: PageContent @relation(link: INLINE)
-  domain: Domain @relation(link: INLINE)
-}
-
-type PageContent {
-  id: ID! @id
-  page: Page
-  content: String!
-}
-
 type TwitterUser {
   id: ID! @id
   handle: String! @unique
@@ -35,7 +8,7 @@ type TwitterUser {
 
 type Tweet {
   id: ID! @id
-  twitterId: String!
+  twitterId: String! @unique
   handle: TwitterUser!
   text: String!
 }

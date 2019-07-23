@@ -1,3 +1,3 @@
-const queue: Array<{ handle: string, max_id?: string }> = [];
+const queue: Array<{ handle: string, options: object }> = [];
 
 export default queue;
