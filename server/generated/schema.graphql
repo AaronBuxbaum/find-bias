@@ -2,6 +2,10 @@
 ### Do not make changes to this file directly
 
 
+type AggregateTwitterUser {
+  count: Int!
+}
+
 type BatchPayload {
   count: Long!
 }
@@ -15,10 +19,18 @@ type Mutation {
   updateTweets(handle: String!): Int!
 }
 
+type PageInfo {
+  endCursor: String
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+}
+
 type Query {
   tweets(after: String, before: String, first: Int, last: Int, orderBy: TweetOrderByInput, skip: Int, where: TweetWhereInput): [Tweet!]!
   twitterUser(where: TwitterUserWhereUniqueInput!): TwitterUser
   twitterUsers(after: String, before: String, first: Int, last: Int, orderBy: TwitterUserOrderByInput, skip: Int, where: TwitterUserWhereInput): [TwitterUser!]!
+  twitterUsersConnection(after: String, before: String, first: Int, last: Int, orderBy: TwitterUserOrderByInput, skip: Int, where: TwitterUserWhereInput): TwitterUserConnection!
 }
 
 type Tweet {
@@ -90,6 +102,17 @@ type TwitterUser {
   name: String
   statuses_count: Int
   tweets(after: String, before: String, first: Int, last: Int, orderBy: TweetOrderByInput, skip: Int, where: TweetWhereInput): [Tweet!]
+}
+
+type TwitterUserConnection {
+  aggregate: AggregateTwitterUser!
+  edges: [TwitterUserEdge!]!
+  pageInfo: PageInfo!
+}
+
+type TwitterUserEdge {
+  cursor: String!
+  node: TwitterUser!
 }
 
 enum TwitterUserOrderByInput {
