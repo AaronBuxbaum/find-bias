@@ -106,6 +106,11 @@
   resolved "https://registry.yarnpkg.com/@types/graphql/-/graphql-14.2.2.tgz#10f197e6f8559c11b16d630c5e9c10c3c8e61c5e"
   integrity sha512-okXbUmdZFMO3AYBEJCcpJFPFDkKmIiZZBqWD5TmPtAv+GHfjD2qLZEI0PvZ8IWMU4ozoK2HV2lDxWjw4LbVlnw==
 
+"@types/jsbn@^1.2.29":
+  version "1.2.29"
+  resolved "https://registry.yarnpkg.com/@types/jsbn/-/jsbn-1.2.29.tgz#28229bc0262c704a1506c3ed69a7d7e115bd7832"
+  integrity sha512-2dVz9LTEGWVj9Ov9zaDnpvqHFV+W4bXtU0EUEGAzWfdRNO3dlUuosdHpENI6/oQW+Kejn0hAjk6P/czs9h/hvg==
+
 "@types/lodash@^4.14.136":
   version "4.14.136"
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.136.tgz#413e85089046b865d960c9ff1d400e04c31ab60f"
@@ -551,11 +556,6 @@ bcrypt-pbkdf@^1.0.0:
   integrity sha1-pDAdOJtqQ/m2f/PKEaP2Y342Dp4=
   dependencies:
     tweetnacl "^0.14.3"
-
-biginteger@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/biginteger/-/biginteger-1.0.3.tgz#111c682070b852d0677a1621fd33452aab674607"
-  integrity sha1-ERxoIHC4UtBnehYh/TNFKqtnRgc=
 
 bignumber.js@7.2.1:
   version "7.2.1"
@@ -2376,6 +2376,11 @@ js-yaml@^3.10.0, js-yaml@^3.13.1, js-yaml@^3.9.1:
   dependencies:
     argparse "^1.0.7"
     esprima "^4.0.0"
+
+jsbn@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/jsbn/-/jsbn-1.1.0.tgz#b01307cb29b618a1ed26ec79e911f803c4da0040"
+  integrity sha1-sBMHyym2GKHtJux56RH4A8TaAEA=
 
 jsbn@~0.1.0:
   version "0.1.1"

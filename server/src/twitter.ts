@@ -1,9 +1,9 @@
 const Twit = require('twit')
 import { last } from 'lodash';
-import { BigInteger } from 'biginteger';
+import { BigInteger } from 'jsbn';
+import { Status as Tweet } from 'twitter-d';
 import { prisma, TweetCreateInput } from '../generated/prisma-client';
 import queue from './queue';
-import { Status as Tweet } from 'twitter-d';
 
 const Twitter = new Twit({
     consumer_key: process.env.TWITTER_CONSUMER_KEY,
@@ -97,7 +97,8 @@ const addTweets = (tweet: TweetCreateInput) => prisma.upsertTweet({
 
 const getMaxId = (tweet: Tweet) => {
     const lastSeen = tweet.id_str;
-    return BigInteger.parse(lastSeen).subtract(1).toString();
+    const ONE = new BigInteger('1');
+    return new BigInteger(lastSeen).subtract(ONE).toString();
 }
 
 const pushToQueue = (tweet: Tweet, options: object) => {
