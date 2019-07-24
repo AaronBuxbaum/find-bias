@@ -1,4 +1,5 @@
 import { getUserTweets } from './tweets';
+import * as Celery from 'celery-ts';
 
 const queue: Array<{ handle: string, options: object }> = [];
 
@@ -20,12 +21,19 @@ const queue: Array<{ handle: string, options: object }> = [];
 
 // TODO: manage API limits
 
-setInterval(async () => {
-  if (queue.length > 0) {
-    const { handle, options } = queue.pop()!;
-    console.log('popping', options);
-    await getUserTweets(handle, options);
-  }
-}, 10000);
+const client = Celery.createClient({
+  brokerUrl: 'amqp://admin:mypass@rabbit:5672//',
+  resultBackend: 'amqp://'
+});
+
+const task: Celery.Task<number> = client.createTask<number>("tasks.tweet");
+
+// setInterval(async () => {
+//   if (queue.length > 0) {
+//     const { handle, options } = queue.pop()!;
+//     console.log('popping', options);
+//     await getUserTweets(handle, options);
+//   }
+// }, 10000);
 
 export default queue;
