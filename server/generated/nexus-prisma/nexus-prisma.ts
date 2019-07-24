@@ -1265,6 +1265,8 @@ export interface TweetWhereInput {
   text_ends_with?: string | null
   text_not_ends_with?: string | null
   AND?: TweetWhereInput[]
+  OR?: TweetWhereInput[]
+  NOT?: TweetWhereInput[]
 }
 export type TweetWhereInputInputObject =
   | Extract<keyof TweetWhereInput, string>
@@ -1312,6 +1314,8 @@ export type TweetWhereInputInputObject =
   | { name: 'text_ends_with', alias?: string  } 
   | { name: 'text_not_ends_with', alias?: string  } 
   | { name: 'AND', alias?: string  } 
+  | { name: 'OR', alias?: string  } 
+  | { name: 'NOT', alias?: string  } 
   
 export interface TwitterUserWhereInput {
   id?: string | null
@@ -1342,7 +1346,9 @@ export interface TwitterUserWhereInput {
   handle_not_starts_with?: string | null
   handle_ends_with?: string | null
   handle_not_ends_with?: string | null
+  tweets_every?: TweetWhereInput | null
   tweets_some?: TweetWhereInput | null
+  tweets_none?: TweetWhereInput | null
   statuses_count?: number | null
   statuses_count_not?: number | null
   statuses_count_in?: number[]
@@ -1366,6 +1372,8 @@ export interface TwitterUserWhereInput {
   name_ends_with?: string | null
   name_not_ends_with?: string | null
   AND?: TwitterUserWhereInput[]
+  OR?: TwitterUserWhereInput[]
+  NOT?: TwitterUserWhereInput[]
 }
 export type TwitterUserWhereInputInputObject =
   | Extract<keyof TwitterUserWhereInput, string>
@@ -1397,7 +1405,9 @@ export type TwitterUserWhereInputInputObject =
   | { name: 'handle_not_starts_with', alias?: string  } 
   | { name: 'handle_ends_with', alias?: string  } 
   | { name: 'handle_not_ends_with', alias?: string  } 
+  | { name: 'tweets_every', alias?: string  } 
   | { name: 'tweets_some', alias?: string  } 
+  | { name: 'tweets_none', alias?: string  } 
   | { name: 'statuses_count', alias?: string  } 
   | { name: 'statuses_count_not', alias?: string  } 
   | { name: 'statuses_count_in', alias?: string  } 
@@ -1421,6 +1431,8 @@ export type TwitterUserWhereInputInputObject =
   | { name: 'name_ends_with', alias?: string  } 
   | { name: 'name_not_ends_with', alias?: string  } 
   | { name: 'AND', alias?: string  } 
+  | { name: 'OR', alias?: string  } 
+  | { name: 'NOT', alias?: string  } 
   
 export interface TweetWhereUniqueInput {
   id?: string | null
@@ -1750,6 +1762,8 @@ export interface TwitterUserSubscriptionWhereInput {
   updatedFields_contains_some?: string[]
   node?: TwitterUserWhereInput | null
   AND?: TwitterUserSubscriptionWhereInput[]
+  OR?: TwitterUserSubscriptionWhereInput[]
+  NOT?: TwitterUserSubscriptionWhereInput[]
 }
 export type TwitterUserSubscriptionWhereInputInputObject =
   | Extract<keyof TwitterUserSubscriptionWhereInput, string>
@@ -1759,6 +1773,8 @@ export type TwitterUserSubscriptionWhereInputInputObject =
   | { name: 'updatedFields_contains_some', alias?: string  } 
   | { name: 'node', alias?: string  } 
   | { name: 'AND', alias?: string  } 
+  | { name: 'OR', alias?: string  } 
+  | { name: 'NOT', alias?: string  } 
   
 export interface TweetSubscriptionWhereInput {
   mutation_in?: prisma.MutationType[]
@@ -1767,6 +1783,8 @@ export interface TweetSubscriptionWhereInput {
   updatedFields_contains_some?: string[]
   node?: TweetWhereInput | null
   AND?: TweetSubscriptionWhereInput[]
+  OR?: TweetSubscriptionWhereInput[]
+  NOT?: TweetSubscriptionWhereInput[]
 }
 export type TweetSubscriptionWhereInputInputObject =
   | Extract<keyof TweetSubscriptionWhereInput, string>
@@ -1776,6 +1794,8 @@ export type TweetSubscriptionWhereInputInputObject =
   | { name: 'updatedFields_contains_some', alias?: string  } 
   | { name: 'node', alias?: string  } 
   | { name: 'AND', alias?: string  } 
+  | { name: 'OR', alias?: string  } 
+  | { name: 'NOT', alias?: string  } 
   
 
 export type TweetOrderByInputValues =
@@ -1785,6 +1805,10 @@ export type TweetOrderByInputValues =
   | 'twitterId_DESC'
   | 'text_ASC'
   | 'text_DESC'
+  | 'createdAt_ASC'
+  | 'createdAt_DESC'
+  | 'updatedAt_ASC'
+  | 'updatedAt_DESC'
   
 export type TwitterUserOrderByInputValues =
   | 'id_ASC'
@@ -1795,6 +1819,10 @@ export type TwitterUserOrderByInputValues =
   | 'statuses_count_DESC'
   | 'name_ASC'
   | 'name_DESC'
+  | 'createdAt_ASC'
+  | 'createdAt_DESC'
+  | 'updatedAt_ASC'
+  | 'updatedAt_DESC'
   
 export type MutationTypeValues =
   | 'CREATED'

@@ -30,6 +30,8 @@ export interface NexusGenInputs {
     id_not_in?: string[] | null; // [ID!]
     id_not_starts_with?: string | null; // ID
     id_starts_with?: string | null; // ID
+    NOT?: NexusGenInputs['TweetWhereInput'][] | null; // [TweetWhereInput!]
+    OR?: NexusGenInputs['TweetWhereInput'][] | null; // [TweetWhereInput!]
     text?: string | null; // String
     text_contains?: string | null; // String
     text_ends_with?: string | null; // String
@@ -103,6 +105,8 @@ export interface NexusGenInputs {
     name_not_in?: string[] | null; // [String!]
     name_not_starts_with?: string | null; // String
     name_starts_with?: string | null; // String
+    NOT?: NexusGenInputs['TwitterUserWhereInput'][] | null; // [TwitterUserWhereInput!]
+    OR?: NexusGenInputs['TwitterUserWhereInput'][] | null; // [TwitterUserWhereInput!]
     statuses_count?: number | null; // Int
     statuses_count_gt?: number | null; // Int
     statuses_count_gte?: number | null; // Int
@@ -111,6 +115,8 @@ export interface NexusGenInputs {
     statuses_count_lte?: number | null; // Int
     statuses_count_not?: number | null; // Int
     statuses_count_not_in?: number[] | null; // [Int!]
+    tweets_every?: NexusGenInputs['TweetWhereInput'] | null; // TweetWhereInput
+    tweets_none?: NexusGenInputs['TweetWhereInput'] | null; // TweetWhereInput
     tweets_some?: NexusGenInputs['TweetWhereInput'] | null; // TweetWhereInput
   }
   TwitterUserWhereUniqueInput: { // input type
@@ -120,8 +126,8 @@ export interface NexusGenInputs {
 }
 
 export interface NexusGenEnums {
-  TweetOrderByInput: "id_ASC" | "id_DESC" | "text_ASC" | "text_DESC" | "twitterId_ASC" | "twitterId_DESC"
-  TwitterUserOrderByInput: "handle_ASC" | "handle_DESC" | "id_ASC" | "id_DESC" | "name_ASC" | "name_DESC" | "statuses_count_ASC" | "statuses_count_DESC"
+  TweetOrderByInput: "createdAt_ASC" | "createdAt_DESC" | "id_ASC" | "id_DESC" | "text_ASC" | "text_DESC" | "twitterId_ASC" | "twitterId_DESC" | "updatedAt_ASC" | "updatedAt_DESC"
+  TwitterUserOrderByInput: "createdAt_ASC" | "createdAt_DESC" | "handle_ASC" | "handle_DESC" | "id_ASC" | "id_DESC" | "name_ASC" | "name_DESC" | "statuses_count_ASC" | "statuses_count_DESC" | "updatedAt_ASC" | "updatedAt_DESC"
 }
 
 export interface NexusGenRootTypes {

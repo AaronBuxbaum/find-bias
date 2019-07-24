@@ -41,12 +41,16 @@ type Tweet {
 }
 
 enum TweetOrderByInput {
+  createdAt_ASC
+  createdAt_DESC
   id_ASC
   id_DESC
   text_ASC
   text_DESC
   twitterId_ASC
   twitterId_DESC
+  updatedAt_ASC
+  updatedAt_DESC
 }
 
 input TweetWhereInput {
@@ -66,6 +70,8 @@ input TweetWhereInput {
   id_not_in: [ID!]
   id_not_starts_with: ID
   id_starts_with: ID
+  NOT: [TweetWhereInput!]
+  OR: [TweetWhereInput!]
   text: String
   text_contains: String
   text_ends_with: String
@@ -116,6 +122,8 @@ type TwitterUserEdge {
 }
 
 enum TwitterUserOrderByInput {
+  createdAt_ASC
+  createdAt_DESC
   handle_ASC
   handle_DESC
   id_ASC
@@ -124,6 +132,8 @@ enum TwitterUserOrderByInput {
   name_DESC
   statuses_count_ASC
   statuses_count_DESC
+  updatedAt_ASC
+  updatedAt_DESC
 }
 
 input TwitterUserWhereInput {
@@ -170,6 +180,8 @@ input TwitterUserWhereInput {
   name_not_in: [String!]
   name_not_starts_with: String
   name_starts_with: String
+  NOT: [TwitterUserWhereInput!]
+  OR: [TwitterUserWhereInput!]
   statuses_count: Int
   statuses_count_gt: Int
   statuses_count_gte: Int
@@ -178,6 +190,8 @@ input TwitterUserWhereInput {
   statuses_count_lte: Int
   statuses_count_not: Int
   statuses_count_not_in: [Int!]
+  tweets_every: TweetWhereInput
+  tweets_none: TweetWhereInput
   tweets_some: TweetWhereInput
 }
 

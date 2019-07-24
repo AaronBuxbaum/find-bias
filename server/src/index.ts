@@ -4,7 +4,8 @@ import { makePrismaSchema, prismaObjectType } from 'nexus-prisma'
 import { join } from 'path'
 import datamodelInfo from '../generated/nexus-prisma'
 import { prisma } from '../generated/prisma-client'
-import * as twitter from './twitter';
+import { getUserInfo } from './twitterUsers';
+import { buildUserTweets } from './tweets';
 
 const Query = prismaObjectType({
   name: 'Query',
@@ -26,7 +27,7 @@ const Mutation = prismaObjectType({
         })
       },
       resolve: async (_, { handle }) => {
-        const result = await twitter.buildUserTweets(handle);
+        const result = await buildUserTweets(handle.toLowerCase());
         return result.length;
       }
     })
@@ -39,7 +40,8 @@ const Mutation = prismaObjectType({
         })
       },
       resolve: async (_, { handle }, ctx) => {
-        const { data } = await twitter.getUserInfo(handle!);
+        handle = handle.toLowerCase();
+        const { data } = await getUserInfo(handle!);
         const { name, statuses_count } = data;
         const user = {
           name,

@@ -1,7 +1,7 @@
 type TwitterUser {
   id: ID! @id
   handle: String! @unique
-  tweets: [Tweet!]! @relation(link: INLINE)
+  tweets: [Tweet!]!
   statuses_count: Int
   name: String
 }
@@ -9,6 +9,6 @@ type TwitterUser {
 type Tweet {
   id: ID! @id
   twitterId: String! @unique
-  handle: TwitterUser!
+  handle: TwitterUser! @relation(link: INLINE)
   text: String!
 }

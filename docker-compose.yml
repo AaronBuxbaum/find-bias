@@ -31,17 +31,18 @@ services:
         port: 4466
         databases:
           default:
-            connector: mongo
-            uri: "mongodb://${MONGO_DB_USERNAME}:${MONGO_DB_PASSWORD}@mongo"
-  mongo:
-    image: mongo:3.6
+            connector: postgres
+            host: postgres
+            port: 5432
+            user: ${POSTGRES_USER}
+            password: ${POSTGRES_PASSWORD}
+  postgres:
+    image: postgres:10.3
     restart: always
     environment:
-      MONGO_INITDB_ROOT_USERNAME: ${MONGO_DB_USERNAME}
-      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_DB_PASSWORD}
-    ports:
-      - 27017:27017
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
-      - mongo:/var/lib/mongo
+      - postgres:/var/lib/postgresql/data
 volumes:
-  mongo: ~
+  postgres: ~
