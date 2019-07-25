@@ -46,20 +46,20 @@ export interface NexusGenInputs {
     text_not_in?: string[] | null; // [String!]
     text_not_starts_with?: string | null; // String
     text_starts_with?: string | null; // String
-    twitterId?: string | null; // String
-    twitterId_contains?: string | null; // String
-    twitterId_ends_with?: string | null; // String
-    twitterId_gt?: string | null; // String
-    twitterId_gte?: string | null; // String
-    twitterId_in?: string[] | null; // [String!]
-    twitterId_lt?: string | null; // String
-    twitterId_lte?: string | null; // String
-    twitterId_not?: string | null; // String
-    twitterId_not_contains?: string | null; // String
-    twitterId_not_ends_with?: string | null; // String
-    twitterId_not_in?: string[] | null; // [String!]
-    twitterId_not_starts_with?: string | null; // String
-    twitterId_starts_with?: string | null; // String
+    twitterIdString?: string | null; // String
+    twitterIdString_contains?: string | null; // String
+    twitterIdString_ends_with?: string | null; // String
+    twitterIdString_gt?: string | null; // String
+    twitterIdString_gte?: string | null; // String
+    twitterIdString_in?: string[] | null; // [String!]
+    twitterIdString_lt?: string | null; // String
+    twitterIdString_lte?: string | null; // String
+    twitterIdString_not?: string | null; // String
+    twitterIdString_not_contains?: string | null; // String
+    twitterIdString_not_ends_with?: string | null; // String
+    twitterIdString_not_in?: string[] | null; // [String!]
+    twitterIdString_not_starts_with?: string | null; // String
+    twitterIdString_starts_with?: string | null; // String
   }
   TwitterUserWhereInput: { // input type
     AND?: NexusGenInputs['TwitterUserWhereInput'][] | null; // [TwitterUserWhereInput!]
@@ -126,11 +126,14 @@ export interface NexusGenInputs {
 }
 
 export interface NexusGenEnums {
-  TweetOrderByInput: "createdAt_ASC" | "createdAt_DESC" | "id_ASC" | "id_DESC" | "text_ASC" | "text_DESC" | "twitterId_ASC" | "twitterId_DESC" | "updatedAt_ASC" | "updatedAt_DESC"
+  TweetOrderByInput: "createdAt_ASC" | "createdAt_DESC" | "id_ASC" | "id_DESC" | "text_ASC" | "text_DESC" | "twitterIdString_ASC" | "twitterIdString_DESC" | "updatedAt_ASC" | "updatedAt_DESC"
   TwitterUserOrderByInput: "createdAt_ASC" | "createdAt_DESC" | "handle_ASC" | "handle_DESC" | "id_ASC" | "id_DESC" | "name_ASC" | "name_DESC" | "statuses_count_ASC" | "statuses_count_DESC" | "updatedAt_ASC" | "updatedAt_DESC"
 }
 
 export interface NexusGenRootTypes {
+  AggregateTweet: { // root type
+    count: number; // Int!
+  }
   AggregateTwitterUser: { // root type
     count: number; // Int!
   }
@@ -148,7 +151,15 @@ export interface NexusGenRootTypes {
   Tweet: { // root type
     id: string; // ID!
     text: string; // String!
-    twitterId: string; // String!
+    twitterIdString: string; // String!
+  }
+  TweetConnection: { // root type
+    edges: NexusGenRootTypes['TweetEdge'][]; // [TweetEdge!]!
+    pageInfo: NexusGenRootTypes['PageInfo']; // PageInfo!
+  }
+  TweetEdge: { // root type
+    cursor: string; // String!
+    node: NexusGenRootTypes['Tweet']; // Tweet!
   }
   TwitterUser: { // root type
     handle: string; // String!
@@ -181,6 +192,9 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
 }
 
 export interface NexusGenFieldTypes {
+  AggregateTweet: { // field return type
+    count: number; // Int!
+  }
   AggregateTwitterUser: { // field return type
     count: number; // Int!
   }
@@ -201,6 +215,7 @@ export interface NexusGenFieldTypes {
   }
   Query: { // field return type
     tweets: NexusGenRootTypes['Tweet'][]; // [Tweet!]!
+    tweetsConnection: NexusGenRootTypes['TweetConnection']; // TweetConnection!
     twitterUser: NexusGenRootTypes['TwitterUser'] | null; // TwitterUser
     twitterUsers: NexusGenRootTypes['TwitterUser'][]; // [TwitterUser!]!
     twitterUsersConnection: NexusGenRootTypes['TwitterUserConnection']; // TwitterUserConnection!
@@ -209,7 +224,16 @@ export interface NexusGenFieldTypes {
     handle: NexusGenRootTypes['TwitterUser']; // TwitterUser!
     id: string; // ID!
     text: string; // String!
-    twitterId: string; // String!
+    twitterIdString: string; // String!
+  }
+  TweetConnection: { // field return type
+    aggregate: NexusGenRootTypes['AggregateTweet']; // AggregateTweet!
+    edges: NexusGenRootTypes['TweetEdge'][]; // [TweetEdge!]!
+    pageInfo: NexusGenRootTypes['PageInfo']; // PageInfo!
+  }
+  TweetEdge: { // field return type
+    cursor: string; // String!
+    node: NexusGenRootTypes['Tweet']; // Tweet!
   }
   TwitterUser: { // field return type
     handle: string; // String!
@@ -246,6 +270,15 @@ export interface NexusGenArgTypes {
   }
   Query: {
     tweets: { // args
+      after?: string | null; // String
+      before?: string | null; // String
+      first?: number | null; // Int
+      last?: number | null; // Int
+      orderBy?: NexusGenEnums['TweetOrderByInput'] | null; // TweetOrderByInput
+      skip?: number | null; // Int
+      where?: NexusGenInputs['TweetWhereInput'] | null; // TweetWhereInput
+    }
+    tweetsConnection: { // args
       after?: string | null; // String
       before?: string | null; // String
       first?: number | null; // Int
@@ -294,7 +327,7 @@ export interface NexusGenAbstractResolveReturnTypes {
 
 export interface NexusGenInheritedFields {}
 
-export type NexusGenObjectNames = "AggregateTwitterUser" | "BatchPayload" | "Mutation" | "PageInfo" | "Query" | "Tweet" | "TwitterUser" | "TwitterUserConnection" | "TwitterUserEdge";
+export type NexusGenObjectNames = "AggregateTweet" | "AggregateTwitterUser" | "BatchPayload" | "Mutation" | "PageInfo" | "Query" | "Tweet" | "TweetConnection" | "TweetEdge" | "TwitterUser" | "TwitterUserConnection" | "TwitterUserEdge";
 
 export type NexusGenInputNames = "TweetWhereInput" | "TwitterUserWhereInput" | "TwitterUserWhereUniqueInput";
 

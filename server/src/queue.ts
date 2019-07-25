@@ -28,7 +28,7 @@ queue.activateConsumer(async (message) => {
     const { handle, options } = message.getContent();
     console.log(' [x] received message: ' + handle);
     setTimeout(async () => {
-      await getUserTweets(handle, options);
+      // await getUserTweets(handle, options);
       message.ack();
     }, 10000);
   }

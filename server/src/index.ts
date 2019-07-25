@@ -10,7 +10,7 @@ import { buildUserTweets } from './tweets';
 const Query = prismaObjectType({
   name: 'Query',
   definition(t) {
-    t.prismaFields(['twitterUser', 'twitterUsers', 'tweets', 'twitterUsersConnection'])
+    t.prismaFields(['twitterUser', 'twitterUsers', 'tweets', 'tweetsConnection', 'twitterUsersConnection'])
   }
 })
 

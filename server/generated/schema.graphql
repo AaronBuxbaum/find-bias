@@ -2,6 +2,10 @@
 ### Do not make changes to this file directly
 
 
+type AggregateTweet {
+  count: Int!
+}
+
 type AggregateTwitterUser {
   count: Int!
 }
@@ -28,6 +32,7 @@ type PageInfo {
 
 type Query {
   tweets(after: String, before: String, first: Int, last: Int, orderBy: TweetOrderByInput, skip: Int, where: TweetWhereInput): [Tweet!]!
+  tweetsConnection(after: String, before: String, first: Int, last: Int, orderBy: TweetOrderByInput, skip: Int, where: TweetWhereInput): TweetConnection!
   twitterUser(where: TwitterUserWhereUniqueInput!): TwitterUser
   twitterUsers(after: String, before: String, first: Int, last: Int, orderBy: TwitterUserOrderByInput, skip: Int, where: TwitterUserWhereInput): [TwitterUser!]!
   twitterUsersConnection(after: String, before: String, first: Int, last: Int, orderBy: TwitterUserOrderByInput, skip: Int, where: TwitterUserWhereInput): TwitterUserConnection!
@@ -37,7 +42,18 @@ type Tweet {
   handle: TwitterUser!
   id: ID!
   text: String!
-  twitterId: String!
+  twitterIdString: String!
+}
+
+type TweetConnection {
+  aggregate: AggregateTweet!
+  edges: [TweetEdge!]!
+  pageInfo: PageInfo!
+}
+
+type TweetEdge {
+  cursor: String!
+  node: Tweet!
 }
 
 enum TweetOrderByInput {
@@ -47,8 +63,8 @@ enum TweetOrderByInput {
   id_DESC
   text_ASC
   text_DESC
-  twitterId_ASC
-  twitterId_DESC
+  twitterIdString_ASC
+  twitterIdString_DESC
   updatedAt_ASC
   updatedAt_DESC
 }
@@ -86,20 +102,20 @@ input TweetWhereInput {
   text_not_in: [String!]
   text_not_starts_with: String
   text_starts_with: String
-  twitterId: String
-  twitterId_contains: String
-  twitterId_ends_with: String
-  twitterId_gt: String
-  twitterId_gte: String
-  twitterId_in: [String!]
-  twitterId_lt: String
-  twitterId_lte: String
-  twitterId_not: String
-  twitterId_not_contains: String
-  twitterId_not_ends_with: String
-  twitterId_not_in: [String!]
-  twitterId_not_starts_with: String
-  twitterId_starts_with: String
+  twitterIdString: String
+  twitterIdString_contains: String
+  twitterIdString_ends_with: String
+  twitterIdString_gt: String
+  twitterIdString_gte: String
+  twitterIdString_in: [String!]
+  twitterIdString_lt: String
+  twitterIdString_lte: String
+  twitterIdString_not: String
+  twitterIdString_not_contains: String
+  twitterIdString_not_ends_with: String
+  twitterIdString_not_in: [String!]
+  twitterIdString_not_starts_with: String
+  twitterIdString_starts_with: String
 }
 
 type TwitterUser {

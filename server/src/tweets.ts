@@ -15,12 +15,13 @@ const getSinceId = async (handle: string) => {
   const lastTweet = await prisma.twitterUser({
     handle,
   }).tweets({
-    first: 1, // TODO: probably wrong
+    orderBy: 'twitterId_DESC',
+    first: 1,
   });
 
   if (lastTweet && lastTweet.length > 0) {
-    const [{ twitterId }] = lastTweet;
-    return twitterId;
+    const [{ twitterIdString }] = lastTweet;
+    return twitterIdString;
   }
 }
 
@@ -40,7 +41,7 @@ const getTweets = async (screen_name: string, options: object) => {
 
 // TODO: save more data
 const formatTweet = (tweet: RawTweet) => ({
-  twitterId: tweet.id_str,
+  twitterIdString: tweet.id_str,
   text: tweet.full_text,
   handle: {
     connect: {
@@ -50,7 +51,7 @@ const formatTweet = (tweet: RawTweet) => ({
 });
 
 const addTweets = (tweet: TweetCreateInput) => prisma.upsertTweet({
-  where: { twitterId: tweet.twitterId },
+  where: { twitterIdString: tweet.twitterIdString },
   create: tweet,
   update: tweet,
 });

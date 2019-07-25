@@ -6,7 +6,7 @@
 export default {
   uniqueFieldsByModel: {
     TwitterUser: ['id', 'handle'],
-    Tweet: ['id', 'twitterId']
+    Tweet: ['id', 'twitterIdString']
   },
   embeddedTypes: [],
   clientPath: 'generated/prisma-client',
@@ -842,7 +842,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "twitterId",
+            "name": "twitterIdString",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -852,7 +852,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "twitterId_not",
+            "name": "twitterIdString_not",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -862,7 +862,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "twitterId_in",
+            "name": "twitterIdString_in",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -880,7 +880,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "twitterId_not_in",
+            "name": "twitterIdString_not_in",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -898,7 +898,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "twitterId_lt",
+            "name": "twitterIdString_lt",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -908,7 +908,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "twitterId_lte",
+            "name": "twitterIdString_lte",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -918,7 +918,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "twitterId_gt",
+            "name": "twitterIdString_gt",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -928,7 +928,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "twitterId_gte",
+            "name": "twitterIdString_gte",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -938,7 +938,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "twitterId_contains",
+            "name": "twitterIdString_contains",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -948,7 +948,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "twitterId_not_contains",
+            "name": "twitterIdString_not_contains",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -958,7 +958,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "twitterId_starts_with",
+            "name": "twitterIdString_starts_with",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -968,7 +968,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "twitterId_not_starts_with",
+            "name": "twitterIdString_not_starts_with",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -978,7 +978,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "twitterId_ends_with",
+            "name": "twitterIdString_ends_with",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -988,7 +988,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "twitterId_not_ends_with",
+            "name": "twitterIdString_not_ends_with",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -1912,13 +1912,13 @@ export default {
             "deprecationReason": null
           },
           {
-            "name": "twitterId_ASC",
+            "name": "twitterIdString_ASC",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "twitterId_DESC",
+            "name": "twitterIdString_DESC",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -1984,7 +1984,7 @@ export default {
             "deprecationReason": null
           },
           {
-            "name": "twitterId",
+            "name": "twitterIdString",
             "description": null,
             "args": [],
             "type": {
@@ -2347,7 +2347,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "twitterId",
+            "name": "twitterIdString",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -3113,7 +3113,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "twitterId",
+            "name": "twitterIdString",
             "description": null,
             "type": {
               "kind": "NON_NULL",
@@ -3415,7 +3415,7 @@ export default {
         "fields": null,
         "inputFields": [
           {
-            "name": "twitterId",
+            "name": "twitterIdString",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -3655,7 +3655,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "twitterId",
+            "name": "twitterIdString",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -3665,7 +3665,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "twitterId_not",
+            "name": "twitterIdString_not",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -3675,7 +3675,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "twitterId_in",
+            "name": "twitterIdString_in",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -3693,7 +3693,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "twitterId_not_in",
+            "name": "twitterIdString_not_in",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -3711,7 +3711,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "twitterId_lt",
+            "name": "twitterIdString_lt",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -3721,7 +3721,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "twitterId_lte",
+            "name": "twitterIdString_lte",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -3731,7 +3731,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "twitterId_gt",
+            "name": "twitterIdString_gt",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -3741,7 +3741,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "twitterId_gte",
+            "name": "twitterIdString_gte",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -3751,7 +3751,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "twitterId_contains",
+            "name": "twitterIdString_contains",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -3761,7 +3761,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "twitterId_not_contains",
+            "name": "twitterIdString_not_contains",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -3771,7 +3771,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "twitterId_starts_with",
+            "name": "twitterIdString_starts_with",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -3781,7 +3781,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "twitterId_not_starts_with",
+            "name": "twitterIdString_not_starts_with",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -3791,7 +3791,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "twitterId_ends_with",
+            "name": "twitterIdString_ends_with",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -3801,7 +3801,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "twitterId_not_ends_with",
+            "name": "twitterIdString_not_ends_with",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -4071,7 +4071,7 @@ export default {
         "fields": null,
         "inputFields": [
           {
-            "name": "twitterId",
+            "name": "twitterIdString",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -4190,7 +4190,7 @@ export default {
             "defaultValue": null
           },
           {
-            "name": "twitterId",
+            "name": "twitterIdString",
             "description": null,
             "type": {
               "kind": "NON_NULL",
@@ -4329,7 +4329,7 @@ export default {
         "fields": null,
         "inputFields": [
           {
-            "name": "twitterId",
+            "name": "twitterIdString",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -4501,7 +4501,7 @@ export default {
         "fields": null,
         "inputFields": [
           {
-            "name": "twitterId",
+            "name": "twitterIdString",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -5120,7 +5120,7 @@ export default {
             "deprecationReason": null
           },
           {
-            "name": "twitterId",
+            "name": "twitterIdString",
             "description": null,
             "args": [],
             "type": {

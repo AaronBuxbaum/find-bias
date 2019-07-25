@@ -8,7 +8,7 @@ type TwitterUser {
 
 type Tweet {
   id: ID! @id
-  twitterId: String! @unique
+  twitterIdString: String! @unique
   handle: TwitterUser! @relation(link: INLINE)
   text: String!
 }

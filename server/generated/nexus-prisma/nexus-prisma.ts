@@ -311,13 +311,13 @@ export interface TwitterUserFieldDetails {
 type TweetObject =
   | TweetFields
   | { name: 'id', args?: [] | false, alias?: string  } 
-  | { name: 'twitterId', args?: [] | false, alias?: string  } 
+  | { name: 'twitterIdString', args?: [] | false, alias?: string  } 
   | { name: 'handle', args?: [] | false, alias?: string  } 
   | { name: 'text', args?: [] | false, alias?: string  } 
 
 type TweetFields =
   | 'id'
-  | 'twitterId'
+  | 'twitterIdString'
   | 'handle'
   | 'text'
 
@@ -334,7 +334,7 @@ export interface TweetFieldDetails {
     nullable: false
     resolve: undefined
   }
-  twitterId: {
+  twitterIdString: {
     type: 'String'
     args: {}
     description: string
@@ -1170,12 +1170,12 @@ export interface TweetSubscriptionPayloadFieldDetails {
 type TweetPreviousValuesObject =
   | TweetPreviousValuesFields
   | { name: 'id', args?: [] | false, alias?: string  } 
-  | { name: 'twitterId', args?: [] | false, alias?: string  } 
+  | { name: 'twitterIdString', args?: [] | false, alias?: string  } 
   | { name: 'text', args?: [] | false, alias?: string  } 
 
 type TweetPreviousValuesFields =
   | 'id'
-  | 'twitterId'
+  | 'twitterIdString'
   | 'text'
 
 
@@ -1191,7 +1191,7 @@ export interface TweetPreviousValuesFieldDetails {
     nullable: false
     resolve: undefined
   }
-  twitterId: {
+  twitterIdString: {
     type: 'String'
     args: {}
     description: string
@@ -1235,20 +1235,20 @@ export interface TweetWhereInput {
   id_not_starts_with?: string | null
   id_ends_with?: string | null
   id_not_ends_with?: string | null
-  twitterId?: string | null
-  twitterId_not?: string | null
-  twitterId_in?: string[]
-  twitterId_not_in?: string[]
-  twitterId_lt?: string | null
-  twitterId_lte?: string | null
-  twitterId_gt?: string | null
-  twitterId_gte?: string | null
-  twitterId_contains?: string | null
-  twitterId_not_contains?: string | null
-  twitterId_starts_with?: string | null
-  twitterId_not_starts_with?: string | null
-  twitterId_ends_with?: string | null
-  twitterId_not_ends_with?: string | null
+  twitterIdString?: string | null
+  twitterIdString_not?: string | null
+  twitterIdString_in?: string[]
+  twitterIdString_not_in?: string[]
+  twitterIdString_lt?: string | null
+  twitterIdString_lte?: string | null
+  twitterIdString_gt?: string | null
+  twitterIdString_gte?: string | null
+  twitterIdString_contains?: string | null
+  twitterIdString_not_contains?: string | null
+  twitterIdString_starts_with?: string | null
+  twitterIdString_not_starts_with?: string | null
+  twitterIdString_ends_with?: string | null
+  twitterIdString_not_ends_with?: string | null
   handle?: TwitterUserWhereInput | null
   text?: string | null
   text_not?: string | null
@@ -1284,20 +1284,20 @@ export type TweetWhereInputInputObject =
   | { name: 'id_not_starts_with', alias?: string  } 
   | { name: 'id_ends_with', alias?: string  } 
   | { name: 'id_not_ends_with', alias?: string  } 
-  | { name: 'twitterId', alias?: string  } 
-  | { name: 'twitterId_not', alias?: string  } 
-  | { name: 'twitterId_in', alias?: string  } 
-  | { name: 'twitterId_not_in', alias?: string  } 
-  | { name: 'twitterId_lt', alias?: string  } 
-  | { name: 'twitterId_lte', alias?: string  } 
-  | { name: 'twitterId_gt', alias?: string  } 
-  | { name: 'twitterId_gte', alias?: string  } 
-  | { name: 'twitterId_contains', alias?: string  } 
-  | { name: 'twitterId_not_contains', alias?: string  } 
-  | { name: 'twitterId_starts_with', alias?: string  } 
-  | { name: 'twitterId_not_starts_with', alias?: string  } 
-  | { name: 'twitterId_ends_with', alias?: string  } 
-  | { name: 'twitterId_not_ends_with', alias?: string  } 
+  | { name: 'twitterIdString', alias?: string  } 
+  | { name: 'twitterIdString_not', alias?: string  } 
+  | { name: 'twitterIdString_in', alias?: string  } 
+  | { name: 'twitterIdString_not_in', alias?: string  } 
+  | { name: 'twitterIdString_lt', alias?: string  } 
+  | { name: 'twitterIdString_lte', alias?: string  } 
+  | { name: 'twitterIdString_gt', alias?: string  } 
+  | { name: 'twitterIdString_gte', alias?: string  } 
+  | { name: 'twitterIdString_contains', alias?: string  } 
+  | { name: 'twitterIdString_not_contains', alias?: string  } 
+  | { name: 'twitterIdString_starts_with', alias?: string  } 
+  | { name: 'twitterIdString_not_starts_with', alias?: string  } 
+  | { name: 'twitterIdString_ends_with', alias?: string  } 
+  | { name: 'twitterIdString_not_ends_with', alias?: string  } 
   | { name: 'handle', alias?: string  } 
   | { name: 'text', alias?: string  } 
   | { name: 'text_not', alias?: string  } 
@@ -1436,12 +1436,12 @@ export type TwitterUserWhereInputInputObject =
   
 export interface TweetWhereUniqueInput {
   id?: string | null
-  twitterId?: string | null
+  twitterIdString?: string | null
 }
 export type TweetWhereUniqueInputInputObject =
   | Extract<keyof TweetWhereUniqueInput, string>
   | { name: 'id', alias?: string  } 
-  | { name: 'twitterId', alias?: string  } 
+  | { name: 'twitterIdString', alias?: string  } 
   
 export interface TwitterUserCreateInput {
   id?: string | null
@@ -1469,13 +1469,13 @@ export type TweetCreateManyWithoutHandleInputInputObject =
   
 export interface TweetCreateWithoutHandleInput {
   id?: string | null
-  twitterId?: string
+  twitterIdString?: string
   text?: string
 }
 export type TweetCreateWithoutHandleInputInputObject =
   | Extract<keyof TweetCreateWithoutHandleInput, string>
   | { name: 'id', alias?: string  } 
-  | { name: 'twitterId', alias?: string  } 
+  | { name: 'twitterIdString', alias?: string  } 
   | { name: 'text', alias?: string  } 
   
 export interface TwitterUserUpdateInput {
@@ -1524,12 +1524,12 @@ export type TweetUpdateWithWhereUniqueWithoutHandleInputInputObject =
   | { name: 'data', alias?: string  } 
   
 export interface TweetUpdateWithoutHandleDataInput {
-  twitterId?: string | null
+  twitterIdString?: string | null
   text?: string | null
 }
 export type TweetUpdateWithoutHandleDataInputInputObject =
   | Extract<keyof TweetUpdateWithoutHandleDataInput, string>
-  | { name: 'twitterId', alias?: string  } 
+  | { name: 'twitterIdString', alias?: string  } 
   | { name: 'text', alias?: string  } 
   
 export interface TweetUpsertWithWhereUniqueWithoutHandleInput {
@@ -1558,20 +1558,20 @@ export interface TweetScalarWhereInput {
   id_not_starts_with?: string | null
   id_ends_with?: string | null
   id_not_ends_with?: string | null
-  twitterId?: string | null
-  twitterId_not?: string | null
-  twitterId_in?: string[]
-  twitterId_not_in?: string[]
-  twitterId_lt?: string | null
-  twitterId_lte?: string | null
-  twitterId_gt?: string | null
-  twitterId_gte?: string | null
-  twitterId_contains?: string | null
-  twitterId_not_contains?: string | null
-  twitterId_starts_with?: string | null
-  twitterId_not_starts_with?: string | null
-  twitterId_ends_with?: string | null
-  twitterId_not_ends_with?: string | null
+  twitterIdString?: string | null
+  twitterIdString_not?: string | null
+  twitterIdString_in?: string[]
+  twitterIdString_not_in?: string[]
+  twitterIdString_lt?: string | null
+  twitterIdString_lte?: string | null
+  twitterIdString_gt?: string | null
+  twitterIdString_gte?: string | null
+  twitterIdString_contains?: string | null
+  twitterIdString_not_contains?: string | null
+  twitterIdString_starts_with?: string | null
+  twitterIdString_not_starts_with?: string | null
+  twitterIdString_ends_with?: string | null
+  twitterIdString_not_ends_with?: string | null
   text?: string | null
   text_not?: string | null
   text_in?: string[]
@@ -1606,20 +1606,20 @@ export type TweetScalarWhereInputInputObject =
   | { name: 'id_not_starts_with', alias?: string  } 
   | { name: 'id_ends_with', alias?: string  } 
   | { name: 'id_not_ends_with', alias?: string  } 
-  | { name: 'twitterId', alias?: string  } 
-  | { name: 'twitterId_not', alias?: string  } 
-  | { name: 'twitterId_in', alias?: string  } 
-  | { name: 'twitterId_not_in', alias?: string  } 
-  | { name: 'twitterId_lt', alias?: string  } 
-  | { name: 'twitterId_lte', alias?: string  } 
-  | { name: 'twitterId_gt', alias?: string  } 
-  | { name: 'twitterId_gte', alias?: string  } 
-  | { name: 'twitterId_contains', alias?: string  } 
-  | { name: 'twitterId_not_contains', alias?: string  } 
-  | { name: 'twitterId_starts_with', alias?: string  } 
-  | { name: 'twitterId_not_starts_with', alias?: string  } 
-  | { name: 'twitterId_ends_with', alias?: string  } 
-  | { name: 'twitterId_not_ends_with', alias?: string  } 
+  | { name: 'twitterIdString', alias?: string  } 
+  | { name: 'twitterIdString_not', alias?: string  } 
+  | { name: 'twitterIdString_in', alias?: string  } 
+  | { name: 'twitterIdString_not_in', alias?: string  } 
+  | { name: 'twitterIdString_lt', alias?: string  } 
+  | { name: 'twitterIdString_lte', alias?: string  } 
+  | { name: 'twitterIdString_gt', alias?: string  } 
+  | { name: 'twitterIdString_gte', alias?: string  } 
+  | { name: 'twitterIdString_contains', alias?: string  } 
+  | { name: 'twitterIdString_not_contains', alias?: string  } 
+  | { name: 'twitterIdString_starts_with', alias?: string  } 
+  | { name: 'twitterIdString_not_starts_with', alias?: string  } 
+  | { name: 'twitterIdString_ends_with', alias?: string  } 
+  | { name: 'twitterIdString_not_ends_with', alias?: string  } 
   | { name: 'text', alias?: string  } 
   | { name: 'text_not', alias?: string  } 
   | { name: 'text_in', alias?: string  } 
@@ -1648,12 +1648,12 @@ export type TweetUpdateManyWithWhereNestedInputInputObject =
   | { name: 'data', alias?: string  } 
   
 export interface TweetUpdateManyDataInput {
-  twitterId?: string | null
+  twitterIdString?: string | null
   text?: string | null
 }
 export type TweetUpdateManyDataInputInputObject =
   | Extract<keyof TweetUpdateManyDataInput, string>
-  | { name: 'twitterId', alias?: string  } 
+  | { name: 'twitterIdString', alias?: string  } 
   | { name: 'text', alias?: string  } 
   
 export interface TwitterUserUpdateManyMutationInput {
@@ -1669,14 +1669,14 @@ export type TwitterUserUpdateManyMutationInputInputObject =
   
 export interface TweetCreateInput {
   id?: string | null
-  twitterId?: string
+  twitterIdString?: string
   handle?: TwitterUserCreateOneWithoutTweetsInput
   text?: string
 }
 export type TweetCreateInputInputObject =
   | Extract<keyof TweetCreateInput, string>
   | { name: 'id', alias?: string  } 
-  | { name: 'twitterId', alias?: string  } 
+  | { name: 'twitterIdString', alias?: string  } 
   | { name: 'handle', alias?: string  } 
   | { name: 'text', alias?: string  } 
   
@@ -1703,13 +1703,13 @@ export type TwitterUserCreateWithoutTweetsInputInputObject =
   | { name: 'name', alias?: string  } 
   
 export interface TweetUpdateInput {
-  twitterId?: string | null
+  twitterIdString?: string | null
   handle?: TwitterUserUpdateOneRequiredWithoutTweetsInput | null
   text?: string | null
 }
 export type TweetUpdateInputInputObject =
   | Extract<keyof TweetUpdateInput, string>
-  | { name: 'twitterId', alias?: string  } 
+  | { name: 'twitterIdString', alias?: string  } 
   | { name: 'handle', alias?: string  } 
   | { name: 'text', alias?: string  } 
   
@@ -1747,12 +1747,12 @@ export type TwitterUserUpsertWithoutTweetsInputInputObject =
   | { name: 'create', alias?: string  } 
   
 export interface TweetUpdateManyMutationInput {
-  twitterId?: string | null
+  twitterIdString?: string | null
   text?: string | null
 }
 export type TweetUpdateManyMutationInputInputObject =
   | Extract<keyof TweetUpdateManyMutationInput, string>
-  | { name: 'twitterId', alias?: string  } 
+  | { name: 'twitterIdString', alias?: string  } 
   | { name: 'text', alias?: string  } 
   
 export interface TwitterUserSubscriptionWhereInput {
@@ -1801,8 +1801,8 @@ export type TweetSubscriptionWhereInputInputObject =
 export type TweetOrderByInputValues =
   | 'id_ASC'
   | 'id_DESC'
-  | 'twitterId_ASC'
-  | 'twitterId_DESC'
+  | 'twitterIdString_ASC'
+  | 'twitterIdString_DESC'
   | 'text_ASC'
   | 'text_DESC'
   | 'createdAt_ASC'
