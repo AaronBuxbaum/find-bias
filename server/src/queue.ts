@@ -1,7 +1,5 @@
 import { getUserTweets } from './tweets';
-import * as Celery from 'celery-ts';
-
-const queue: Array<{ handle: string, options: object }> = [];
+import * as amqp from 'amqp-ts';
 
 /*
     TODO: implement data queue.
@@ -19,21 +17,34 @@ const queue: Array<{ handle: string, options: object }> = [];
     a time? Finishing a timeline faster might happen, plus simplifying the code.
 */
 
-// TODO: manage API limits
+const user = process.env.RABBITMQ_DEFAULT_USER;
+const password = process.env.RABBITMQ_DEFAULT_PASS;
+const connection = new amqp.Connection(`amqp://${user}:${password}@rabbit:5672`);
 
-const client = Celery.createClient({
-  brokerUrl: 'amqp://admin:mypass@rabbit:5672//',
-  resultBackend: 'amqp://'
+// TODO: manage API limits
+const queue = connection.declareQueue('get-tweets');
+queue.activateConsumer(async (message) => {
+  try {
+    const { handle, options } = message.getContent();
+    console.log(' [x] received message: ' + handle);
+    setTimeout(async () => {
+      await getUserTweets(handle, options);
+      message.ack();
+    }, 10000);
+  }
+  catch (e) {
+    message.nack();
+  }
 });
 
-const task: Celery.Task<number> = client.createTask<number>("tasks.tweet");
+interface TweetQueue {
+  handle: string;
+  options: object;
+}
 
-// setInterval(async () => {
-//   if (queue.length > 0) {
-//     const { handle, options } = queue.pop()!;
-//     console.log('popping', options);
-//     await getUserTweets(handle, options);
-//   }
-// }, 10000);
+export const pushTweet = (tweet: TweetQueue) => {
+  const message = new amqp.Message(tweet, { persistent: true });
+  queue.send(message);
+}
 
 export default queue;

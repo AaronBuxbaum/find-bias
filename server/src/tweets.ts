@@ -2,7 +2,7 @@ import { last } from 'lodash';
 import { BigInteger } from 'jsbn';
 import { Status as RawTweet } from 'twitter-d';
 import { prisma, TweetCreateInput } from '../generated/prisma-client';
-import queue from './queue';
+import { pushTweet } from './queue';
 import { Twitter } from './twitter';
 
 export const buildUserTweets = async (handle: string) => {
@@ -64,7 +64,7 @@ const getMaxId = (tweet: RawTweet) => {
 const pushToQueue = (tweet: RawTweet, options: object) => {
   if (tweet) {
     const handle = tweet.user.screen_name.toLowerCase();
-    queue.push({
+    pushTweet({
       handle,
       options: {
         ...options,
