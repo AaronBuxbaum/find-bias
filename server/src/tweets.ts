@@ -7,8 +7,8 @@ import { twitter } from "./requests";
 import { Tweet } from "./database/entity/Tweet";
 
 export const buildUserTweets = async (handle: string) => {
-  const since_id = await getSinceId(handle);
-  return pushUserTweets(handle, { since_id });
+  const sinceId = await getSinceId(handle);
+  return pushUserTweets(handle, { since_id: sinceId });
 };
 
 const getSinceId = async (handle: string) => {
@@ -23,9 +23,9 @@ const getSinceId = async (handle: string) => {
   }
 };
 
-const getTweets = async (screen_name: string, options: object) => {
+const getTweets = async (handle: string, options: object) => {
   const params = {
-    screen_name,
+    screen_name: handle,
     trim_user: false,
     tweet_mode: "extended",
     include_rts: true,
@@ -87,9 +87,9 @@ export const getUserTweets = async (handle: string) => {
     .getMany();
 };
 
-export const getUserInfo = async (screen_name: string) => {
+export const getUserInfo = async (handle: string) => {
   const params = {
-    screen_name
+    screen_name: handle
   };
   const user = await twitter.get("users/show", params);
   return user;

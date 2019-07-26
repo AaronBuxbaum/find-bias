@@ -1,5 +1,5 @@
-import { pushUserTweets } from "./tweets";
 import * as amqp from "amqp-ts";
+import { pushUserTweets } from "./tweets";
 
 /*
     TODO: implement data queue.
