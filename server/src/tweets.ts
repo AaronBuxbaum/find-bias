@@ -91,14 +91,19 @@ const MAX_TWEETS = 10;
 
 export const getUserTweets = async (handle: string) =>
   createQueryBuilder(Tweet, "tweet")
-    .where("tweet.handle = :handle", { handle })
+    .where("tweet.handle = :handle", { handle: handle.toLowerCase() })
     .limit(MAX_TWEETS)
     .getMany();
+
+export const getUserTweetCount = async (handle: string) =>
+  createQueryBuilder(Tweet, "tweet")
+    .where("tweet.handle = :handle", { handle: handle.toLowerCase() })
+    .getCount();
 
 export const getUserInfo = async (handle: string) => {
   const params = {
     screen_name: handle.toLowerCase()
   };
   const user = await twitter.get("users/show", params);
-  return user;
+  return user.data;
 };

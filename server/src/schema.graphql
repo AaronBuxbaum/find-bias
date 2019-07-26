@@ -1,3 +1,10 @@
+type TwitterUser {
+  description: String
+  name: String
+  screen_name: String
+  statuses_count: Int
+}
+
 type Tweet {
   twitterId: Float
   twitterIdString: String
@@ -6,6 +13,8 @@ type Tweet {
 }
 
 type Query {
+  count(handle: String!): Int
+  profile(handle: String!): TwitterUser!
   tweets(handle: String!): [Tweet!]!
 }
 
