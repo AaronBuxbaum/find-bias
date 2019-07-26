@@ -97,7 +97,7 @@ export const getUserTweets = async (handle: string) =>
 
 export const getUserInfo = async (handle: string) => {
   const params = {
-    screen_name: handle
+    screen_name: handle.toLowerCase()
   };
   const user = await twitter.get("users/show", params);
   return user;
