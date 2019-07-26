@@ -3,7 +3,7 @@ import { BigInteger } from "jsbn";
 import { Status as RawTweet } from "twitter-d";
 import { createQueryBuilder } from "typeorm";
 import { pushTweet } from "./queue";
-import { Twitter } from "./twitter";
+import { twitter } from "./requests";
 import { Tweet } from "./database/entity/Tweet";
 
 export const buildUserTweets = async (handle: string) => {
@@ -33,7 +33,7 @@ const getTweets = async (screen_name: string, options: object) => {
     ...options
   };
 
-  const response = await Twitter.get("statuses/user_timeline", params);
+  const response = await twitter.get("statuses/user_timeline", params);
   return response.data as [RawTweet];
 };
 
@@ -85,4 +85,12 @@ export const getUserTweets = async (handle: string) => {
     .where("tweet.handle = :handle", { handle })
     .limit(10)
     .getMany();
+};
+
+export const getUserInfo = async (screen_name: string) => {
+  const params = {
+    screen_name
+  };
+  const user = await twitter.get("users/show", params);
+  return user;
 };

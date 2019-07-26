@@ -1,14 +1,14 @@
 import { createQueryBuilder } from "typeorm";
-import requests from './requests';
+import { nlp } from "./requests";
 import { Tweet } from "./database/entity/Tweet";
 
 const processTweet = async (tweet: Tweet) => {
-  const response = await requests({
-    method: 'POST',
+  const response = await nlp({
+    method: "POST",
     data: { text: tweet.text }
   });
   return response.data;
-}
+};
 
 const processUserTweets = async (handle: string) => {
   const tweets = await createQueryBuilder(Tweet, "tweet")
@@ -16,6 +16,6 @@ const processUserTweets = async (handle: string) => {
     .getMany();
   const entities = await Promise.all(tweets.map(processTweet));
   entities.map(console.log); // TODO: do something more interesting here
-}
+};
 
 export default processUserTweets;

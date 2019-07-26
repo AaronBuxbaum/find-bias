@@ -28,7 +28,7 @@ const queue = connection.declareQueue("get-tweets");
 queue.activateConsumer(async message => {
   try {
     const { handle, options } = message.getContent();
-    console.log(" [x] received message: " + handle);
+    console.log("received message: " + handle);
     setTimeout(async () => {
       await pushUserTweets(handle, options);
       message.ack();
