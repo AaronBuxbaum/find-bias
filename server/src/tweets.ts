@@ -1,14 +1,16 @@
 import { last } from "lodash";
 import { BigInteger } from "jsbn";
 import { Status as RawTweet } from "twitter-d";
-import { createQueryBuilder } from "typeorm";
+import { createConnection, createQueryBuilder } from "typeorm";
 import { pushTweet } from "./queue";
 import { Twitter } from "./twitter";
 import { Tweet } from "./database/entity/Tweet";
 
+createConnection();
+
 export const buildUserTweets = async (handle: string) => {
   const since_id = await getSinceId(handle);
-  return await pushUserTweets(handle, { since_id });
+  return pushUserTweets(handle, { since_id });
 };
 
 const getSinceId = async (handle: string) => {
@@ -46,11 +48,13 @@ const formatTweet = (tweet: RawTweet) => ({
 });
 
 const addTweets = async (tweets: Omit<Tweet, "id">[]) => {
-  await createQueryBuilder()
-    .insert()
-    .into(Tweet)
-    .values(tweets)
-    .execute();
+  if (tweets.length > 0) {
+    await createQueryBuilder()
+      .insert()
+      .into(Tweet)
+      .values(tweets)
+      .execute();
+  }
 };
 
 const getMaxId = (tweet: RawTweet) => {
@@ -81,5 +85,6 @@ export const pushUserTweets = async (handle: string, options = {}) => {
 export const getUserTweets = async (handle: string) => {
   return createQueryBuilder(Tweet, "tweet")
     .where("tweet.handle = :handle", { handle })
+    .limit(10)
     .getMany();
 };

@@ -4,7 +4,7 @@ import { buildUserTweets, getUserTweets } from "./tweets";
 
 const typeDefs = `
   type Tweet {
-    twitterId: Int
+    twitterId: Float
     twitterIdString: String
     text: String
     handle: String
