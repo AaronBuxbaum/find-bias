@@ -65,6 +65,7 @@ type Subscription {
 
 type Tweet {
   id: ID!
+  twitterId: Float!
   twitterIdString: String!
   handle: TwitterUser!
   text: String!
@@ -78,6 +79,7 @@ type TweetConnection {
 
 input TweetCreateInput {
   id: ID
+  twitterId: Float!
   twitterIdString: String!
   handle: TwitterUserCreateOneWithoutTweetsInput!
   text: String!
@@ -90,6 +92,7 @@ input TweetCreateManyWithoutHandleInput {
 
 input TweetCreateWithoutHandleInput {
   id: ID
+  twitterId: Float!
   twitterIdString: String!
   text: String!
 }
@@ -102,6 +105,8 @@ type TweetEdge {
 enum TweetOrderByInput {
   id_ASC
   id_DESC
+  twitterId_ASC
+  twitterId_DESC
   twitterIdString_ASC
   twitterIdString_DESC
   text_ASC
@@ -110,6 +115,7 @@ enum TweetOrderByInput {
 
 type TweetPreviousValues {
   id: ID!
+  twitterId: Float!
   twitterIdString: String!
   text: String!
 }
@@ -129,6 +135,14 @@ input TweetScalarWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  twitterId: Float
+  twitterId_not: Float
+  twitterId_in: [Float!]
+  twitterId_not_in: [Float!]
+  twitterId_lt: Float
+  twitterId_lte: Float
+  twitterId_gt: Float
+  twitterId_gte: Float
   twitterIdString: String
   twitterIdString_not: String
   twitterIdString_in: [String!]
@@ -181,17 +195,20 @@ input TweetSubscriptionWhereInput {
 }
 
 input TweetUpdateInput {
+  twitterId: Float
   twitterIdString: String
   handle: TwitterUserUpdateOneRequiredWithoutTweetsInput
   text: String
 }
 
 input TweetUpdateManyDataInput {
+  twitterId: Float
   twitterIdString: String
   text: String
 }
 
 input TweetUpdateManyMutationInput {
+  twitterId: Float
   twitterIdString: String
   text: String
 }
@@ -214,6 +231,7 @@ input TweetUpdateManyWithWhereNestedInput {
 }
 
 input TweetUpdateWithoutHandleDataInput {
+  twitterId: Float
   twitterIdString: String
   text: String
 }
@@ -244,6 +262,14 @@ input TweetWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  twitterId: Float
+  twitterId_not: Float
+  twitterId_in: [Float!]
+  twitterId_not_in: [Float!]
+  twitterId_lt: Float
+  twitterId_lte: Float
+  twitterId_gt: Float
+  twitterId_gte: Float
   twitterIdString: String
   twitterIdString_not: String
   twitterIdString_in: [String!]
@@ -280,6 +306,7 @@ input TweetWhereInput {
 
 input TweetWhereUniqueInput {
   id: ID
+  twitterId: Float
   twitterIdString: String
 }
 

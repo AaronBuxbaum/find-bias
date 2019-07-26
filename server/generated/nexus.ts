@@ -46,6 +46,14 @@ export interface NexusGenInputs {
     text_not_in?: string[] | null; // [String!]
     text_not_starts_with?: string | null; // String
     text_starts_with?: string | null; // String
+    twitterId?: number | null; // Float
+    twitterId_gt?: number | null; // Float
+    twitterId_gte?: number | null; // Float
+    twitterId_in?: number[] | null; // [Float!]
+    twitterId_lt?: number | null; // Float
+    twitterId_lte?: number | null; // Float
+    twitterId_not?: number | null; // Float
+    twitterId_not_in?: number[] | null; // [Float!]
     twitterIdString?: string | null; // String
     twitterIdString_contains?: string | null; // String
     twitterIdString_ends_with?: string | null; // String
@@ -126,7 +134,7 @@ export interface NexusGenInputs {
 }
 
 export interface NexusGenEnums {
-  TweetOrderByInput: "createdAt_ASC" | "createdAt_DESC" | "id_ASC" | "id_DESC" | "text_ASC" | "text_DESC" | "twitterIdString_ASC" | "twitterIdString_DESC" | "updatedAt_ASC" | "updatedAt_DESC"
+  TweetOrderByInput: "createdAt_ASC" | "createdAt_DESC" | "id_ASC" | "id_DESC" | "text_ASC" | "text_DESC" | "twitterId_ASC" | "twitterId_DESC" | "twitterIdString_ASC" | "twitterIdString_DESC" | "updatedAt_ASC" | "updatedAt_DESC"
   TwitterUserOrderByInput: "createdAt_ASC" | "createdAt_DESC" | "handle_ASC" | "handle_DESC" | "id_ASC" | "id_DESC" | "name_ASC" | "name_DESC" | "statuses_count_ASC" | "statuses_count_DESC" | "updatedAt_ASC" | "updatedAt_DESC"
 }
 
@@ -151,6 +159,7 @@ export interface NexusGenRootTypes {
   Tweet: { // root type
     id: string; // ID!
     text: string; // String!
+    twitterId: number; // Float!
     twitterIdString: string; // String!
   }
   TweetConnection: { // root type
@@ -224,6 +233,7 @@ export interface NexusGenFieldTypes {
     handle: NexusGenRootTypes['TwitterUser']; // TwitterUser!
     id: string; // ID!
     text: string; // String!
+    twitterId: number; // Float!
     twitterIdString: string; // String!
   }
   TweetConnection: { // field return type

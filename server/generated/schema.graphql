@@ -42,6 +42,7 @@ type Tweet {
   handle: TwitterUser!
   id: ID!
   text: String!
+  twitterId: Float!
   twitterIdString: String!
 }
 
@@ -63,6 +64,8 @@ enum TweetOrderByInput {
   id_DESC
   text_ASC
   text_DESC
+  twitterId_ASC
+  twitterId_DESC
   twitterIdString_ASC
   twitterIdString_DESC
   updatedAt_ASC
@@ -102,6 +105,14 @@ input TweetWhereInput {
   text_not_in: [String!]
   text_not_starts_with: String
   text_starts_with: String
+  twitterId: Float
+  twitterId_gt: Float
+  twitterId_gte: Float
+  twitterId_in: [Float!]
+  twitterId_lt: Float
+  twitterId_lte: Float
+  twitterId_not: Float
+  twitterId_not_in: [Float!]
   twitterIdString: String
   twitterIdString_contains: String
   twitterIdString_ends_with: String

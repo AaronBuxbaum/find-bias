@@ -147,6 +147,8 @@ export interface ClientConstructor<T> {
 export type TweetOrderByInput =
   | "id_ASC"
   | "id_DESC"
+  | "twitterId_ASC"
+  | "twitterId_DESC"
   | "twitterIdString_ASC"
   | "twitterIdString_DESC"
   | "text_ASC"
@@ -173,114 +175,8 @@ export interface TwitterUserUpdateOneRequiredWithoutTweetsInput {
 
 export type TweetWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
+  twitterId?: Maybe<Float>;
   twitterIdString?: Maybe<String>;
-}>;
-
-export interface TweetUpdateManyMutationInput {
-  twitterIdString?: Maybe<String>;
-  text?: Maybe<String>;
-}
-
-export interface TweetWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  twitterIdString?: Maybe<String>;
-  twitterIdString_not?: Maybe<String>;
-  twitterIdString_in?: Maybe<String[] | String>;
-  twitterIdString_not_in?: Maybe<String[] | String>;
-  twitterIdString_lt?: Maybe<String>;
-  twitterIdString_lte?: Maybe<String>;
-  twitterIdString_gt?: Maybe<String>;
-  twitterIdString_gte?: Maybe<String>;
-  twitterIdString_contains?: Maybe<String>;
-  twitterIdString_not_contains?: Maybe<String>;
-  twitterIdString_starts_with?: Maybe<String>;
-  twitterIdString_not_starts_with?: Maybe<String>;
-  twitterIdString_ends_with?: Maybe<String>;
-  twitterIdString_not_ends_with?: Maybe<String>;
-  handle?: Maybe<TwitterUserWhereInput>;
-  text?: Maybe<String>;
-  text_not?: Maybe<String>;
-  text_in?: Maybe<String[] | String>;
-  text_not_in?: Maybe<String[] | String>;
-  text_lt?: Maybe<String>;
-  text_lte?: Maybe<String>;
-  text_gt?: Maybe<String>;
-  text_gte?: Maybe<String>;
-  text_contains?: Maybe<String>;
-  text_not_contains?: Maybe<String>;
-  text_starts_with?: Maybe<String>;
-  text_not_starts_with?: Maybe<String>;
-  text_ends_with?: Maybe<String>;
-  text_not_ends_with?: Maybe<String>;
-  AND?: Maybe<TweetWhereInput[] | TweetWhereInput>;
-  OR?: Maybe<TweetWhereInput[] | TweetWhereInput>;
-  NOT?: Maybe<TweetWhereInput[] | TweetWhereInput>;
-}
-
-export interface TweetCreateInput {
-  id?: Maybe<ID_Input>;
-  twitterIdString: String;
-  handle: TwitterUserCreateOneWithoutTweetsInput;
-  text: String;
-}
-
-export interface TweetCreateManyWithoutHandleInput {
-  create?: Maybe<
-    TweetCreateWithoutHandleInput[] | TweetCreateWithoutHandleInput
-  >;
-  connect?: Maybe<TweetWhereUniqueInput[] | TweetWhereUniqueInput>;
-}
-
-export interface TwitterUserCreateOneWithoutTweetsInput {
-  create?: Maybe<TwitterUserCreateWithoutTweetsInput>;
-  connect?: Maybe<TwitterUserWhereUniqueInput>;
-}
-
-export interface TweetSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<TweetWhereInput>;
-  AND?: Maybe<TweetSubscriptionWhereInput[] | TweetSubscriptionWhereInput>;
-  OR?: Maybe<TweetSubscriptionWhereInput[] | TweetSubscriptionWhereInput>;
-  NOT?: Maybe<TweetSubscriptionWhereInput[] | TweetSubscriptionWhereInput>;
-}
-
-export interface TwitterUserCreateWithoutTweetsInput {
-  id?: Maybe<ID_Input>;
-  handle: String;
-  statuses_count?: Maybe<Int>;
-  name?: Maybe<String>;
-}
-
-export interface TweetUpdateManyDataInput {
-  twitterIdString?: Maybe<String>;
-  text?: Maybe<String>;
-}
-
-export interface TweetUpdateInput {
-  twitterIdString?: Maybe<String>;
-  handle?: Maybe<TwitterUserUpdateOneRequiredWithoutTweetsInput>;
-  text?: Maybe<String>;
-}
-
-export type TwitterUserWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-  handle?: Maybe<String>;
 }>;
 
 export interface TweetUpdateManyWithoutHandleInput {
@@ -305,21 +201,19 @@ export interface TweetUpdateManyWithoutHandleInput {
   >;
 }
 
-export interface TweetUpsertWithWhereUniqueWithoutHandleInput {
-  where: TweetWhereUniqueInput;
-  update: TweetUpdateWithoutHandleDataInput;
-  create: TweetCreateWithoutHandleInput;
-}
-
-export interface TwitterUserUpdateWithoutTweetsDataInput {
-  handle?: Maybe<String>;
+export interface TwitterUserCreateInput {
+  id?: Maybe<ID_Input>;
+  handle: String;
+  tweets?: Maybe<TweetCreateManyWithoutHandleInput>;
   statuses_count?: Maybe<Int>;
   name?: Maybe<String>;
 }
 
-export interface TweetUpdateWithWhereUniqueWithoutHandleInput {
-  where: TweetWhereUniqueInput;
-  data: TweetUpdateWithoutHandleDataInput;
+export interface TwitterUserUpdateInput {
+  handle?: Maybe<String>;
+  tweets?: Maybe<TweetUpdateManyWithoutHandleInput>;
+  statuses_count?: Maybe<Int>;
+  name?: Maybe<String>;
 }
 
 export interface TwitterUserUpsertWithoutTweetsInput {
@@ -344,25 +238,54 @@ export interface TwitterUserSubscriptionWhereInput {
   >;
 }
 
-export interface TwitterUserCreateInput {
-  id?: Maybe<ID_Input>;
-  handle: String;
-  tweets?: Maybe<TweetCreateManyWithoutHandleInput>;
+export interface TwitterUserUpdateManyMutationInput {
+  handle?: Maybe<String>;
   statuses_count?: Maybe<Int>;
   name?: Maybe<String>;
 }
 
-export interface TweetCreateWithoutHandleInput {
+export interface TweetCreateInput {
   id?: Maybe<ID_Input>;
+  twitterId: Float;
   twitterIdString: String;
+  handle: TwitterUserCreateOneWithoutTweetsInput;
   text: String;
 }
 
-export interface TwitterUserUpdateInput {
-  handle?: Maybe<String>;
-  tweets?: Maybe<TweetUpdateManyWithoutHandleInput>;
+export interface TweetUpdateManyWithWhereNestedInput {
+  where: TweetScalarWhereInput;
+  data: TweetUpdateManyDataInput;
+}
+
+export interface TwitterUserCreateOneWithoutTweetsInput {
+  create?: Maybe<TwitterUserCreateWithoutTweetsInput>;
+  connect?: Maybe<TwitterUserWhereUniqueInput>;
+}
+
+export interface TweetUpsertWithWhereUniqueWithoutHandleInput {
+  where: TweetWhereUniqueInput;
+  update: TweetUpdateWithoutHandleDataInput;
+  create: TweetCreateWithoutHandleInput;
+}
+
+export interface TwitterUserCreateWithoutTweetsInput {
+  id?: Maybe<ID_Input>;
+  handle: String;
   statuses_count?: Maybe<Int>;
   name?: Maybe<String>;
+}
+
+export interface TweetUpdateWithoutHandleDataInput {
+  twitterId?: Maybe<Float>;
+  twitterIdString?: Maybe<String>;
+  text?: Maybe<String>;
+}
+
+export interface TweetUpdateInput {
+  twitterId?: Maybe<Float>;
+  twitterIdString?: Maybe<String>;
+  handle?: Maybe<TwitterUserUpdateOneRequiredWithoutTweetsInput>;
+  text?: Maybe<String>;
 }
 
 export interface TwitterUserWhereInput {
@@ -424,15 +347,93 @@ export interface TwitterUserWhereInput {
   NOT?: Maybe<TwitterUserWhereInput[] | TwitterUserWhereInput>;
 }
 
-export interface TwitterUserUpdateManyMutationInput {
+export interface TweetCreateWithoutHandleInput {
+  id?: Maybe<ID_Input>;
+  twitterId: Float;
+  twitterIdString: String;
+  text: String;
+}
+
+export interface TweetUpdateManyDataInput {
+  twitterId?: Maybe<Float>;
+  twitterIdString?: Maybe<String>;
+  text?: Maybe<String>;
+}
+
+export interface TweetCreateManyWithoutHandleInput {
+  create?: Maybe<
+    TweetCreateWithoutHandleInput[] | TweetCreateWithoutHandleInput
+  >;
+  connect?: Maybe<TweetWhereUniqueInput[] | TweetWhereUniqueInput>;
+}
+
+export interface TweetUpdateManyMutationInput {
+  twitterId?: Maybe<Float>;
+  twitterIdString?: Maybe<String>;
+  text?: Maybe<String>;
+}
+
+export interface TweetWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  twitterId?: Maybe<Float>;
+  twitterId_not?: Maybe<Float>;
+  twitterId_in?: Maybe<Float[] | Float>;
+  twitterId_not_in?: Maybe<Float[] | Float>;
+  twitterId_lt?: Maybe<Float>;
+  twitterId_lte?: Maybe<Float>;
+  twitterId_gt?: Maybe<Float>;
+  twitterId_gte?: Maybe<Float>;
+  twitterIdString?: Maybe<String>;
+  twitterIdString_not?: Maybe<String>;
+  twitterIdString_in?: Maybe<String[] | String>;
+  twitterIdString_not_in?: Maybe<String[] | String>;
+  twitterIdString_lt?: Maybe<String>;
+  twitterIdString_lte?: Maybe<String>;
+  twitterIdString_gt?: Maybe<String>;
+  twitterIdString_gte?: Maybe<String>;
+  twitterIdString_contains?: Maybe<String>;
+  twitterIdString_not_contains?: Maybe<String>;
+  twitterIdString_starts_with?: Maybe<String>;
+  twitterIdString_not_starts_with?: Maybe<String>;
+  twitterIdString_ends_with?: Maybe<String>;
+  twitterIdString_not_ends_with?: Maybe<String>;
+  handle?: Maybe<TwitterUserWhereInput>;
+  text?: Maybe<String>;
+  text_not?: Maybe<String>;
+  text_in?: Maybe<String[] | String>;
+  text_not_in?: Maybe<String[] | String>;
+  text_lt?: Maybe<String>;
+  text_lte?: Maybe<String>;
+  text_gt?: Maybe<String>;
+  text_gte?: Maybe<String>;
+  text_contains?: Maybe<String>;
+  text_not_contains?: Maybe<String>;
+  text_starts_with?: Maybe<String>;
+  text_not_starts_with?: Maybe<String>;
+  text_ends_with?: Maybe<String>;
+  text_not_ends_with?: Maybe<String>;
+  AND?: Maybe<TweetWhereInput[] | TweetWhereInput>;
+  OR?: Maybe<TweetWhereInput[] | TweetWhereInput>;
+  NOT?: Maybe<TweetWhereInput[] | TweetWhereInput>;
+}
+
+export interface TwitterUserUpdateWithoutTweetsDataInput {
   handle?: Maybe<String>;
   statuses_count?: Maybe<Int>;
   name?: Maybe<String>;
-}
-
-export interface TweetUpdateWithoutHandleDataInput {
-  twitterIdString?: Maybe<String>;
-  text?: Maybe<String>;
 }
 
 export interface TweetScalarWhereInput {
@@ -450,6 +451,14 @@ export interface TweetScalarWhereInput {
   id_not_starts_with?: Maybe<ID_Input>;
   id_ends_with?: Maybe<ID_Input>;
   id_not_ends_with?: Maybe<ID_Input>;
+  twitterId?: Maybe<Float>;
+  twitterId_not?: Maybe<Float>;
+  twitterId_in?: Maybe<Float[] | Float>;
+  twitterId_not_in?: Maybe<Float[] | Float>;
+  twitterId_lt?: Maybe<Float>;
+  twitterId_lte?: Maybe<Float>;
+  twitterId_gt?: Maybe<Float>;
+  twitterId_gte?: Maybe<Float>;
   twitterIdString?: Maybe<String>;
   twitterIdString_not?: Maybe<String>;
   twitterIdString_in?: Maybe<String[] | String>;
@@ -483,29 +492,29 @@ export interface TweetScalarWhereInput {
   NOT?: Maybe<TweetScalarWhereInput[] | TweetScalarWhereInput>;
 }
 
-export interface TweetUpdateManyWithWhereNestedInput {
-  where: TweetScalarWhereInput;
-  data: TweetUpdateManyDataInput;
+export interface TweetSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<TweetWhereInput>;
+  AND?: Maybe<TweetSubscriptionWhereInput[] | TweetSubscriptionWhereInput>;
+  OR?: Maybe<TweetSubscriptionWhereInput[] | TweetSubscriptionWhereInput>;
+  NOT?: Maybe<TweetSubscriptionWhereInput[] | TweetSubscriptionWhereInput>;
 }
+
+export interface TweetUpdateWithWhereUniqueWithoutHandleInput {
+  where: TweetWhereUniqueInput;
+  data: TweetUpdateWithoutHandleDataInput;
+}
+
+export type TwitterUserWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+  handle?: Maybe<String>;
+}>;
 
 export interface NodeNode {
   id: ID_Output;
-}
-
-export interface BatchPayload {
-  count: Long;
-}
-
-export interface BatchPayloadPromise
-  extends Promise<BatchPayload>,
-    Fragmentable {
-  count: () => Promise<Long>;
-}
-
-export interface BatchPayloadSubscription
-  extends Promise<AsyncIterator<BatchPayload>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Long>>;
 }
 
 export interface TwitterUserPreviousValues {
@@ -591,72 +600,6 @@ export interface TweetEdgeSubscription
   cursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface TweetPreviousValues {
-  id: ID_Output;
-  twitterIdString: String;
-  text: String;
-}
-
-export interface TweetPreviousValuesPromise
-  extends Promise<TweetPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  twitterIdString: () => Promise<String>;
-  text: () => Promise<String>;
-}
-
-export interface TweetPreviousValuesSubscription
-  extends Promise<AsyncIterator<TweetPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  twitterIdString: () => Promise<AsyncIterator<String>>;
-  text: () => Promise<AsyncIterator<String>>;
-}
-
-export interface PageInfo {
-  hasNextPage: Boolean;
-  hasPreviousPage: Boolean;
-  startCursor?: String;
-  endCursor?: String;
-}
-
-export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
-  hasNextPage: () => Promise<Boolean>;
-  hasPreviousPage: () => Promise<Boolean>;
-  startCursor: () => Promise<String>;
-  endCursor: () => Promise<String>;
-}
-
-export interface PageInfoSubscription
-  extends Promise<AsyncIterator<PageInfo>>,
-    Fragmentable {
-  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
-  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
-  startCursor: () => Promise<AsyncIterator<String>>;
-  endCursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface TweetConnection {
-  pageInfo: PageInfo;
-  edges: TweetEdge[];
-}
-
-export interface TweetConnectionPromise
-  extends Promise<TweetConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<TweetEdge>>() => T;
-  aggregate: <T = AggregateTweetPromise>() => T;
-}
-
-export interface TweetConnectionSubscription
-  extends Promise<AsyncIterator<TweetConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<TweetEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateTweetSubscription>() => T;
-}
-
 export interface TwitterUser {
   id: ID_Output;
   handle: String;
@@ -716,6 +659,136 @@ export interface TwitterUserNullablePromise
   name: () => Promise<String>;
 }
 
+export interface AggregateTwitterUser {
+  count: Int;
+}
+
+export interface AggregateTwitterUserPromise
+  extends Promise<AggregateTwitterUser>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateTwitterUserSubscription
+  extends Promise<AsyncIterator<AggregateTwitterUser>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface Tweet {
+  id: ID_Output;
+  twitterId: Float;
+  twitterIdString: String;
+  text: String;
+}
+
+export interface TweetPromise extends Promise<Tweet>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  twitterId: () => Promise<Float>;
+  twitterIdString: () => Promise<String>;
+  handle: <T = TwitterUserPromise>() => T;
+  text: () => Promise<String>;
+}
+
+export interface TweetSubscription
+  extends Promise<AsyncIterator<Tweet>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  twitterId: () => Promise<AsyncIterator<Float>>;
+  twitterIdString: () => Promise<AsyncIterator<String>>;
+  handle: <T = TwitterUserSubscription>() => T;
+  text: () => Promise<AsyncIterator<String>>;
+}
+
+export interface TweetNullablePromise
+  extends Promise<Tweet | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  twitterId: () => Promise<Float>;
+  twitterIdString: () => Promise<String>;
+  handle: <T = TwitterUserPromise>() => T;
+  text: () => Promise<String>;
+}
+
+export interface TweetConnection {
+  pageInfo: PageInfo;
+  edges: TweetEdge[];
+}
+
+export interface TweetConnectionPromise
+  extends Promise<TweetConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<TweetEdge>>() => T;
+  aggregate: <T = AggregateTweetPromise>() => T;
+}
+
+export interface TweetConnectionSubscription
+  extends Promise<AsyncIterator<TweetConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<TweetEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateTweetSubscription>() => T;
+}
+
+export interface PageInfo {
+  hasNextPage: Boolean;
+  hasPreviousPage: Boolean;
+  startCursor?: String;
+  endCursor?: String;
+}
+
+export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
+  hasNextPage: () => Promise<Boolean>;
+  hasPreviousPage: () => Promise<Boolean>;
+  startCursor: () => Promise<String>;
+  endCursor: () => Promise<String>;
+}
+
+export interface PageInfoSubscription
+  extends Promise<AsyncIterator<PageInfo>>,
+    Fragmentable {
+  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
+  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
+  startCursor: () => Promise<AsyncIterator<String>>;
+  endCursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface BatchPayload {
+  count: Long;
+}
+
+export interface BatchPayloadPromise
+  extends Promise<BatchPayload>,
+    Fragmentable {
+  count: () => Promise<Long>;
+}
+
+export interface BatchPayloadSubscription
+  extends Promise<AsyncIterator<BatchPayload>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Long>>;
+}
+
+export interface TwitterUserEdge {
+  node: TwitterUser;
+  cursor: String;
+}
+
+export interface TwitterUserEdgePromise
+  extends Promise<TwitterUserEdge>,
+    Fragmentable {
+  node: <T = TwitterUserPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface TwitterUserEdgeSubscription
+  extends Promise<AsyncIterator<TwitterUserEdge>>,
+    Fragmentable {
+  node: <T = TwitterUserSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
 export interface TwitterUserSubscriptionPayload {
   mutation: MutationType;
   node: TwitterUser;
@@ -741,35 +814,29 @@ export interface TwitterUserSubscriptionPayloadSubscription
   previousValues: <T = TwitterUserPreviousValuesSubscription>() => T;
 }
 
-export interface Tweet {
+export interface TweetPreviousValues {
   id: ID_Output;
+  twitterId: Float;
   twitterIdString: String;
   text: String;
 }
 
-export interface TweetPromise extends Promise<Tweet>, Fragmentable {
+export interface TweetPreviousValuesPromise
+  extends Promise<TweetPreviousValues>,
+    Fragmentable {
   id: () => Promise<ID_Output>;
+  twitterId: () => Promise<Float>;
   twitterIdString: () => Promise<String>;
-  handle: <T = TwitterUserPromise>() => T;
   text: () => Promise<String>;
 }
 
-export interface TweetSubscription
-  extends Promise<AsyncIterator<Tweet>>,
+export interface TweetPreviousValuesSubscription
+  extends Promise<AsyncIterator<TweetPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  twitterId: () => Promise<AsyncIterator<Float>>;
   twitterIdString: () => Promise<AsyncIterator<String>>;
-  handle: <T = TwitterUserSubscription>() => T;
   text: () => Promise<AsyncIterator<String>>;
-}
-
-export interface TweetNullablePromise
-  extends Promise<Tweet | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  twitterIdString: () => Promise<String>;
-  handle: <T = TwitterUserPromise>() => T;
-  text: () => Promise<String>;
 }
 
 export interface TwitterUserConnection {
@@ -793,45 +860,10 @@ export interface TwitterUserConnectionSubscription
   aggregate: <T = AggregateTwitterUserSubscription>() => T;
 }
 
-export interface TwitterUserEdge {
-  node: TwitterUser;
-  cursor: String;
-}
-
-export interface TwitterUserEdgePromise
-  extends Promise<TwitterUserEdge>,
-    Fragmentable {
-  node: <T = TwitterUserPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface TwitterUserEdgeSubscription
-  extends Promise<AsyncIterator<TwitterUserEdge>>,
-    Fragmentable {
-  node: <T = TwitterUserSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface AggregateTwitterUser {
-  count: Int;
-}
-
-export interface AggregateTwitterUserPromise
-  extends Promise<AggregateTwitterUser>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateTwitterUserSubscription
-  extends Promise<AsyncIterator<AggregateTwitterUser>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
 /*
-The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.
+The `Boolean` scalar type represents `true` or `false`.
 */
-export type Int = number;
+export type Boolean = boolean;
 
 export type Long = string;
 
@@ -842,14 +874,19 @@ export type ID_Input = string | number;
 export type ID_Output = string;
 
 /*
-The `Boolean` scalar type represents `true` or `false`.
+The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.
 */
-export type Boolean = boolean;
+export type Int = number;
 
 /*
 The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
 */
 export type String = string;
+
+/*
+The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point).
+*/
+export type Float = number;
 
 /**
  * Model Metadata

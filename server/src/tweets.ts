@@ -41,6 +41,7 @@ const getTweets = async (screen_name: string, options: object) => {
 
 // TODO: save more data
 const formatTweet = (tweet: RawTweet) => ({
+  twitterId: tweet.id,
   twitterIdString: tweet.id_str,
   text: tweet.full_text,
   handle: {
