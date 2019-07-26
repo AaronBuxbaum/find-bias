@@ -1,12 +1,10 @@
 import { last } from "lodash";
 import { BigInteger } from "jsbn";
 import { Status as RawTweet } from "twitter-d";
-import { createConnection, createQueryBuilder } from "typeorm";
+import { createQueryBuilder } from "typeorm";
 import { pushTweet } from "./queue";
 import { Twitter } from "./twitter";
 import { Tweet } from "./database/entity/Tweet";
-
-createConnection();
 
 export const buildUserTweets = async (handle: string) => {
   const since_id = await getSinceId(handle);

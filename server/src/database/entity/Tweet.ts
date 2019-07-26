@@ -3,17 +3,17 @@ import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
 @Entity()
 export class Tweet {
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
   @Column("bigint")
-  twitterId: number;
+  twitterId!: number;
 
   @Column()
-  twitterIdString: string;
+  twitterIdString!: string;
 
   @Column()
-  text: string;
+  text!: string;
 
   @Column()
-  handle: string;
+  handle!: string;
 }

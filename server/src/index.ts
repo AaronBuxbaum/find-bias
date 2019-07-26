@@ -1,25 +1,12 @@
 import "reflect-metadata";
+import { IResolversParameter } from "graphql-tools";
 import { GraphQLServer } from "graphql-yoga";
+import { createConnection } from "typeorm";
 import { buildUserTweets, getUserTweets } from "./tweets";
 
-const typeDefs = `
-  type Tweet {
-    twitterId: Float
-    twitterIdString: String
-    text: String
-    handle: String
-  }
+createConnection();
 
-  type Query {
-    tweets(handle: String!): [Tweet!]!
-  }
-
-  type Mutation {
-    buildTweets(handle: String!): String
-  }
-`;
-
-const resolvers = {
+const resolvers: IResolversParameter = {
   Query: {
     tweets: async (_, { handle }) => {
       const response = await getUserTweets(handle);
@@ -34,7 +21,10 @@ const resolvers = {
   }
 };
 
-const server = new GraphQLServer({ typeDefs, resolvers });
+const server = new GraphQLServer({
+  typeDefs: "./schema.graphql",
+  resolvers,
+});
 
 server.start(
   {

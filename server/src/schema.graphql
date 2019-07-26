@@ -1,0 +1,14 @@
+type Tweet {
+  twitterId: Float
+  twitterIdString: String
+  text: String
+  handle: String
+}
+
+type Query {
+  tweets(handle: String!): [Tweet!]!
+}
+
+type Mutation {
+  buildTweets(handle: String!): String
+}
