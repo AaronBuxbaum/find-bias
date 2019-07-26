@@ -1,9 +1,19 @@
 {
-  "extends": ["tslint:recommended", "tslint-config-prettier"],
+  "extends": ["tslint:all", "tslint-config-prettier"],
   "rulesDirectory": [
     "tslint-plugin-prettier"
   ],
   "rules": {
-    "prettier": true
+    "prettier": true,
+    "completed-docs": false,
+    "file-name-casing": [true, {".entity.ts": "pascal-case", ".ts": "camel-case"}],
+    "newline-before-return": false,
+    "no-default-export": false,
+    "no-default-import": false,
+    "no-non-null-assertion": false,
+    "no-unbound-method": false,
+    "no-use-before-declare": false,
+    "strict-boolean-expressions": false,
+    "typedef": false
   }
 }

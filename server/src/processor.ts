@@ -1,5 +1,6 @@
 import { createQueryBuilder } from "typeorm";
-import { Tweet } from "./database/entity/Tweet";
+
+import { Tweet } from "./database/entity/Tweet.entity";
 import { nlp } from "./requests";
 
 const processTweet = async (tweet: Tweet) => {

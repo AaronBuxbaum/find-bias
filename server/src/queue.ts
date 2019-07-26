@@ -1,4 +1,6 @@
+// tslint:disable:no-console
 import * as amqp from "amqp-ts";
+
 import { pushUserTweets } from "./tweets";
 
 /*
@@ -23,17 +25,18 @@ const connection = new amqp.Connection(
   `amqp://${user}:${password}@rabbit:5672`
 );
 
+const QUEUE_DELAY = 10000;
+
 // TODO: manage API limits
 const queue = connection.declareQueue("get-tweets");
-queue.activateConsumer(async message => {
+queue.activateConsumer(message => {
   try {
-    const { handle, options } = message.getContent();
-    // tslint:disable-next-line:no-console
-    console.log("received message: " + handle);
+    const { handle, options } = message.getContent() as ITweetQueue;
+    console.log(`received message: ${handle}`);
     setTimeout(async () => {
       await pushUserTweets(handle, options);
       message.ack();
-    }, 10000);
+    }, QUEUE_DELAY);
   } catch (e) {
     message.nack();
   }

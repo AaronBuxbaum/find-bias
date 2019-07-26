@@ -18,6 +18,7 @@
     "pg": "^7.12.0",
     "reflect-metadata": "^0.1.13",
     "twit": "^2.2.11",
+    "twitter-d": "^0.3.0",
     "typeorm": "^0.2.18"
   },
   "devDependencies": {
@@ -26,6 +27,7 @@
     "@types/bluebird": "^3.5.27",
     "@types/jsbn": "^1.2.29",
     "@types/lodash": "^4.14.136",
+    "@types/twit": "^2.2.22",
     "@types/ws": "^6.0.1",
     "prettier": "^1.18.2",
     "ts-node": "^8.3.0",
@@ -34,7 +36,9 @@
     "tslint-config-prettier": "^1.18.0",
     "tslint-plugin-prettier": "^2.0.1",
     "tslint-react": "^4.0.0",
-    "twitter-d": "^0.3.0",
     "typescript": "3.4.5"
+  },
+  "peerDependencies": {
+    "graphql-tools": "^4.0.5"
   }
 }

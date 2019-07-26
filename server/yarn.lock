@@ -80,6 +80,11 @@
     "@types/express-serve-static-core" "*"
     "@types/serve-static" "*"
 
+"@types/geojson@*":
+  version "7946.0.7"
+  resolved "https://registry.yarnpkg.com/@types/geojson/-/geojson-7946.0.7.tgz#c8fa532b60a0042219cdf173ca21a975ef0666ad"
+  integrity sha512-wE2v81i4C4Ol09RtsWFAqg3BUitWbHSpSlIo+bNdsCJijO9sjme+zm+73ZMCa/qMC8UEERxzGbvmr1cffo2SiQ==
+
 "@types/graphql-deduplicator@^2.0.0":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@types/graphql-deduplicator/-/graphql-deduplicator-2.0.0.tgz#9e577b8f3feb3d067b0ca756f4a1fb356d533922"
@@ -132,6 +137,14 @@
   version "0.0.30"
   resolved "https://registry.yarnpkg.com/@types/strip-json-comments/-/strip-json-comments-0.0.30.tgz#9aa30c04db212a9a0649d6ae6fd50accc40748a1"
   integrity sha512-7NQmHra/JILCd1QqpSzl8+mJRc8ZHz3uDm8YV1Ks9IhK0epEiTw8aIErbvH9PI+6XbqhyIQy3462nEsn7UVzjQ==
+
+"@types/twit@^2.2.22":
+  version "2.2.22"
+  resolved "https://registry.yarnpkg.com/@types/twit/-/twit-2.2.22.tgz#4890d2dc45a60fc8d808ff0e8b5f681ed86eeb72"
+  integrity sha512-hf5piOrX3CBTD/XL4VQY0lYLW55sB0GNuMyh7V5XaAu8kgqkCeS4ycajypYfxadAk6CxDKGnbLAudMG+qA49Ng==
+  dependencies:
+    "@types/geojson" "*"
+    "@types/node" "*"
 
 "@types/ws@^6.0.1":
   version "6.0.1"

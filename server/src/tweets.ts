@@ -1,8 +1,11 @@
 import { BigInteger } from "jsbn";
 import { last } from "lodash";
 import { Status as RawTweet } from "twitter-d";
+// tslint:disable-next-line:no-submodule-imports
+import { FullUser } from "twitter-d/types/user";
 import { createQueryBuilder } from "typeorm";
-import { Tweet } from "./database/entity/Tweet";
+
+import { Tweet } from "./database/entity/Tweet.entity";
 import { pushTweet } from "./queue";
 import { twitter } from "./requests";
 
@@ -37,9 +40,14 @@ const getTweets = async (handle: string, options: object) => {
   return response.data as [RawTweet];
 };
 
+const getScreenName = (tweet: RawTweet) => {
+  const user = tweet.user as FullUser;
+  return user.screen_name.toLowerCase();
+};
+
 // TODO: save more data
 const formatTweet = (tweet: RawTweet) => ({
-  handle: tweet.user.screen_name.toLowerCase(),
+  handle: getScreenName(tweet),
   text: tweet.full_text,
   twitterId: tweet.id,
   twitterIdString: tweet.id_str
@@ -63,9 +71,8 @@ const getMaxId = (tweet: RawTweet) => {
 
 const pushToQueue = (tweet: RawTweet, options: object) => {
   if (tweet) {
-    const handle = tweet.user.screen_name.toLowerCase();
     pushTweet({
-      handle,
+      handle: getScreenName(tweet),
       options: {
         ...options,
         max_id: getMaxId(tweet)
@@ -80,12 +87,13 @@ export const pushUserTweets = async (handle: string, options = {}) => {
   return addTweets(tweets.map(formatTweet));
 };
 
-export const getUserTweets = async (handle: string) => {
-  return createQueryBuilder(Tweet, "tweet")
+const MAX_TWEETS = 10;
+
+export const getUserTweets = async (handle: string) =>
+  createQueryBuilder(Tweet, "tweet")
     .where("tweet.handle = :handle", { handle })
-    .limit(10)
+    .limit(MAX_TWEETS)
     .getMany();
-};
 
 export const getUserInfo = async (handle: string) => {
   const params = {
