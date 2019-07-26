@@ -4,11 +4,11 @@ import { createConnection } from "typeorm";
 import resolvers from "./resolvers";
 
 const server = new GraphQLServer({
-  typeDefs: "./src/schema.graphql",
-  resolvers
+  resolvers,
+  typeDefs: "./src/schema.graphql"
 });
 
-// tslint:disable:no-floating-promises
+// tslint:disable:no-floating-promises, no-console
 createConnection();
 
 server.start(

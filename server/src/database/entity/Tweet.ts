@@ -1,19 +1,19 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Tweet {
   @PrimaryGeneratedColumn()
-  id!: number;
+  public id!: number;
 
   @Column("bigint")
-  twitterId!: number;
+  public twitterId!: number;
 
   @Column()
-  twitterIdString!: string;
+  public twitterIdString!: string;
 
   @Column()
-  text!: string;
+  public text!: string;
 
   @Column()
-  handle!: string;
+  public handle!: string;
 }

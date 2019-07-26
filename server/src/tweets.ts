@@ -1,10 +1,10 @@
-import { last } from "lodash";
 import { BigInteger } from "jsbn";
+import { last } from "lodash";
 import { Status as RawTweet } from "twitter-d";
 import { createQueryBuilder } from "typeorm";
+import { Tweet } from "./database/entity/Tweet";
 import { pushTweet } from "./queue";
 import { twitter } from "./requests";
-import { Tweet } from "./database/entity/Tweet";
 
 export const buildUserTweets = async (handle: string) => {
   const sinceId = await getSinceId(handle);
@@ -25,11 +25,11 @@ const getSinceId = async (handle: string) => {
 
 const getTweets = async (handle: string, options: object) => {
   const params = {
+    count: 200,
+    include_rts: true,
     screen_name: handle,
     trim_user: false,
     tweet_mode: "extended",
-    include_rts: true,
-    count: 200,
     ...options
   };
 
@@ -39,13 +39,13 @@ const getTweets = async (handle: string, options: object) => {
 
 // TODO: save more data
 const formatTweet = (tweet: RawTweet) => ({
-  twitterId: tweet.id,
-  twitterIdString: tweet.id_str,
+  handle: tweet.user.screen_name.toLowerCase(),
   text: tweet.full_text,
-  handle: tweet.user.screen_name.toLowerCase()
+  twitterId: tweet.id,
+  twitterIdString: tweet.id_str
 });
 
-const addTweets = async (tweets: Omit<Tweet, "id">[]) => {
+const addTweets = async (tweets: Array<Omit<Tweet, "id">>) => {
   if (tweets.length > 0) {
     await createQueryBuilder()
       .insert()

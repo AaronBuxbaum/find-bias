@@ -28,6 +28,7 @@ const queue = connection.declareQueue("get-tweets");
 queue.activateConsumer(async message => {
   try {
     const { handle, options } = message.getContent();
+    // tslint:disable-next-line:no-console
     console.log("received message: " + handle);
     setTimeout(async () => {
       await pushUserTweets(handle, options);
@@ -38,12 +39,12 @@ queue.activateConsumer(async message => {
   }
 });
 
-interface TweetQueue {
+interface ITweetQueue {
   handle: string;
   options: object;
 }
 
-export const pushTweet = (tweet: TweetQueue) => {
+export const pushTweet = (tweet: ITweetQueue) => {
   const message = new amqp.Message(tweet, { persistent: true });
   queue.send(message);
 };
