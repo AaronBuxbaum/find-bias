@@ -1,26 +1,24 @@
 import { last } from 'lodash';
 import { BigInteger } from 'jsbn';
 import { Status as RawTweet } from 'twitter-d';
-import { prisma, TweetCreateInput } from '../generated/prisma-client';
+import { createQueryBuilder } from "typeorm";
 import { pushTweet } from './queue';
 import { Twitter } from './twitter';
+import { Tweet } from "./database/entity/Tweet";
 
 export const buildUserTweets = async (handle: string) => {
-  // TODO: don't get tweets we've already seen
-  // const since_id = await getSinceId(handle);
-  return await getUserTweets(handle);
+  const since_id = await getSinceId(handle);
+  return await pushUserTweets(handle, { since_id });
 }
 
 const getSinceId = async (handle: string) => {
-  const lastTweet = await prisma.twitterUser({
-    handle,
-  }).tweets({
-    orderBy: 'twitterId_DESC',
-    first: 1,
-  });
+  const lastTweet = await createQueryBuilder(Tweet, "tweet")
+    .where("tweet.handle = :handle", { handle })
+    .orderBy("tweet.twitterId", "DESC")
+    .getOne();
 
-  if (lastTweet && lastTweet.length > 0) {
-    const [{ twitterIdString }] = lastTweet;
+  if (lastTweet) {
+    const { twitterIdString } = lastTweet;
     return twitterIdString;
   }
 }
@@ -44,18 +42,16 @@ const formatTweet = (tweet: RawTweet) => ({
   twitterId: tweet.id,
   twitterIdString: tweet.id_str,
   text: tweet.full_text,
-  handle: {
-    connect: {
-      handle: tweet.user.screen_name.toLowerCase(),
-    }
-  },
+  handle: tweet.user.screen_name.toLowerCase(),
 });
 
-const addTweets = (tweet: TweetCreateInput) => prisma.upsertTweet({
-  where: { twitterIdString: tweet.twitterIdString },
-  create: tweet,
-  update: tweet,
-});
+const addTweets = async (tweets: Omit<Tweet, "id">[]) => {
+  await createQueryBuilder()
+    .insert()
+    .into(Tweet)
+    .values(tweets)
+    .execute();
+}
 
 const getMaxId = (tweet: RawTweet) => {
   const lastSeen = tweet.id_str;
@@ -76,8 +72,14 @@ const pushToQueue = (tweet: RawTweet, options: object) => {
   }
 }
 
-export const getUserTweets = async (handle: string, options = {}) => {
+export const pushUserTweets = async (handle: string, options = {}) => {
   const tweets = await getTweets(handle.toLowerCase(), options);
   pushToQueue(last(tweets)!, options);
-  return Promise.all(tweets.map(formatTweet).map(addTweets));
+  return addTweets(tweets.map(formatTweet));
+}
+
+export const getUserTweets = async (handle: string) => {
+  return createQueryBuilder(Tweet, "tweet")
+    .where("tweet.handle = :handle", { handle })
+    .getMany();
 }

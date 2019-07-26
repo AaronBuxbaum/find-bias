@@ -1,9 +1,11 @@
 {
   "compilerOptions": {
-    "strict": true,
+    "strict": false,
     "lib": [
       "es2016",
       "esnext.asynciterable"
-    ]
+    ],
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
   }
 }

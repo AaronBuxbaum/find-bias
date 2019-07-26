@@ -1,4 +1,4 @@
-import { getUserTweets } from './tweets';
+import { pushUserTweets } from './tweets';
 import * as amqp from 'amqp-ts';
 
 /*
@@ -28,7 +28,7 @@ queue.activateConsumer(async (message) => {
     const { handle, options } = message.getContent();
     console.log(' [x] received message: ' + handle);
     setTimeout(async () => {
-      // await getUserTweets(handle, options);
+      await pushUserTweets(handle, options);
       message.ack();
     }, 10000);
   }

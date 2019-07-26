@@ -1,84 +1,41 @@
-import { GraphQLServer } from 'graphql-yoga'
-import { stringArg } from 'nexus'
-import { makePrismaSchema, prismaObjectType } from 'nexus-prisma'
-import { join } from 'path'
-import datamodelInfo from '../generated/nexus-prisma'
-import { prisma } from '../generated/prisma-client'
-import { getUserInfo } from './twitterUsers';
-import { buildUserTweets } from './tweets';
+import 'reflect-metadata';
+import { GraphQLServer } from 'graphql-yoga';
+import { buildUserTweets, getUserTweets } from './tweets';
 
-const Query = prismaObjectType({
-  name: 'Query',
-  definition(t) {
-    t.prismaFields(['twitterUser', 'twitterUsers', 'tweets', 'tweetsConnection', 'twitterUsersConnection'])
+const typeDefs = `
+  type Tweet {
+    twitterId: Int
+    twitterIdString: String
+    text: String
+    handle: String
   }
-})
 
-const Mutation = prismaObjectType({
-  name: 'Mutation',
-  definition(t) {
-    t.prismaFields(['deleteManyTweets', 'deleteManyTwitterUsers'])
-
-    t.field('updateTweets', {
-      type: 'Int',
-      args: {
-        handle: stringArg({
-          required: true
-        })
-      },
-      resolve: async (_, { handle }) => {
-        const result = await buildUserTweets(handle.toLowerCase());
-        return result.length;
-      }
-    })
-
-    t.field('createTwitterUser', {
-      type: 'TwitterUser',
-      args: {
-        handle: stringArg({
-          required: true,
-        })
-      },
-      resolve: async (_, { handle }, ctx) => {
-        handle = handle.toLowerCase();
-        const { data } = await getUserInfo(handle!);
-        const { name, statuses_count } = data;
-        const user = {
-          name,
-          statuses_count,
-          handle,
-        };
-
-        return ctx.prisma.upsertTwitterUser({
-          where: { handle },
-          create: user,
-          update: user
-        });
-      }
-    })
+  type Query {
+    tweets(handle: String!): [Tweet!]!
   }
-})
 
-const schema = makePrismaSchema({
-  types: [Query, Mutation],
+  type Mutation {
+    buildTweets(handle: String!): String
+  }
+`
 
-  prisma: {
-    client: prisma,
-    datamodelInfo
+const resolvers = {
+  Query: {
+    tweets: async (_, { handle }) => {
+      const response = await getUserTweets(handle);
+      return response;
+    }
   },
-
-  outputs: {
-    schema: join(__dirname, '../generated/schema.graphql'),
-    typegen: join(__dirname, '../generated/nexus.ts')
+  Mutation: {
+    buildTweets: async (_, { handle }) => {
+      await buildUserTweets(handle);
+      return handle;
+    }
   }
-})
+};
 
-const server = new GraphQLServer({
-  context: { prisma },
-  schema
-})
+const server = new GraphQLServer({ typeDefs, resolvers });
 
-// tslint:disable-next-line:no-console no-floating-promises
 server.start({
   tracing: true,
-}, () => console.log('Server is running on http://localhost:4000 🚀'))
+}, () => console.log('Server is running on localhost:4000 🚀'))

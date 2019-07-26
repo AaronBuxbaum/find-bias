@@ -4,8 +4,6 @@
   "scripts": {
     "start": "ts-node index.ts",
     "dev": "ts-node-dev --no-notify --respawn --transpileOnly ./src",
-    "generate": "PRISMA_DOMAIN=localhost prisma generate --env-file=../.env",
-    "deploy": "PRISMA_DOMAIN=localhost prisma deploy --env-file=../.env",
     "lint": "tslint --project tsconfig.json 'src/**/*.{ts,tsx}'",
     "typecheck": "yarn tsc --noEmit",
     "precommit": "yarn lint"
@@ -17,18 +15,19 @@
     "graphql-yoga": "^1.18.0",
     "jsbn": "^1.1.0",
     "lodash": "^4.17.14",
-    "nexus": "^0.12.0-beta.6",
-    "nexus-prisma": "^0.3.7",
-    "prisma-client-lib": "^1.34.3",
-    "twit": "^2.2.11"
+    "pg": "^7.12.0",
+    "reflect-metadata": "^0.1.13",
+    "twit": "^2.2.11",
+    "typeorm": "^0.2.18"
   },
   "devDependencies": {
+    "@types/amqplib": "^0.5.13",
     "@types/aws-lambda": "^8.10.31",
+    "@types/bluebird": "^3.5.27",
     "@types/jsbn": "^1.2.29",
     "@types/lodash": "^4.14.136",
     "@types/ws": "^6.0.1",
     "prettier": "^1.18.2",
-    "prisma": "^1.34.3",
     "ts-node": "^8.3.0",
     "ts-node-dev": "^1.0.0-pre.40",
     "tslint": "^5.18.0",
