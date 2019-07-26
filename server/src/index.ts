@@ -1,6 +1,6 @@
-import 'reflect-metadata';
-import { GraphQLServer } from 'graphql-yoga';
-import { buildUserTweets, getUserTweets } from './tweets';
+import "reflect-metadata";
+import { GraphQLServer } from "graphql-yoga";
+import { buildUserTweets, getUserTweets } from "./tweets";
 
 const typeDefs = `
   type Tweet {
@@ -17,7 +17,7 @@ const typeDefs = `
   type Mutation {
     buildTweets(handle: String!): String
   }
-`
+`;
 
 const resolvers = {
   Query: {
@@ -36,6 +36,9 @@ const resolvers = {
 
 const server = new GraphQLServer({ typeDefs, resolvers });
 
-server.start({
-  tracing: true,
-}, () => console.log('Server is running on localhost:4000 🚀'))
+server.start(
+  {
+    tracing: true
+  },
+  () => console.log("Server is running on localhost:4000 🚀")
+);

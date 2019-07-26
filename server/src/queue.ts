@@ -1,5 +1,5 @@
-import { pushUserTweets } from './tweets';
-import * as amqp from 'amqp-ts';
+import { pushUserTweets } from "./tweets";
+import * as amqp from "amqp-ts";
 
 /*
     TODO: implement data queue.
@@ -19,20 +19,21 @@ import * as amqp from 'amqp-ts';
 
 const user = process.env.RABBITMQ_DEFAULT_USER;
 const password = process.env.RABBITMQ_DEFAULT_PASS;
-const connection = new amqp.Connection(`amqp://${user}:${password}@rabbit:5672`);
+const connection = new amqp.Connection(
+  `amqp://${user}:${password}@rabbit:5672`
+);
 
 // TODO: manage API limits
-const queue = connection.declareQueue('get-tweets');
-queue.activateConsumer(async (message) => {
+const queue = connection.declareQueue("get-tweets");
+queue.activateConsumer(async message => {
   try {
     const { handle, options } = message.getContent();
-    console.log(' [x] received message: ' + handle);
+    console.log(" [x] received message: " + handle);
     setTimeout(async () => {
       await pushUserTweets(handle, options);
       message.ack();
     }, 10000);
-  }
-  catch (e) {
+  } catch (e) {
     message.nack();
   }
 });
@@ -45,6 +46,6 @@ interface TweetQueue {
 export const pushTweet = (tweet: TweetQueue) => {
   const message = new amqp.Message(tweet, { persistent: true });
   queue.send(message);
-}
+};
 
 export default queue;

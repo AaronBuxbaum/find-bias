@@ -1,8 +1,8 @@
-import axios from 'axios';
+import axios from "axios";
 
 export default axios.create({
-  baseURL: 'http://nlp:5000',
+  baseURL: "http://nlp:5000",
   headers: {
-    'Content-Type': 'application/json'
+    "Content-Type": "application/json"
   }
 });
