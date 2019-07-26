@@ -22,7 +22,7 @@ const resolvers: IResolversParameter = {
 };
 
 const server = new GraphQLServer({
-  typeDefs: "./schema.graphql",
+  typeDefs: "./src/schema.graphql",
   resolvers,
 });
 
