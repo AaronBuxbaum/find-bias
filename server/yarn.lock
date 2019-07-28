@@ -2354,10 +2354,10 @@ twit@^2.2.11:
     mime "^1.3.4"
     request "^2.68.0"
 
-twitter-d@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/twitter-d/-/twitter-d-0.3.0.tgz#1c13b12b308844dd5d075a1331ef411811379dff"
-  integrity sha512-jG35ecJZTon44pSJIK6rxHXcHjdbWUUx26nBPfeWRw2Xygt1gG7Ttx6DY7DpCvulVi4bwHzS3KtFWBCP0nXt0Q==
+twitter-d@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/twitter-d/-/twitter-d-0.3.1.tgz#65fd0210f26bd431cedd20bae94c47e8dd41f57e"
+  integrity sha512-lztI681WWDWLnWB0IlzkWeepW5sh572UCszL0SWUG7ezeMKBQpbE5ibaKTCbcQapR0dPV5cXcyiCaZpYfjQ1Jg==
 
 type-is@~1.6.17, type-is@~1.6.18:
   version "1.6.18"

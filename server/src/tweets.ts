@@ -1,8 +1,6 @@
 import { BigInteger } from "jsbn";
 import { last } from "lodash";
-import { Status as RawTweet } from "twitter-d";
-// tslint:disable-next-line:no-submodule-imports
-import { FullUser } from "twitter-d/types/user";
+import { FullUser, Status as RawTweet } from "twitter-d";
 import { getRepository } from "typeorm";
 
 import { Tweet } from "./database/entity/Tweet.entity";
