@@ -11,9 +11,13 @@ interface IHandleInput {
   handle: string;
 }
 
-export interface IOptions {
-  skip?: number | undefined;
-  take?: number | undefined;
+export interface IInputOptions {
+  skip?: number;
+  take?: number;
+}
+
+export interface IUserTweets extends IHandleInput {
+  options: IInputOptions;
 }
 
 const resolvers: IResolvers = {
@@ -32,10 +36,7 @@ const resolvers: IResolvers = {
       const response = await getUserInfo(handle);
       return response;
     },
-    tweets: async (
-      _,
-      { handle, options = {} }: IHandleInput & { options: IOptions }
-    ) => {
+    tweets: async (_, { handle, options = {} }: IUserTweets) => {
       const response = await getUserTweets(handle, options);
       return response;
     }

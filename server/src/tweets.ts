@@ -9,9 +9,14 @@ import { Tweet } from "./database/entity/Tweet.entity";
 import { TwitterUser } from "./database/entity/TwitterUser.entity";
 import { pushTweet } from "./queue";
 import { twitter } from "./requests";
-import { IOptions } from "./resolvers";
+import { IInputOptions } from "./resolvers";
 
-const MAX_TWEETS = 10;
+export interface ITweetPageOptions extends IInputOptions {
+  max_id?: string;
+  since_id?: string;
+}
+
+const MAX_TWEETS = 100;
 
 export const buildUserTweets = async (handle: string) => {
   const sinceId = await getSinceId(handle);
@@ -30,7 +35,7 @@ const getSinceId = async (handle: string) => {
   }
 };
 
-const getTweets = async (handle: string, options: object) => {
+const getTweets = async (handle: string, options: ITweetPageOptions) => {
   const params = {
     count: 200,
     include_rts: true,
@@ -55,7 +60,7 @@ const addTweets = async (tweets: RawTweet[], handle: string) => {
     );
 
     if (!twitterUser) {
-      twitterUser = getRepository(TwitterUser).create({
+      twitterUser = await getRepository(TwitterUser).save({
         handle: handle.toLowerCase()
       });
     }
@@ -77,7 +82,7 @@ const getMaxId = (tweet: RawTweet) => {
   return new BigInteger(lastSeen).subtract(ONE).toString();
 };
 
-const pushToQueue = (tweet: RawTweet, options: object) => {
+const pushToQueue = (tweet: RawTweet, options: ITweetPageOptions) => {
   if (tweet) {
     pushTweet({
       handle: getScreenName(tweet),
@@ -89,14 +94,18 @@ const pushToQueue = (tweet: RawTweet, options: object) => {
   }
 };
 
-export const pushUserTweets = async (handle: string, options = {}) => {
+export const pushUserTweets = async (
+  handle: string,
+  options: ITweetPageOptions
+) => {
   const tweets = await getTweets(handle.toLowerCase(), options);
   pushToQueue(last(tweets)!, options);
   return addTweets(tweets, handle);
 };
 
-export const getUserTweets = async (handle: string, options: IOptions) =>
+export const getUserTweets = async (handle: string, options: IInputOptions) =>
   getRepository(Tweet).find({
+    order: { twitterId: "DESC" },
     skip: options.skip,
     take: Math.min(options.take || MAX_TWEETS, MAX_TWEETS),
     where: { twitterUser: handle.toLowerCase() }
@@ -108,9 +117,7 @@ export const getUserTweetCount = async (handle: string) =>
   });
 
 export const getUserInfo = async (handle: string) => {
-  const params = {
-    screen_name: handle.toLowerCase()
-  };
+  const params = { screen_name: handle.toLowerCase() };
   const user = await twitter.get("users/show", params);
   return user.data;
 };
