@@ -2,11 +2,11 @@
   "license": "UNLICENSED",
   "private": true,
   "scripts": {
-    "start": "ts-node index.ts",
     "dev": "ts-node-dev --no-notify --respawn --transpileOnly ./src",
     "lint": "tslint --fix --project tsconfig.json 'src/**/*.{ts,tsx}'",
-    "typecheck": "yarn tsc --noEmit",
-    "precommit": "yarn lint"
+    "precommit": "yarn typecheck && yarn lint",
+    "start": "ts-node index.ts",
+    "typecheck": "yarn tsc --noEmit"
   },
   "dependencies": {
     "amqp-ts": "^1.5.0",

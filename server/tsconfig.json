@@ -1,11 +1,13 @@
 {
   "compilerOptions": {
-    "strict": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
     "lib": [
       "es2016",
       "esnext.asynciterable"
     ],
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
+    // skip checking libraries until https://github.com/abreits/amqp-ts/issues/39 is resolved
+    "skipLibCheck": true,
+    "strict": true,
   }
 }
