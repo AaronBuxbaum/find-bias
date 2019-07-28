@@ -36,7 +36,7 @@ const resolvers: IResolvers = {
       const response = await getUserInfo(handle);
       return response;
     },
-    tweets: async (_, { handle, options = {} }: IUserTweets) => {
+    tweets: async (_, { handle, options }: IUserTweets) => {
       const response = await getUserTweets(handle, options);
       return response;
     }

@@ -103,7 +103,10 @@ export const pushUserTweets = async (
   return addTweets(tweets, handle);
 };
 
-export const getUserTweets = async (handle: string, options: IInputOptions) =>
+export const getUserTweets = async (
+  handle: string,
+  options: IInputOptions = {}
+) =>
   getRepository(Tweet).find({
     order: { twitterId: "DESC" },
     skip: options.skip,
