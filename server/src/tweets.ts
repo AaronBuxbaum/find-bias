@@ -5,6 +5,7 @@ import { getRepository } from "typeorm";
 
 import { Tweet } from "./database/entity/Tweet.entity";
 import { TwitterUser } from "./database/entity/TwitterUser.entity";
+import generateConnection from "./generateConnection";
 import { pushTweet } from "./queue";
 import { twitter } from "./requests";
 import { IInputOptions } from "./resolvers";
@@ -13,8 +14,6 @@ export interface ITweetPageOptions extends IInputOptions {
   max_id?: string;
   since_id?: string;
 }
-
-const MAX_TWEETS = 100;
 
 export const buildUserTweets = async (handle: string) => {
   const sinceId = await getSinceId(handle);
@@ -106,9 +105,8 @@ export const getUserTweets = async (
   options: IInputOptions = {}
 ) =>
   getRepository(Tweet).find({
+    ...generateConnection(options),
     order: { twitterId: "DESC" },
-    skip: options.skip,
-    take: Math.min(options.take || MAX_TWEETS, MAX_TWEETS),
     where: { twitterUser: handle.toLowerCase() }
   });
 
