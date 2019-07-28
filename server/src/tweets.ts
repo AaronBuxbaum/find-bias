@@ -9,6 +9,7 @@ import { Tweet } from "./database/entity/Tweet.entity";
 import { TwitterUser } from "./database/entity/TwitterUser.entity";
 import { pushTweet } from "./queue";
 import { twitter } from "./requests";
+import { IOptions } from "./resolvers";
 
 const MAX_TWEETS = 10;
 
@@ -94,10 +95,7 @@ export const pushUserTweets = async (handle: string, options = {}) => {
   return addTweets(tweets, handle);
 };
 
-export const getUserTweets = async (
-  handle: string,
-  options: { skip?: number | undefined; take?: number | undefined }
-) =>
+export const getUserTweets = async (handle: string, options: IOptions) =>
   getRepository(Tweet).find({
     skip: options.skip,
     take: Math.min(options.take || MAX_TWEETS, MAX_TWEETS),
