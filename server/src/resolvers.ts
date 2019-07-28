@@ -11,6 +11,13 @@ interface IHandleInput {
   handle: string;
 }
 
+interface IOptions {
+  options: {
+    skip?: number | undefined;
+    take?: number | undefined;
+  };
+}
+
 const resolvers: IResolvers = {
   Mutation: {
     buildTweets: async (_, { handle }: IHandleInput) => {
@@ -27,8 +34,8 @@ const resolvers: IResolvers = {
       const response = await getUserInfo(handle);
       return response;
     },
-    tweets: async (_, { handle }: IHandleInput) => {
-      const response = await getUserTweets(handle);
+    tweets: async (_, { handle, options = {} }: IHandleInput & IOptions) => {
+      const response = await getUserTweets(handle, options);
       return response;
     }
   }

@@ -1,19 +1,18 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryColumn } from "typeorm";
+
+import { TwitterUser } from "./TwitterUser.entity";
 
 @Entity()
 export class Tweet {
   @Column()
-  public handle!: string;
-
-  @PrimaryGeneratedColumn()
-  public id!: number;
-
-  @Column()
   public text!: string;
 
-  @Column("bigint")
+  @PrimaryColumn("bigint")
   public twitterId!: number;
 
   @Column()
   public twitterIdString!: string;
+
+  @ManyToOne(type => TwitterUser, twitterUser => twitterUser.tweets)
+  public twitterUser!: TwitterUser;
 }

@@ -12,10 +12,15 @@ type Tweet {
   handle: String
 }
 
+input Options {
+  take: Int
+  skip: Int
+}
+
 type Query {
   count(handle: String!): Int
   profile(handle: String!): TwitterUser!
-  tweets(handle: String!): [Tweet!]!
+  tweets(handle: String!, options: Options): [Tweet!]!
 }
 
 type Mutation {

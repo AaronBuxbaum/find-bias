@@ -6,9 +6,7 @@ You will need:
   - Secret environment variables (`.env`) which lives on the project root
 
 
-#### Run the thing
-`docker-compose build && docker-compose up`
+#### Commands
 
-
-#### Bring it down and remove volume
-`docker-compose down -v`
+* Build: `docker-compose build`
+* Run: `docker-compose up -V`
