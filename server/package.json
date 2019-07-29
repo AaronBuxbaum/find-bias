@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "dev": "ts-node-dev --no-notify --respawn --transpileOnly ./src",
-    "lint": "tslint --fix --project tsconfig.json 'src/**/*.{ts,tsx}'",
+    "lint": "tslint --fix --project tsconfig.json 'src/**/*.ts'",
     "precommit": "yarn typecheck && yarn lint",
     "start": "ts-node index.ts",
     "typecheck": "yarn tsc --noEmit"

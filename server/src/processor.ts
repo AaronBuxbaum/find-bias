@@ -1,6 +1,6 @@
 import { getRepository } from "typeorm";
 
-import { Tweet } from "./database/entity/Tweet.entity";
+import { Tweet } from "./database/entity/tweet";
 import { nlp } from "./requests";
 
 const processTweets = async (tweets: Tweet[]) => {

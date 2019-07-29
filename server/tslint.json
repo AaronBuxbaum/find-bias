@@ -7,7 +7,6 @@
     "prettier": true,
     "comment-format": [true, "check-space"],
     "completed-docs": false,
-    "file-name-casing": [true, {".entity.ts": "pascal-case", ".ts": "camel-case"}],
     "newline-before-return": false,
     "no-default-export": false,
     "no-default-import": false,

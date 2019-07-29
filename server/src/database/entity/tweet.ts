@@ -1,6 +1,6 @@
 import { Column, Entity, ManyToOne, PrimaryColumn } from "typeorm";
 
-import { TwitterUser } from "./TwitterUser.entity";
+import { TwitterUser } from "./twitterUser";
 
 @Entity()
 export class Tweet {

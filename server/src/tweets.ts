@@ -3,8 +3,8 @@ import { last } from "lodash";
 import { FullUser, Status as RawTweet } from "twitter-d";
 import { getRepository } from "typeorm";
 
-import { Tweet } from "./database/entity/Tweet.entity";
-import { TwitterUser } from "./database/entity/TwitterUser.entity";
+import { Tweet } from "./database/entity/tweet";
+import { TwitterUser } from "./database/entity/twitterUser";
 import generateConnection from "./generateConnection";
 import processUserTweets from "./processor";
 import { pushTweet } from "./queue";
