@@ -1,2 +1,2 @@
-flask
-spacy
+flask == 1
+spacy == 2
