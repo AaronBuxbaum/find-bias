@@ -17,10 +17,16 @@ input Options {
   skip: Int
 }
 
+type SubjectCount {
+  text: String
+  count: Int
+}
+
 type Query {
   count(handle: String!): Int
   profile(handle: String!): TwitterUser!
   tweets(handle: String!, options: Options): [Tweet!]!
+  processedTweets(handle: String!): [SubjectCount!]!
 }
 
 type Mutation {

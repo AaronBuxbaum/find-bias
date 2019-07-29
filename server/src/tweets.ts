@@ -6,6 +6,7 @@ import { getRepository } from "typeorm";
 import { Tweet } from "./database/entity/Tweet.entity";
 import { TwitterUser } from "./database/entity/TwitterUser.entity";
 import generateConnection from "./generateConnection";
+import processUserTweets from "./processor";
 import { pushTweet } from "./queue";
 import { twitter } from "./requests";
 import { IInputOptions } from "./resolvers";
@@ -79,16 +80,14 @@ const getMaxId = (tweet: RawTweet) => {
   return new BigInteger(lastSeen).subtract(ONE).toString();
 };
 
-const pushToQueue = (tweet: RawTweet, options: ITweetPageOptions) => {
-  if (tweet) {
-    pushTweet({
-      handle: getScreenName(tweet),
-      options: {
-        ...options,
-        max_id: getMaxId(tweet)
-      }
-    });
-  }
+const getNextTweetPage = (lastTweet: RawTweet, options: ITweetPageOptions) => {
+  pushTweet({
+    handle: getScreenName(lastTweet),
+    options: {
+      ...options,
+      max_id: getMaxId(lastTweet)
+    }
+  });
 };
 
 export const pushUserTweets = async (
@@ -96,8 +95,14 @@ export const pushUserTweets = async (
   options: ITweetPageOptions
 ) => {
   const tweets = await getTweets(handle.toLowerCase(), options);
-  pushToQueue(last(tweets)!, options);
-  return addTweets(tweets, handle);
+  const lastTweet = last(tweets)!;
+
+  if (lastTweet) {
+    getNextTweetPage(lastTweet, options);
+    await addTweets(tweets, handle);
+  } else {
+    await processUserTweets(handle);
+  }
 };
 
 export const getUserTweets = async (

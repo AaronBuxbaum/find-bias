@@ -12,11 +12,6 @@ const server = new GraphQLServer({
 
 createConnection();
 
-server.start(
-  {
-    tracing: true
-  },
-  () => {
-    console.log("Server is running on localhost:4000 🚀");
-  }
-);
+server.start({ tracing: true }, () => {
+  console.log("Server is running on localhost:4000 🚀");
+});

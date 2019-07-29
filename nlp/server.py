@@ -1,17 +1,13 @@
 from flask import Flask, request
 import nlp
 
-# from redis import Redis
-
 app = Flask(__name__)
-# redis = Redis(host='redis', port=6379)
 
 
-@app.route("/", methods=["POST"])
-def hello():
+@app.route("/processTweets", methods=["POST"])
+def processTweets():
     body = request.get_json()
-    entities = nlp.find_entities(body["text"])
-    return entities
+    return nlp.find_entities(body["tweets"])
 
 
 if __name__ == "__main__":

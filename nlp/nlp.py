@@ -1,20 +1,15 @@
 import spacy
+from collections import Counter
 
 nlp = spacy.load("en_core_web_md")
 
 
-def find_entities(text):
-    doc = nlp(text)
+def find_entities(tweets):
+    response = Counter()
 
-    response = {"sentiment": doc.sentiment, "entities": []}
+    for tweet in tweets:
+        doc = nlp(tweet["text"])
+        entities = map(lambda x: x.text, doc.ents)
+        response += Counter(entities)
 
-    for entity in doc.ents:
-        response["entities"].append(
-            {
-                "text": entity.text,
-                # 'sentiment': entity.sentiment,
-                "label": entity.label_,
-            }
-        )
-
-    return response
+    return dict(response.most_common(25))

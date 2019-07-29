@@ -1,5 +1,6 @@
 import { IResolvers } from "graphql-tools";
 
+import processUserTweets from "./processor";
 import {
   buildUserTweets,
   getUserInfo,
@@ -31,6 +32,10 @@ const resolvers: IResolvers = {
     count: async (_, { handle }: IHandleInput) => {
       const response = await getUserTweetCount(handle);
       return response;
+    },
+    processedTweets: async (_, { handle }: IHandleInput) => {
+      const response = (await processUserTweets(handle)) as object;
+      return Object.entries(response).map(([text, count]) => ({ count, text }));
     },
     profile: async (_, { handle }: IHandleInput) => {
       const response = await getUserInfo(handle);
