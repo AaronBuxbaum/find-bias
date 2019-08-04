@@ -18,6 +18,31 @@ spec:
         - yarn
         - dev
         env:
+        - name: POSTGRES_DB
+          valueFrom:
+            secretKeyRef:
+              name: env
+              key: POSTGRES_DB
+        - name: POSTGRES_USER
+          valueFrom:
+            secretKeyRef:
+              name: env
+              key: POSTGRES_USER
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: env
+              key: POSTGRES_PASSWORD
+        - name: RABBITMQ_DEFAULT_USER
+          valueFrom:
+            secretKeyRef:
+              name: env
+              key: RABBITMQ_DEFAULT_USER
+        - name: RABBITMQ_DEFAULT_PASS
+          valueFrom:
+            secretKeyRef:
+              name: env
+              key: RABBITMQ_DEFAULT_PASS
         - name: TWITTER_CONSUMER_KEY
           valueFrom:
             secretKeyRef:
