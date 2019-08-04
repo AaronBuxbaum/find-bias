@@ -1,0 +1,57 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: server
+  name: server
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        io.kompose.service: server
+    spec:
+      containers:
+      - args:
+        - yarn
+        - dev
+        env:
+        - name: TWITTER_CONSUMER_KEY
+          valueFrom:
+            secretKeyRef:
+              name: env
+              key: TWITTER_CONSUMER_KEY
+        - name: TWITTER_CONSUMER_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: env
+              key: TWITTER_CONSUMER_SECRET
+        - name: TWITTER_ACCESS_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: env
+              key: TWITTER_ACCESS_TOKEN
+        - name: TWITTER_ACCESS_TOKEN_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: env
+              key: TWITTER_ACCESS_TOKEN_SECRET
+        image: yarnpkg/dev
+        name: server
+        ports:
+        - containerPort: 4000
+        resources: {}
+        volumeMounts:
+        - mountPath: /app
+          subPath: ./server
+          name: server-claim0
+        workingDir: /app
+      restartPolicy: Always
+      volumes:
+      - name: server-claim0
+        hostPath:
+          path: /Users/aaron/Projects/find-bias
+          type: Directory
+status: {}

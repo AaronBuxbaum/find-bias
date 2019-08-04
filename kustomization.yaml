@@ -1,0 +1,16 @@
+kind: Kustomization
+
+secretGenerator:
+  - name: env
+    env: .env
+
+resources:
+  - .k8s/nlp/nlp-deployment.yaml
+  - .k8s/nlp/nlp-service.yaml
+  - .k8s/postgres/postgres-deployment.yaml
+  - .k8s/postgres/postgres-persistentvolumeclaim.yaml
+  - .k8s/postgres/postgres-service.yaml
+  - .k8s/rabbitmq/rabbitmq-deployment.yaml
+  - .k8s/rabbitmq/rabbitmq-service.yaml
+  - .k8s/server/server-deployment.yaml
+  - .k8s/server/server-service.yaml

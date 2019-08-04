@@ -1,0 +1,38 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: nlp
+  name: nlp
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        io.kompose.service: nlp
+    spec:
+      containers:
+      - env:
+        - name: FLASK_ENV
+          value: development
+        - name: PYTHONUNBUFFERED
+          value: "1"
+        image: aaronbuxbaum/spacy
+        name: nlp
+        ports:
+        - containerPort: 5000
+        resources: {}
+        volumeMounts:
+        - mountPath: /app
+          subPath: ./nlp
+          name: nlp-claim0
+        workingDir: /app
+      restartPolicy: Always
+      volumes:
+      - name: nlp-claim0
+        hostPath:
+          path: /Users/aaron/Projects/find-bias
+          type: Directory
+status: {}

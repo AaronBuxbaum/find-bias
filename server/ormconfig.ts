@@ -3,7 +3,7 @@ const prefix = "src/database";
 
 export = {
   type: "postgres",
-  host: "postgres",
+  host: "localhost",
   port: 5432,
 
   username: process.env.POSTGRES_USER,
