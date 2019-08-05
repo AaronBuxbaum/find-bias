@@ -26,13 +26,12 @@ spec:
         resources: {}
         volumeMounts:
         - mountPath: /app
-          subPath: ./nlp
           name: nlp-claim0
         workingDir: /app
       restartPolicy: Always
       volumes:
       - name: nlp-claim0
         hostPath:
-          path: /Users/aaron/Projects/find-bias
+          path: /Users/aaron/Projects/find-bias/nlp
           type: Directory
 status: {}

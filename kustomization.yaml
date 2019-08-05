@@ -1,10 +1,7 @@
 kind: Kustomization
 
-secretGenerator:
-  - name: env
-    env: .env
-
 resources:
+  - .k8s/secrets.yaml
   - .k8s/nlp/nlp-deployment.yaml
   - .k8s/nlp/nlp-service.yaml
   - .k8s/postgres/postgres-deployment.yaml

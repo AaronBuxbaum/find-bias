@@ -70,7 +70,6 @@ spec:
         resources: {}
         volumeMounts:
         - mountPath: /app
-          subPath: ./server
           name: server-claim0
           readOnly: true
         workingDir: /app
@@ -78,6 +77,6 @@ spec:
       volumes:
       - name: server-claim0
         hostPath:
-          path: /Users/aaron/Projects/find-bias
+          path: /Users/aaron/Projects/find-bias/server
           type: Directory
 status: {}
