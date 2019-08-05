@@ -5,7 +5,7 @@ metadata:
     io.kompose.service: server
   name: server
 spec:
-  type: LoadBalancer
+  type: NodePort
   ports:
   - port: 4000
   selector:

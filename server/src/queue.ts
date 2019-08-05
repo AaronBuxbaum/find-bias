@@ -5,9 +5,11 @@ import { ITweetPageOptions, pushUserTweets } from "./tweets";
 
 const user = process.env.RABBITMQ_DEFAULT_USER;
 const password = process.env.RABBITMQ_DEFAULT_PASS;
+const host = process.env.RABBIT_SERVICE_HOST;
+const port = process.env.RABBIT_SERVICE_PORT;
 // might be able to be an object of keys username and password (might also need hostname)
 const connection = new amqp.Connection(
-  `amqp://${user}:${password}@localhost:5672`
+  `amqp://${user}:${password}@${host}:${port}`
 );
 
 const QUEUE_DELAY = 10000;

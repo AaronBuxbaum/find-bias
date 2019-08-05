@@ -72,6 +72,7 @@ spec:
         - mountPath: /app
           subPath: ./server
           name: server-claim0
+          readOnly: true
         workingDir: /app
       restartPolicy: Always
       volumes:

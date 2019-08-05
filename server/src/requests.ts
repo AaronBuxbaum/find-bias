@@ -9,7 +9,7 @@ export const twitter = new Twit({
 });
 
 export const nlp = Axios.create({
-  baseURL: "http://nlp:5000",
+  baseURL: process.env.NLP_PORT,
   headers: {
     "Content-Type": "application/json"
   }
