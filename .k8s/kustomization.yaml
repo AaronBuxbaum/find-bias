@@ -1,0 +1,13 @@
+kind: Kustomization
+
+resources:
+  - secrets.yaml
+  - nlp/nlp-deployment.yaml
+  - nlp/nlp-service.yaml
+  - postgres/postgres-deployment.yaml
+  - postgres/postgres-persistentvolumeclaim.yaml
+  - postgres/postgres-service.yaml
+  - rabbitmq/rabbitmq-deployment.yaml
+  - rabbitmq/rabbitmq-service.yaml
+  - server/server-deployment.yaml
+  - server/server-service.yaml
