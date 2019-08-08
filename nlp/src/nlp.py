@@ -1,9 +1,9 @@
 import spacy
 import html
-from collections import Counter
-from vaderSentiment import sentiment
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
 spacy.prefer_gpu()
+analyzer = SentimentIntensityAnalyzer()
 model = spacy.load("en_core_web_sm", disable=["parser"])
 label_blacklist = set(['CARDINAL', 'DATE', 'MONEY', 'ORDINAL', 'PERCENT', 'QUANTITY', 'TIME'])
 
@@ -13,7 +13,7 @@ def format_tweet(tweet):
 
 
 def find_entities(tweets):
-    response = Counter()
+    response = {}
 
     for tweet in tweets:
         doc = model(format_tweet(tweet["text"]))
@@ -25,7 +25,18 @@ def find_entities(tweets):
         #     print(e.ents, e.lemma_, e.label_)
 
         entities = map(lambda x: x.text, entities)
-        response += Counter(entities)
-        print(sentiment(tweet["text"]))
+        sentiment = analyzer.polarity_scores(tweet["text"])["compound"]
+        
+        for entity in entities:
+            if entity not in response:
+                response[entity] = {
+                    "count": 0,
+                    "sentiment": 0
+                }
+            response[entity]["count"] = response[entity]["count"] + 1
+            response[entity]["sentiment"] = response[entity]["sentiment"] + sentiment
 
-    return dict(response.most_common(25))
+    for key in response:
+        response[key]["sentiment"] = response[key]["sentiment"] / response[key]["count"]
+
+    return response

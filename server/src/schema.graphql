@@ -18,8 +18,9 @@ input Options {
 }
 
 type SubjectCount {
-  text: String
   count: Int
+  text: String
+  sentiment: Float
 }
 
 type Query {

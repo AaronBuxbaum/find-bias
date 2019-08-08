@@ -1,4 +1,5 @@
 import { IResolvers } from "graphql-tools";
+import { sortBy, takeRight } from "lodash";
 
 import processUserTweets from "./processor";
 import {
@@ -35,7 +36,17 @@ const resolvers: IResolvers = {
     },
     processedTweets: async (_, { handle }: IHandleInput) => {
       const response = (await processUserTweets(handle)) as object;
-      return Object.entries(response).map(([text, count]) => ({ count, text }));
+      return takeRight(
+        sortBy(
+          Object.entries(response).map(([text, { count, sentiment }]) => ({
+            count,
+            sentiment,
+            text
+          })),
+          ["count"]
+        ),
+        25
+      );
     },
     profile: async (_, { handle }: IHandleInput) => {
       const response = await getUserInfo(handle);
