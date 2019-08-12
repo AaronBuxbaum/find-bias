@@ -20,23 +20,21 @@ def find_entities(tweets):
         entities = doc.ents
         entities = filter(lambda x: x.label_ not in label_blacklist, entities)
         entities = filter(lambda x: not x.text.startswith('RT '), entities)
-
-        # for e in entities:
-        #     print(e.ents, e.lemma_, e.label_)
-
         entities = map(lambda x: x.text, entities)
         sentiment = analyzer.polarity_scores(tweet["text"])["compound"]
-        
+
         for entity in entities:
             if entity not in response:
                 response[entity] = {
                     "count": 0,
                     "sentiment": 0
                 }
-            response[entity]["count"] = response[entity]["count"] + 1
-            response[entity]["sentiment"] = response[entity]["sentiment"] + sentiment
+            v = response[entity]
+            v["count"] = v["count"] + 1
+            v["sentiment"] = v["sentiment"] + sentiment
 
     for key in response:
-        response[key]["sentiment"] = response[key]["sentiment"] / response[key]["count"]
+        v = response[key]
+        v["sentiment"] = v["sentiment"] / v["count"]
 
     return response
