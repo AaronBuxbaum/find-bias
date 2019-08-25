@@ -1,21 +1,15 @@
-// tslint:disable object-literal-sort-keys
 import { trimEnd } from "lodash";
 
-const database = {
-  type: "postgres",
-  port: process.env.POSTGRES_SERVICE_PORT,
-  host: process.env.POSTGRES_SERVICE_HOST
-};
-
 const authentication = {
-  username: process.env.POSTGRES_USER,
+  database: process.env.POSTGRES_DB,
   password: process.env.POSTGRES_PASSWORD,
-  database: process.env.POSTGRES_DB
+  username: process.env.POSTGRES_USER
 };
 
-const options = {
-  synchronize: true,
-  logging: false
+const database = {
+  host: process.env.POSTGRES_SERVICE_HOST,
+  port: process.env.POSTGRES_SERVICE_PORT,
+  type: "postgres"
 };
 
 const prefix = "src/database";
@@ -30,6 +24,11 @@ const folders: IDictionary<string[]> = {};
 Object.entries(cli).forEach(([key, value]) => {
   folders[stripDir(key)] = [`${value}/**/*.ts`];
 });
+
+const options = {
+  logging: false,
+  synchronize: true
+};
 
 export = {
   cli,
