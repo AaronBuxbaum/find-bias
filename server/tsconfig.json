@@ -6,8 +6,6 @@
       "es2017",
       "esnext.asynciterable"
     ],
-    // skip checking libraries until https://github.com/abreits/amqp-ts/issues/39 is resolved
-    "skipLibCheck": true,
     "strict": true
   }
 }

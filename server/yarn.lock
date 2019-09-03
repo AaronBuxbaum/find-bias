@@ -125,6 +125,11 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.6.8.tgz#e469b4bf9d1c9832aee4907ba8a051494357c12c"
   integrity sha512-aX+gFgA5GHcDi89KG5keey2zf0WfZk/HAQotEamsK2kbey+8yGKcson0hbK8E+v0NArlCJQCqMP161YhV6ZXLg==
 
+"@types/node@^12.7.2":
+  version "12.7.3"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.7.3.tgz#27b3f40addaf2f580459fdb405222685542f907a"
+  integrity sha512-3SiLAIBkDWDg6vFo0+5YJyHPWU9uwu40Qe+v+0MH8wRKYBimHvvAOyk3EzMrD/TrIlLYfXrqDqrg913PynrMJQ==
+
 "@types/range-parser@*":
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/@types/range-parser/-/range-parser-1.2.3.tgz#7ee330ba7caafb98090bece86a5ee44115904c2c"
@@ -194,11 +199,12 @@ ajv@^6.5.5:
     json-schema-traverse "^0.4.1"
     uri-js "^4.2.2"
 
-amqp-ts@^1.5.0:
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/amqp-ts/-/amqp-ts-1.5.0.tgz#69021d031aee37bb95faf3e93206737659ccb145"
-  integrity sha512-PJLB6fxEdQHk5G/DJxMZMsedjRQPow8ngV9h7bwiUNO4X4NDkBSzrFXsVcIaLjcSyJFd6vnJ4j3Fac/6ZDdtqw==
+amqp-ts@^1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/amqp-ts/-/amqp-ts-1.6.0.tgz#e5c876bfbc502292ba3d9045ed80556b899e541f"
+  integrity sha512-6t9Lj7Rjzj0wJgz6jw8w1l4tf60zRIqha+ryD3Xy+YiG4NN33TgxU7hnaXh+Zy5TNAM7Q/h1Ugs72L/6BkEvEg==
   dependencies:
+    "@types/node" "^12.7.2"
     amqplib "^0.4.1"
     bluebird "^3.3.5"
     winston "^2.2.0"

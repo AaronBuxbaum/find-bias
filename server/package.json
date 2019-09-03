@@ -9,7 +9,7 @@
     "typecheck": "yarn tsc --noEmit"
   },
   "dependencies": {
-    "amqp-ts": "^1.5.0",
+    "amqp-ts": "^1.6.0",
     "axios": "^0.19.0",
     "graphql": "^14.4.2",
     "graphql-yoga": "^1.18.1",
